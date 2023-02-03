@@ -16,14 +16,14 @@ ActiveRecord::Schema.define(version: 2023_02_02_211323) do
   enable_extension "plpgsql"
 
   create_table "hike_trails", force: :cascade do |t|
-    t.bigint "users_id", null: false
+    t.bigint "user_id", null: false
     t.bigint "locate_id", null: false
     t.text "review"
     t.datetime "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["locate_id"], name: "index_hike_trails_on_locate_id"
-    t.index ["users_id"], name: "index_hike_trails_on_users_id"
+    t.index ["user_id"], name: "index_hike_trails_on_user_id"
   end
 
   create_table "locates", force: :cascade do |t|
@@ -48,5 +48,5 @@ ActiveRecord::Schema.define(version: 2023_02_02_211323) do
   end
 
   add_foreign_key "hike_trails", "locates"
-  add_foreign_key "hike_trails", "users", column: "users_id"
+  add_foreign_key "hike_trails", "users"
 end
