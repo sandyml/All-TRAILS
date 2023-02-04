@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
    render json: user, status: :ok
   else
    unprocessable_entity_error_response
-   # render json: { errors: ["Username or Password does not exist!"] }, status: :unprocessable_entity
+   # render json: { errors: ["Invalid username or password"] }, status: :unprocessable_entity
   end
  end
 
@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
  private
 
  def unprocessable_entity_error_response
-  return render json: { errors: ["Username or Password does not exist!"] }, status: :unprocessable_entity
+  return render json: { errors: ["Invalid username or password"] }, status: :unprocessable_entity
  end
 
 end

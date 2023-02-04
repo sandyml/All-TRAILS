@@ -1,5 +1,8 @@
 class HikeTrailsController < ApplicationController
  before_action :hike_finder, only: [:update, :destroy]
+ # before_action :hike_finder
+ # skip_before_action :hike_finder, only: [:update, :destroy]
+ # skip_before_action :authorize, only: [:index]
 
  def create
   if user_signed_in?
@@ -15,11 +18,15 @@ class HikeTrailsController < ApplicationController
   end
  end
 
- def update
- end
+ # def update
+ #  hike = HikeTrail.find_by_id(params[:id]) 
+ #  return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
+ # end
 
- def destroy
- end
+ # def destroy
+ #  session.delete :user_id
+ #  head :no_content
+ # end
 
  private
 
@@ -39,6 +46,10 @@ class HikeTrailsController < ApplicationController
  def hike_finder
   hike = HikeTrail.find_by(id: params[:id])
  end
+
+ # def authorize
+  
+ # end
 
 end
 
