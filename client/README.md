@@ -1,6 +1,24 @@
+# Project: React/Rails API - Client-Side
+
+## Description
+
+Ruby on Rails - AllTrails inspired the name of Ruby on tRails / AllTRAILS. 
+
+Utilizing two of the things I enjoy - Ruby on Rails and hiking! 
+
+## Resources
+
+- [Getting Started with Ruby on Rails on Render](https://render.com/docs/deploy-rails)
+- [Render Databases Guide](https://render.com/docs/databases)
+
+## Other Resources
+- [AllTrails](https://www.alltrails.com/?ref=header)
+- [New York - New Jersey Trail](https://www.nynjtc.org/)
+
+
 # MIT License
 ### The MIT License (MIT)
-Copyright (c) 2023 Sandra MYL
+Copyright (c) 2023 Sandra Yun
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
