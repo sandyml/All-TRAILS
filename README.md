@@ -11,6 +11,11 @@ Utilizing two of the things I enjoy - Ruby on Rails and hiking!
 - [Getting Started with Ruby on Rails on Render](https://render.com/docs/deploy-rails)
 - [Render Databases Guide](https://render.com/docs/databases)
 
+## Other Resources
+- [AllTrails](https://www.alltrails.com/?ref=header)
+- [New York - New Jersey Trail](https://www.nynjtc.org/)
+
+
 # MIT License
 ### The MIT License (MIT)
 Copyright (c) 2023 Sandra Yun
