@@ -14,6 +14,7 @@ class HikeTrailsController < ApplicationController
    end
   else
    unproccessable_entity_errors_response(hike)
+   # render json: { errors: hike.errors.full_messages }, serializer: HikeTrailsSerializer
    # render json: { errors: hike.errors.full_messages }, status: :unproccessable_entity 
   end
  end
