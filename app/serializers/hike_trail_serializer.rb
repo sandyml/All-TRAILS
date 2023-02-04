@@ -1,5 +1,6 @@
 class HikeTrailSerializer < ActiveModel::Serializer
-  attributes :id, :review, :date
-  has_one :account_name
-  has_one :locate
+  attributes :id, :review, :date, :user_id, :locate_id
+
+  # belongs_to :locate serializer: LocateSerializer
+  # belongs_to :locate serializer: HikeLocateSerializer??
 end

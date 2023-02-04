@@ -73,7 +73,9 @@ HIKE
 :location /hiking locations with image_url
 
 ** Implement authentication/authorization, including password protection. A user must be able to: ** 
-REMINDER: BCrypt has_secure_password (macro)
+REMINDER: 
+1. BCrypt has_secure_password (macro)
+2. session controller to signin / signout 
 
 First Page: 
 sign in / login / logout 
