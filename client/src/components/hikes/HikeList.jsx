@@ -6,4 +6,4 @@ const HikeList = () => {
   )
 }
 
-export default HikeList
+export default HikeList;
