@@ -1,8 +1,8 @@
 class User < ApplicationRecord
+ has_secure_password
  has_many :hike_trails, dependent: :destroy
  has_many :locates, through: :hike_trails
 
- has_secure_password
 
  validates :account_name, presence: true, uniqueness: true
 end

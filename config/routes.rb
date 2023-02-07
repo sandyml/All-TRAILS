@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  # resources :users
-  # resources :usernames
+  resources :users
   # resources :hike_trails, expect: [:index, :show]
   resources :hike_trails, only: [:create, :update, :destroy]
   resources :locates, only: [:create]

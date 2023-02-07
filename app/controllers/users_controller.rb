@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+ def index
+  render json: User.all
+ end
+
  # POST /signup 
  def create
   user = User.new(user_params)
@@ -19,8 +23,11 @@ class UsersController < ApplicationController
 
  # GET /me :show (refresh page)
  def show
+  # byebug
   if user_signed_in? 
    render json: current_user
+  else 
+   require_login
   end
  end
 
@@ -33,6 +40,10 @@ class UsersController < ApplicationController
 
  def unprocessable_entity_error_response(user)
   return render json: { errors: user.errors.full_messages }, status: :unprocessable_entity 
+ end
+
+ def require_login
+  return render json: { errors: ["Please log in to your account!"]}
  end
 
 end

@@ -15,7 +15,9 @@ export const UserProvider = ({ children }) => {
  const [user, setUser] = useState([]);
  const [loggedIn, setLoggedIn] = useState(false);
 
+ console.log("Inside UserContext")
  useEffect(() => {
+  console.log("Inside useEffect")
   fetch("/me")
    .then(resp => resp.json())
    .then(data => {
@@ -23,6 +25,15 @@ export const UserProvider = ({ children }) => {
     setUser(data)
    })
  }, [])
+
+//  const handleSubmit = (e) => {
+//   e.preventDefault()
+//   fetch(serverUrl + "/signup", {
+//     method: "POST",
+//     headers,
+//   })
+//   JSON.stringify()
+// }
 
  const login = (user) => {
   setUser(user)
