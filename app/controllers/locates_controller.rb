@@ -1,5 +1,9 @@
 class LocatesController < ApplicationController
 
+  def index
+  render json: Locate.all
+  end
+
  def create
   location = Locate.new(location_params)
   if location.save

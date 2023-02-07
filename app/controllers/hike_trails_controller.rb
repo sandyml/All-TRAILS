@@ -4,6 +4,10 @@ class HikeTrailsController < ApplicationController
  # skip_before_action :hike_finder, only: [:update, :destroy]
  # skip_before_action :authorize, only: [:index]
 
+ def index
+  render json: HikeTrail.all
+ end
+
  def create
   if user_signed_in?
    hike = current_user.hike_trails.build(hike_trail_params)
@@ -65,7 +69,7 @@ end
  end
 
  def require_login
-  render json: { errors: ["Please log in to your account!"]}
+  return render json: { errors: ["Please log in to your account!"]}
  end
 
  def hike_finder
