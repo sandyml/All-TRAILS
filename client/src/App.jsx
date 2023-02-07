@@ -1,28 +1,32 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from './components/static/Home';
+import { UserProvider } from './components/context/UserContext';
+import Navbar from './components/navigation/Navbar';
 import Signin from './components/authentication/Signin';
 import Signout from './components/authentication/Signout';
 import Signup from './components/authentication/Signup';
 import HikeList from './components/hikes/HikeList';
+import HikeItems from './components/hikes/HikeItems';
 
 const App = () => {
   return (
-    <div className="App-div">
+    <div className="app-div">
       <h1>App Component</h1>
-
-      <Router>
-        <Routes>
-          <Route path="/" element={Home} />
-          <Route path="/home" element={Home} />
-          <Route path="/hike_trails" />
-          <Route path="/hike_trails/:id" element={HikeList} />
-          <Route path="/signup" element={Signup} />
-          <Route path="/login" element={Signin} />
-          <Route path="/logout" element={Signout} />
-        </Routes>
-      </Router>
-
+      <UserProvider>
+        <Navbar />
+        {/* <Router> */}
+          <Routes>
+            <Route exact path="/" element={Home} />
+            <Route path="/home" element={Home} />
+            <Route path="/login" element={Signin} />
+            <Route path="/logout" element={Signout} />
+            <Route path="/signup" element={Signup} />
+            <Route path="/hike_trails" element={HikeList} />
+            <Route path="/hike_trails/:id" element={HikeItems} />
+          </Routes>
+        {/* </Router> */}
+      </UserProvider>
     </div>
   );
 }

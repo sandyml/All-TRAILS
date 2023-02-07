@@ -1,11 +1,7 @@
-import React from 'react'
+export const serverUrl = 'http://localhost:3000'
+export const clientUrl = 'http://localhost:4000'
 
-const Global = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
-
-export default Global
+export const headers = {
+  "Accept": "application/json",
+  "Content-Type": "application/json",
+ }
