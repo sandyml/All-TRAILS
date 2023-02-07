@@ -96,3 +96,11 @@ MEETING W ENOCH:
 - STYLE CSS INSTEAD FOR PHASE-4 
 
 DB:ROLLBACK 
+
+
+
+MEETING: 
+1. test framework 
+2. rspec folder with pry 
+ - pet_spec needs to have the underscore 
+3. --fail-f  
