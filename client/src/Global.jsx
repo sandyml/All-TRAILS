@@ -3,5 +3,5 @@ export const clientUrl = 'http://localhost:4000'
 
 export const headers = {
   "Accept": "application/json",
-  "Content-Type": "application/json",
+  "Content-Type": "application/json"
  }

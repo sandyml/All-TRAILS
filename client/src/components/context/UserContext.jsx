@@ -1,4 +1,5 @@
 import React, { createContext, UseContext, useState, useEffect } from 'react';
+import { serverUrl } from '../../Global';
 
 export const UserContext = createContext(null); // initial 
 
@@ -17,7 +18,8 @@ export const UserProvider = ({ children }) => {
 
  console.log("Inside UserContext")
  useEffect(() => {
-  console.log("Inside useEffect")
+  console.log("Inside UserContext")
+  // fetch(serverUrl + "/me")
   fetch("/me")
    .then(resp => resp.json())
    .then(data => {

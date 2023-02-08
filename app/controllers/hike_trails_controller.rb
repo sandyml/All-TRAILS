@@ -81,7 +81,6 @@ end
  end
 
  # def authorize
-  
  # end
 
 end

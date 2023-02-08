@@ -12,7 +12,6 @@ import HikeItems from './components/hikes/HikeItems';
 const App = () => {
   return (
     <div className="app-div">
-      <h1>App Component</h1>
       <UserProvider>
         <Navbar />
         {/* <Router> */}

@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { UserContext, UserProvider } from '../context/UserContext';
 import { headers } from '../../Global';
 import Home from '../static/Home';
+import Signup from '../authentication/Signup';
 
 //CHANGE PROXY REQUEST WHEN DONE 
 
@@ -23,8 +24,9 @@ const Navbar = () => {
   if (loggedIn) {
     return (
       <UserProvider>
-        <div className="navbar-container">
-          <Link to="/signup" onClick={signup}><Home /></Link>
+        <div className="topnav">
+          <Link to="/home" onClick={login}><Home /></Link>
+          <Link to="/signup" onClick={login}><Signup /></Link>
           <Link to="/logout" onClick={logoutUser}>Log Out</Link>
         </div>
       </UserProvider>
@@ -32,9 +34,9 @@ const Navbar = () => {
   } else {
     return (
       <UserProvider>
-        <div className="navbar-container">
+        <div className="topnav">
           <Link to="/home">Home</Link>
-          <Link to="/signup" onClick={signup}><Home />Sign Up</Link>
+          <Link to="/signup" onClick={signup}><Signup /> Sign Up </Link>
           <Link to="/login" onClick={login}>Login</Link>
         </div>
       </UserProvider>
