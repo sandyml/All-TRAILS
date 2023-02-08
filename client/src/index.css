@@ -1,4 +1,4 @@
-body {
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,7 +10,46 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+} */
+
+* { 
+  margin: 0;
+  padding: 0;
+  font-family: Percent,Beatrice,Arial,sans-serif;
+  /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
 }
+
+.about-div {
+  width: 100%;
+  height: 100vh;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+
+/* .overlay {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+} */
 
 .topnav {
   overflow: hidden;
@@ -65,6 +104,7 @@ code {
 }
 
 img.bg-image {
+  display: flex;
   background-repeat: repeat;
   background-size: contain;
   background-position: center;
@@ -100,6 +140,22 @@ img.bg-image {
   font-size: 4.5rem;
   font-weight: bold;
   text-align: left;
+  list-style: none;
+  opacity: .5;
+}
+
+.container-signout-div {
+  position: relative;
+}
+
+.text-signout {
+  margin-top: 6rem;
+  position: absolute;
+  top: 8px;
+  color: black;
+  font-size: 4.5rem;
+  font-weight: bold;
+  text-align: center;
   list-style: none;
   opacity: .5;
 }

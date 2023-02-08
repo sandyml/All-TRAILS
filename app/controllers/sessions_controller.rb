@@ -1,12 +1,12 @@
 class SessionsController < ApplicationController
- skip_before_action :authorize, only: [:create]
+ # skip_before_action :authorize, only: [:create]
  
  # POST /login :create
  def create
-  user = User.find_by(account_name: params[:account_name])
-  if user&.authenticate(params[:password])
-   session[:user_id] = user.id
-   render json: user, status: :created
+  @user = User.find_by(account_name: params[:account_name])
+  if @user&.authenticate(params[:password])
+   session[:user_id] = @user.id
+   render json: @user, status: :created
   else
    unprocessable_entity_error_response
    # render json: { errors: ["Invalid username or password"] }, status: :unprocessable_entity
@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
  private
 
  def unprocessable_entity_error_response
-  return render json: { errors: ["Invalid username or password"] }, status: :unauthorize
+  return render json: { errors: ["Invalid username or password"] }, status: :unathorized
  end
 
 end

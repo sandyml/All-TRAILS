@@ -1,5 +1,5 @@
 import React from 'react'
-import Background from '../img/hike.png'
+import Background from '../../img/hike.png'
 
 
 const Home = () => {
