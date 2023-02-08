@@ -4,9 +4,9 @@ class HikeTrailsController < ApplicationController
  # skip_before_action :hike_finder, only: [:update, :destroy]
  # skip_before_action :authorize, only: [:index]
 
- def index
-  render json: HikeTrail.all
- end
+  def index
+    render json: HikeTrail.all
+  end
 
  def create
   if user_signed_in?
@@ -59,26 +59,26 @@ end
 
  private
 
- def hike_trail_params
-  params.require(:hike_trails).permit(:locate_id, :review, :date)
-  # params.permit(:user, :locate, :review, :date)
- end
+  def hike_trail_params
+    params.require(:hike_trails).permit(:locate_id, :review, :date)
+    # params.permit(:user, :locate, :review, :date)
+  end
 
- def unproccessable_entity_errors_response(hike)
-  render json: { errors: hike.errors.full_messages }, status: :unproccessable_entity 
- end
+  def unproccessable_entity_errors_response(hike)
+    render json: { errors: hike.errors.full_messages }, status: :unproccessable_entity 
+  end
 
- def require_login
+  def require_login
   return render json: { errors: ["Please log in to your account!"]}
- end
+  end
 
- def hike_finder
-  hike = HikeTrail.find_by(id: params[:id])
- end
+  def hike_finder
+    hike = HikeTrail.find_by(id: params[:id])
+  end
 
- def review_not_found_error
-  return render json: { error: ["Review not found"] }, status: :not_found
- end
+  def review_not_found_error
+    return render json: { error: ["Review not found"] }, status: :not_found
+  end
 
  # def authorize
  # end

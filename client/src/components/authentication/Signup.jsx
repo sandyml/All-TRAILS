@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { serverUrl, headers } from '../../Global'
+import { headers } from '../../Global'
 import { useNavigate } from 'react-router-dom';
 // import { UserContext } from '../context/UserContext'
 
 const Signup = () => {
   const navigate = useNavigate();
+  const [passwordShown, setPasswordShown] = useState(false);
   const [formData, setFormData] = useState({
     id: 0,
     username: "",
@@ -12,21 +13,63 @@ const Signup = () => {
     password: ""
   });
 
-  console.log("Inside form")
+  const togglePassword = () => {
+    setPasswordShown(!passwordShown)
+  }
+
+  console.log("Inside signup component")
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(serverUrl, {
+    fetch('/signup', {
       method: "POST",
       headers,
       body: JSON.stringify(formData)
     })
       .then((resp) => resp.json())
       .then((data) => console.log(data))
-      navigate("/hike_trails");
+    navigate("/hike_trails");
   }
 
-  console.log("Inside under")
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   fetch(backendUrl, {
+  //    method: 'POST',
+  //    headers,
+  //    body: JSON.stringify({
+  //     hike_trail: {
+  //       user_id,
+  //       locate_id,
+  //       review,
+  //       date
+  //     },
+  //     user: {
+  //       account_name,
+  //       email,
+  //       password
+  //     },
+  //     locate: {
+  //       trail_name,
+  //       city,
+  //       state, 
+  //       image_url,
+  //       difficulty,
+  //       legnth,
+  //       elevation_gain,
+  //       route_type
+  //     }
+  //    })
+  //   })
+  //    .then(resp => resp.json())
+  //    .then(data => {
+  //     console.log(data)
+  //     // set(data)
+  //     navigate("/hike_trails");
+  //    })
+  //  }
+  
+
+  console.log("Inside signup under handlesubmit fetch")
 
   const handleChange = (e) => {
     const key = e.target.id
@@ -49,36 +92,40 @@ const Signup = () => {
     <div className='signup-div'>
       <h2>Please Create An Account</h2>
       <form className='form-sub' onClick={handleSubmit}>
-        <div className='form-sub-border'>
+        {/* <div className='form-sub-border'> */}
           <label htmlFor='username'>Username:
-            <input 
-            type='textarea' 
-            id='username' 
-            placeholder='Username must be at least 5 characters' 
-            value={formData.username} 
-            onChange={handleChange}
+            <input
+              type='textarea'
+              id='username'
+              placeholder='Username must be at least 5 characters'
+              value={formData.username}
+              onChange={handleChange}
             />
-          </label>
+          </label><br />
+          <br />
           <label htmlFor='email'>Email:
-            <input 
-            type='textarea' 
-            id='email' 
-            placeholder='Enter email here' 
-            value={formData.email} 
-            onChange={handleChange}
+            <input
+              type='email'
+              id='email'
+              placeholder='Enter email here'
+              value={formData.email}
+              onChange={handleChange}
             />
-          </label>
+          </label><br />
+          <br />
           <label htmlFor='password'>Password:
-            <input 
-            type='textarea' 
-            id='password' 
-            placeholder='Password must be at least 5 characters' 
-            value={formData.password} 
-            onChange={handleChange}
+            <input
+              type={passwordShown ? "text" : "password"}
+              id='password'
+              placeholder='Password must be at least 5 characters'
+              value={formData.password}
+              onChange={handleChange}
             />
-          </label>
+            <button onClick={togglePassword}>Show Password</button>
+          </label><br />
+          <br />
           <button type="submit" value="Submit" className="form-button">Submit</button>
-        </div>
+        {/* </div> */}
       </form>
     </div>
   )

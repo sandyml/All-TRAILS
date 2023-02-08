@@ -1,5 +1,5 @@
 import React, { createContext, UseContext, useState, useEffect } from 'react';
-import { serverUrl } from '../../Global';
+// import { serverUrl } from '../../Global';
 
 export const UserContext = createContext(null); // initial 
 
@@ -15,6 +15,44 @@ export const UserProvider = ({ children }) => {
  const [favorites, setFavorites] = useState([]);
  const [user, setUser] = useState([]);
  const [loggedIn, setLoggedIn] = useState(false);
+
+   // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   fetch(backendUrl, {
+  //    method: 'POST',
+  //    headers,
+  //    body: JSON.stringify({
+  //     hike_trail: {
+  //       user_id,
+  //       locate_id,
+  //       review,
+  //       date
+  //     },
+  //     user: {
+  //       account_name,
+  //       email,
+  //       password
+  //     },
+  //     locate: {
+  //       trail_name,
+  //       city,
+  //       state, 
+  //       image_url,
+  //       difficulty,
+  //       legnth,
+  //       elevation_gain,
+  //       route_type
+  //     }
+  //    })
+  //   })
+  //    .then(resp => resp.json())
+  //    .then(data => {
+  //     console.log(data)
+  //     // set(data)
+  //     navigate("/hike_trails");
+  //    })
+  //  }
+  
 
  console.log("Inside UserContext")
  useEffect(() => {

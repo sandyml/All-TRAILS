@@ -6,6 +6,7 @@ import Home from '../static/Home';
 import Signup from '../authentication/Signup';
 
 //CHANGE PROXY REQUEST WHEN DONE 
+// [] redo 
 
 const Navbar = () => {
   const navigate = useNavigate()
@@ -26,6 +27,7 @@ const Navbar = () => {
       <UserProvider>
         <div className="topnav">
           <Link to="/home" onClick={login}><Home /></Link>
+          <Link to="/" onClick={login}><Home /></Link>
           <Link to="/signup" onClick={login}><Signup /></Link>
           <Link to="/logout" onClick={logoutUser}>Log Out</Link>
         </div>
@@ -36,8 +38,8 @@ const Navbar = () => {
       <UserProvider>
         <div className="topnav">
           <Link to="/home">Home</Link>
-          <Link to="/signup" onClick={signup}><Signup /> Sign Up </Link>
           <Link to="/login" onClick={login}>Login</Link>
+          <Link to="/signup" onClick={signup}><Signup /> Sign Up </Link>
         </div>
       </UserProvider>
     )

@@ -12,7 +12,6 @@ class UsersController < ApplicationController
    render json: user, status: :created
   else 
    unprocessable_entity_error_response(user)
-   # render json: { errors: user.errors.full_messages }, status: :unprocessable_entity 
   end
  end
 
@@ -25,7 +24,7 @@ class UsersController < ApplicationController
  def show
   # byebug
   if user_signed_in? 
-   render json: current_user
+   render json: @current_user
   else 
    require_login
   end
@@ -35,7 +34,6 @@ class UsersController < ApplicationController
 
  def user_params
   params.require(:user).permit(:account_name, :email, :password)
-  # params.permit(:account_name, :email, :password)
  end
 
  def unprocessable_entity_error_response(user)
