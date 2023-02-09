@@ -10,6 +10,7 @@ Utilizing two of the things I enjoy - Ruby on Rails and hiking!
 
 - [Getting Started with Ruby on Rails on Render](https://render.com/docs/deploy-rails)
 - [Render Databases Guide](https://render.com/docs/databases)
+-[Rails Status Code](http://www.railsstatuscodes.com/)
 
 ## Other Resources
 - [AllTrails](https://www.alltrails.com/?ref=header)
