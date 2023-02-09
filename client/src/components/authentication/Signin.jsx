@@ -11,6 +11,13 @@ const Signin = () => {
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   const { login } = useContext(UserContext);
+  
+  // const [siginForm, setSigninForm] = useState({
+  //   account_name: "",
+  //   email: "",
+  //   password: ""
+  // });
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,7 +40,8 @@ const Signin = () => {
         } else {
           resp.json()
             .then(() =>
-              setError(error));
+            // .catch((error) => console.log(error))
+              setError(error))
         }
       });
   }
