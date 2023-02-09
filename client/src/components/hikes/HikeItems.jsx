@@ -11,7 +11,15 @@ const { id, review, date } = hike
   return (
     <HikeProvider>
       <div className="hike-item-div" key={id}>
-        <p>{review}</p> <p>{date}</p>
+        
+        <p>Review: <br />
+        <br />
+         {review}
+        </p>
+
+        <p>Date: <br />
+          {date}
+        </p>
         {/* <h1>{trail_name}</h1>
         <img src={image_url} className="hike-img" alt={review} />
         <div className="item-body-div" key={id}>

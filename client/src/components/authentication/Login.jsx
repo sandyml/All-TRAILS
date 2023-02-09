@@ -107,7 +107,6 @@ const Login = () => {
             type={passwordShown ? "text" : "password"}
           />
         </div>
-
         <button onClick={togglePassword}>Show Password</button>
         <button onClick={handleNavigate} type='submit' >Login</button>
       </form>
