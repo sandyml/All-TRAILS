@@ -256,7 +256,7 @@ img.bg-image {
   border: 1px solid #302d2d;
   animation: popup 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
-/* @keyframes popup {
+@keyframes popup {
   0% {
       transform: scale(0.2);
       opacity: 0;
@@ -265,7 +265,7 @@ img.bg-image {
       transform: scale(1);
       opacity: 1;
   }
-} */
+}
 
 h2 {
   text-align: center;

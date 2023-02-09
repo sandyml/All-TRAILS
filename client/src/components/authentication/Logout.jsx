@@ -4,7 +4,7 @@ import Background from '../../img/switzerland.png'
 const Logout = () => {
   return (
     <div className="container-signout-div">
-      <h1 className='text-home-h1'>YOU ARE NOT SIGNED OUT!</h1>
+      <h1 className='text-home-h1'>YOU ARE NOW SIGNED OUT!</h1>
       <img src={Background} className="bg-image" alt="background" />
       <ul className="text-signout">
         <li>HAPPY</li>
