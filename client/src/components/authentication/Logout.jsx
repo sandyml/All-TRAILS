@@ -1,7 +1,7 @@
 import React from 'react';
 import Background from '../../img/switzerland.png'
 
-const Signout = () => {
+const Logout = () => {
   return (
     <div className="container-signout-div">
       <h1 className='text-home-h1'>YOU ARE NOT SIGNED OUT!</h1>
@@ -14,4 +14,4 @@ const Signout = () => {
   )
 }
 
-export default Signout;
+export default Logout;

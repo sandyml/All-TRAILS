@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { headers } from '../../Global';
 import View from '../../img/green.png'
 
-const Signin = () => {
+const Login = () => {
   const navigate = useNavigate();
   const [passwordShown, setPasswordShown] = useState(false);
   const [account_name, setAccount_name] = useState("")
@@ -110,5 +110,5 @@ const Signin = () => {
   )
 }
 
-export default Signin;
+export default Login;
 

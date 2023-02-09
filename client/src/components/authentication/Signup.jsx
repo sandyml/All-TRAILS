@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { headers } from '../../Global'
 import { useNavigate } from 'react-router-dom';
 import Mountain from '../../img/mountains.png'
-// import { UserContext } from '../context/UserContext'
+// import { UserContext } from '../context/UserContext';
 
 const Signup = () => {
   const navigate = useNavigate();

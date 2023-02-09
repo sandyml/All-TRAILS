@@ -1,19 +1,19 @@
-import React, { createContext, UseContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 // import { serverUrl } from '../../Global';
 
-export const UserContext = createContext(null); // initial 
+const UserContext = createContext(); // initial 
 
-export const userAppContext = () => {
- const context = UseContext(UserContext);
- if (context === undefined || null) {
-  throw new Error("UserContext must be within userContextProvider!");
- }
- return context;
-};
+// export const userAppContext = () => {
+//  const context = UseContext(UserContext);
+//  if (context === undefined || null) {
+//   throw new Error("UserContext must be within userContextProvider!");
+//  }
+//  return context;
+// };
 
-export const UserProvider = ({ children }) => {
- const [favorites, setFavorites] = useState([]);
- const [user, setUser] = useState([]);
+const UserProvider = ({ children }) => {
+//  const [favorites, setFavorites] = useState([]);
+ const [user, setUser] = useState({});
  const [loggedIn, setLoggedIn] = useState(false);
 
    // const handleSubmit = (e) => {
@@ -53,17 +53,18 @@ export const UserProvider = ({ children }) => {
   //    })
   //  }
   
-
- console.log("Inside UserContext")
  useEffect(() => {
-  console.log("Inside UserContext")
+  console.log("Inside useEffect")
   // fetch(serverUrl + "/me")
+  const userFetch = () => {
   fetch("/me")
    .then(resp => resp.json())
    .then(data => {
-    console.log(data, "Inside UserContext fetch")
+    console.log(data, "Inside fetch")
     setUser(data)
    })
+  }
+  userFetch({});
  }, [])
 
 //  const handleSubmit = (e) => {
@@ -81,7 +82,7 @@ export const UserProvider = ({ children }) => {
  }
 
  const logout = () => {
-  setUser([])
+  setUser({})
   setLoggedIn(false)
  }
 
@@ -90,17 +91,17 @@ export const UserProvider = ({ children }) => {
   setLoggedIn(true);
  }
 
- const addFavorites = (hike) => {
-  const prevFavorites = [...favorites];
-  const newFavorites = prevFavorites.concat(hike);
-  setFavorites(newFavorites, ...favorites);
- };
+//  const addFavorites = (hike) => {
+//   const prevFavorites = [...favorites];
+//   const newFavorites = prevFavorites.concat(hike);
+//   setFavorites(newFavorites, ...favorites);
+//  };
 
- const removeFavorites = (id) => {
-  const prevFavorites = [...favorites];
-  const newFavorites = prevFavorites.filter((hike) => hike.id !== id);
-  setFavorites(newFavorites, ...favorites);
- };
+//  const removeFavorites = (id) => {
+//   const prevFavorites = [...favorites];
+//   const newFavorites = prevFavorites.filter((hike) => hike.id !== id);
+//   setFavorites(newFavorites, ...favorites);
+//  };
 
  // const handleDelete = () => {
  //   fetch(`http://localhost:3000/hike_trails/1`, {
@@ -109,10 +110,10 @@ export const UserProvider = ({ children }) => {
  // }
 
  return (
-  <UserContext.Provider value={{ user, login, logout, signup, loggedIn, removeFavorites, addFavorites }}>
+  <UserContext.Provider value={{ user, login, logout, signup, loggedIn }}>
    {children}
   </UserContext.Provider>
  );
 };
 
-export default UserProvider;
+export { UserContext, UserProvider  };
