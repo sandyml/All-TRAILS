@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import { UserContext } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { headers } from '../../Global';
+import View from '../../img/green.png'
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const Signin = () => {
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   const { login } = useContext(UserContext);
-  
+
   // const [siginForm, setSigninForm] = useState({
   //   account_name: "",
   //   email: "",
@@ -40,7 +41,7 @@ const Signin = () => {
         } else {
           resp.json()
             .then(() =>
-            // .catch((error) => console.log(error))
+              // .catch((error) => console.log(error))
               setError(error))
         }
       });
@@ -68,29 +69,34 @@ const Signin = () => {
 
   return (
     <div className="container-signin">
-      <h2>Please login to continue..</h2>
+      <h2 className='signin-h2'><b>Please login</b></h2><br />
       <form onSubmit={handleSubmit}>
-        <label htmlFor='username'>Username:
+
+        <div className='imgcontainer'>
+          <img src={View} alt="Avatar" className="avatar" />
+        </div>
+
+        <label htmlFor='username'>
           <input
-            type="textarea"
+            type="password"
             id='username'
-            placeholder="enter username"
+            placeholder="Enter Username"
             value={account_name}
             onChange={handleUsername} />
         </label>
-        <label htmlFor='email'>Email:
+        <label htmlFor='email'>
           <input
-            type="email"
+            type="password"
             id='email'
-            placeholder="enter username"
+            placeholder="Enter Email"
             value={email}
             onChange={handleEmail} />
         </label>
         <div>
-          <label htmlFor='password'>Password:
+          <label htmlFor='password'>
             <input
               type={passwordShown ? "text" : "password"}
-              placeholder="enter password"
+              placeholder="Enter Password"
               value={password}
               onChange={handlePassword}
             />

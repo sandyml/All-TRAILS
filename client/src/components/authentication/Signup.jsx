@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { headers } from '../../Global'
 import { useNavigate } from 'react-router-dom';
+import Mountain from '../../img/mountains.png'
 // import { UserContext } from '../context/UserContext'
 
 const Signup = () => {
@@ -67,7 +68,7 @@ const Signup = () => {
   //     navigate("/hike_trails");
   //    })
   //  }
-  
+
 
   console.log("Inside signup under handlesubmit fetch")
 
@@ -90,43 +91,61 @@ const Signup = () => {
 
   return (
     <div className='signup-div'>
-      <h2>Please Create An Account</h2>
-      <form className='form-sub' onClick={handleSubmit}>
-        {/* <div className='form-sub-border'> */}
-          <label htmlFor='username'>Username:
+      <h2 className='signup-h2'>Please Create An Account</h2>
+
+
+      <div>
+        <form action="/action_page.php" method="post" onClick={handleSubmit}>
+
+          <div className='imgcontainer'>
+            <img src={Mountain} alt="Avatar" className="avatar" />
+          </div>
+
+          <div className="container"></div>
+            
+            <label htmlFor='username'><b>Username</b></label>
             <input
-              type='textarea'
+              type='password'
               id='username'
-              placeholder='Username must be at least 5 characters'
+              name="username"
+              placeholder="Enter Username"
               value={formData.username}
               onChange={handleChange}
+              required
             />
-          </label><br />
-          <br />
-          <label htmlFor='email'>Email:
+
+            <label htmlFor='email'><b>Email</b></label>
             <input
-              type='email'
+              type='password'
               id='email'
-              placeholder='Enter email here'
+              name="email"
+              placeholder="Enter Email"
               value={formData.email}
               onChange={handleChange}
+              required
             />
-          </label><br />
-          <br />
-          <label htmlFor='password'>Password:
+          
+
+          <label htmlFor='password'><b>Password</b></label>
             <input
               type={passwordShown ? "text" : "password"}
               id='password'
-              placeholder='Password must be at least 5 characters'
+              name="password"
+              placeholder="Enter Password"
               value={formData.password}
               onChange={handleChange}
+              required
             />
-            <button onClick={togglePassword}>Show Password</button>
-          </label><br />
-          <br />
+            
+          </form>
+            
+          
+          <button onClick={togglePassword}>Show Password</button>
           <button type="submit" value="Submit" className="form-button">Submit</button>
-        {/* </div> */}
-      </form>
+          {/* <label>
+            <input type="checkbox" checked="checked" name="remember" /> Remember me
+          </label> */}
+      </div>
     </div>
   )
 }

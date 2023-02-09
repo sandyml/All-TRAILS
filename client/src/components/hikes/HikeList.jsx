@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
+// import React, { useContext } from 'react';
 import { HikeContext } from '../context/HikeContext';
 import HikeItems from './HikeItems';
 
@@ -7,16 +8,16 @@ import HikeItems from './HikeItems';
 // [] binding.pry debug ask for help 
 
 const HikeList = () => {
-  const hikes = useContext(HikeContext);
-
+  // const hikes = useContext(HikeContext);
+  const { hikes, locations } = HikeContext;
 
   const hikeCard = hikes.map(
-    (hike) => <HikeItems key={hike.id} hike={hike} />
+    hike => <HikeItems key={hike.id} hike={hike} />
   )
-
 
   return (
     <div className='hike-list-div'>
+      {locations}
       {hikeCard}
     </div>
   )

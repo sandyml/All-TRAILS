@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-const HikeContext = createContext(null);
+const HikeContext = createContext();
 
 // const backend = 'http://localhost:3000'
 

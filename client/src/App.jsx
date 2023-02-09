@@ -9,6 +9,7 @@ import HikeList from './components/hikes/HikeList';
 import HikeItems from './components/hikes/HikeItems';
 import About from './components/static/About';
 import Navigation from './components/navigation/Navigation';
+import Footer from './components/static/Footer';
 // import Navbar from './components/navigation/Navbar';
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
           <Route exact path="/hike_trails" element={<HikeList />} />
           <Route exact path="/hike_trails/:id" element={<HikeItems />} />
         </Routes>
+        <Footer />
       </UserProvider>
     </div>
   );
