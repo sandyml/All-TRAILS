@@ -90,63 +90,59 @@ const Signup = () => {
   // }
 
   return (
-    <div className='signup-div'>
-      <h2 className='signup-h2'>Please Create An Account</h2>
+    <body>
+      <div className='container-home-div'>
+        <img src={Mountain} className="bg-image" alt="background" />
 
+        <form onSubmit={handleSubmit} className='main-form-log' action='#!' id='main-form'>
+          <h2 className='log-h2'>Please Create An Account</h2>
 
-      <div>
-        <form action="/action_page.php" method="post" onClick={handleSubmit}>
-
-          <div className='imgcontainer'>
-            <img src={Mountain} alt="Avatar" className="avatar" />
-          </div>
-
-          <div className="container"></div>
-            
-            <label htmlFor='username'><b>Username</b></label>
+          <div className='input-parent'>
+            <label className='lbl-cn' htmlFor='username'>Username</label>
             <input
-              type='password'
+              type='text'
               id='username'
-              name="username"
-              placeholder="Enter Username"
+              placeholder="Create Username"
               value={formData.username}
               onChange={handleChange}
               required
             />
+          </div>
 
-            <label htmlFor='email'><b>Email</b></label>
+          <div className='input-parent'>
+            <label htmlFor='email'>Email</label>
             <input
-              type='password'
+              type='text'
               id='email'
-              name="email"
               placeholder="Enter Email"
               value={formData.email}
               onChange={handleChange}
               required
             />
-          
+          </div>
 
-          <label htmlFor='password'><b>Password</b></label>
+          <div className='input-parent'>
+            <label htmlFor='password'>Password</label>
             <input
-              type={passwordShown ? "text" : "password"}
+              placeholder="Create Password"
               id='password'
-              name="password"
-              placeholder="Enter Password"
               value={formData.password}
               onChange={handleChange}
               required
+              type={passwordShown ? "text" : "password"}
             />
-            
-          </form>
-            
-          
+          </div>
+
+
           <button onClick={togglePassword}>Show Password</button>
           <button type="submit" value="Submit" className="form-button">Submit</button>
-          {/* <label>
+        </form>
+
+        {/* <label>
             <input type="checkbox" checked="checked" name="remember" /> Remember me
           </label> */}
       </div>
-    </div>
+    </body>
   )
 }
 

@@ -9,8 +9,8 @@ const HikeProvider = ({ children }) => {
   // const [location, setLocation] = useState([])
 
   useEffect(() => {
-    // const fetchHikes = () => {
-    fetch('/hike_trails')
+    const fetchHikes = () => {
+    fetch('/me')
       .then(resp => resp.json())
       .then(hikeData => {
         console.log(hikeData, "Hikes fetch in useEffect")
@@ -19,8 +19,8 @@ const HikeProvider = ({ children }) => {
       .catch((error) => {
         console.log(error.message);
       });
-    // }
-    // fetchHikes();
+    }
+    fetchHikes();
   }, [])
 
   // useEffect(() => {

@@ -21,11 +21,20 @@ class UsersController < ApplicationController
  # end
 
  # GET /me :show (refresh page)
+ # def show
+ #  # byebug
+ #  if user_signed_in? 
+ #   render json: @current_user
+ #  else 
+ #   require_login
+ #  end
+ # end
+
  def show
-  # byebug
-  if user_signed_in? 
-   render json: @current_user
-  else 
+  @user = User.find_by(id: session[:user_id])
+  if @user
+   render json: @user
+  else
    require_login
   end
  end

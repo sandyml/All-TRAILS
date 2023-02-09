@@ -68,45 +68,52 @@ const Login = () => {
   }
 
   return (
-    <div className="container-signin">
-      <h2 className='signin-h2'><b>Please login</b></h2><br />
-      <form onSubmit={handleSubmit}>
+    <body>
+    <div className='container-home-div' >
+      <img src={View} className="bg-image" alt="background"/>
 
-        <div className='imgcontainer'>
-          <img src={View} alt="Avatar" className="avatar" />
-        </div>
+      <form onSubmit={handleSubmit} className='main-form-log' action='#!' id='main-form'>
+        <h2 className='log-h2'>Login to your account</h2>
 
-        <label htmlFor='username'>
+        <div className='input-parent'>
+          <label className='lbl-cn' htmlFor='username'>Username</label>
           <input
-            type="password"
+            // className='inpt-cn' 
+            type='text'
             id='username'
             placeholder="Enter Username"
             value={account_name}
-            onChange={handleUsername} />
-        </label>
-        <label htmlFor='email'>
+            onChange={handleUsername}
+          />
+        </div>
+
+        <div className='input-parent'>
+          <label htmlFor='email'>Email</label>
           <input
-            type="password"
+            type='text'
             id='email'
             placeholder="Enter Email"
             value={email}
-            onChange={handleEmail} />
-        </label>
-        <div>
-          <label htmlFor='password'>
-            <input
-              type={passwordShown ? "text" : "password"}
-              placeholder="Enter Password"
-              value={password}
-              onChange={handlePassword}
-            />
-            <button onClick={togglePassword}>Show Password</button>
-          </label>
+            onChange={handleEmail}
+          />
         </div>
-        <br /><br />
-        <button type="submit" className="signin-button" onClick={handleNavigate}>Signin</button>
+
+        <div className='input-parent'>
+          <label htmlFor='password'>Password</label>
+          <input
+            placeholder="Enter Password"
+            id='password'
+            value={password}
+            onChange={handlePassword}
+            type={passwordShown ? "text" : "password"}
+          />
+        </div>
+
+        <button onClick={togglePassword}>Show Password</button>
+        <button onClick={handleNavigate} type='submit' >Login</button>
       </form>
     </div>
+    </body>
   )
 }
 

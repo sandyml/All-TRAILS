@@ -89,6 +89,7 @@ video {
 
 .container-form-sub {
   padding: 16px;
+  /* box-sizing: content-box; */
 }
 
 .signup-h2, .signin-h2{
@@ -151,12 +152,7 @@ button:hover {
   opacity: 0.8;
 }
 
-
-/* .img_avatar2.png {
-
-} */
-
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
   .topnav .login-container {
     float: none;
   }
@@ -171,7 +167,7 @@ button:hover {
   .topnav input[type=text] {
     border: 1px solid #ccc;  
   }
-}
+} */
 
 img.bg-image {
   display: flex;
@@ -229,10 +225,120 @@ img.bg-image {
   list-style: none;
   opacity: .5;
 }
-
+/* 
 .div-footer {
   background-color: #aca6a6;
   text-align: center;
   color: black;
   opacity: .5;
+} */
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(58, 127, 19);
+  color: white;
+  text-align: center;
+}
+
+.footer-gh-link {
+  color: white;
+}
+
+
+
+#main-form {
+  width: max-content;
+  margin: 40px auto;
+  font-family: "Segoe UI", sans-serif;
+  padding: 25px 28px;
+  background: #367514;
+  border-radius: 4px;
+  border: 1px solid #302d2d;
+  animation: popup 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+/* @keyframes popup {
+  0% {
+      transform: scale(0.2);
+      opacity: 0;
+  }
+  100% {
+      transform: scale(1);
+      opacity: 1;
+  }
+} */
+
+h2 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: 400;
+  color: #e7e7e7;
+}
+
+.input-parent {
+  display: block;
+  margin-bottom: 20px;
+  color: white;
+}
+
+lbl-cn {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #a4a4a4;
+}
+
+.input-parent input {
+  padding: 10px 8px;
+  width: 100%;
+  font-size: 16px;
+  background: #323131;
+  border: none;
+  color: #c7c7c7;
+  border-radius: 4px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.input-parent input:hover {
+  background: #404040;
+}
+
+.input-parent input:focus {
+  box-shadow: 0px 0px 0px 1px #0087ff;
+}
+
+login-btn {
+  padding: 10px 18px;
+  font-size: 15px;
+  background: #1a3969;
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  color: #f4f4f4;
+  transition: all 0.2s ease;
+}
+
+login-btn:hover {
+  opacity: 0.9;
+}
+
+login-btn:focus {
+  box-shadow: 0px 0px 0px 3px black;
+}
+
+.main-form-log {
+  margin-top: 6rem;
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  opacity: 0.9;
+  display: inline-block;
+}
+
+body {
+  text-align: center;
 }
