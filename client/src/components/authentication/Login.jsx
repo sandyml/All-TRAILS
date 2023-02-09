@@ -78,7 +78,6 @@ const Login = () => {
         <div className='input-parent'>
           <label className='lbl-cn' htmlFor='username'>Username</label>
           <input
-            // className='inpt-cn' 
             type='text'
             id='username'
             placeholder="Enter Username"

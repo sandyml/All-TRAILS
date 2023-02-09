@@ -10,7 +10,7 @@ const HikeProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchHikes = () => {
-    fetch('/me')
+    fetch('/hike_trails')
       .then(resp => resp.json())
       .then(hikeData => {
         console.log(hikeData, "Hikes fetch in useEffect")

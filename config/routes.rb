@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :users
-  resources :hike_trails, only: [:create, :update, :destroy]
-  resources :locates, only: [:create]
+  resources :users, only: [:index, :create, :show]
+  resources :hike_trails, only: [:index, :create, :update, :destroy]
+  resources :locates, only: [:index, :create]
 
   post "/signup", to: "users#create"
   get "/me", to: "users#show"

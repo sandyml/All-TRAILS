@@ -57,7 +57,7 @@ const UserProvider = ({ children }) => {
   console.log("Inside useEffect")
   // fetch(serverUrl + "/me")
   const userFetch = () => {
-  fetch("/me")
+  fetch('/me')
    .then(resp => resp.json())
    .then(data => {
     console.log(data, "Inside fetch")

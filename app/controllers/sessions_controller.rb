@@ -9,7 +9,6 @@ class SessionsController < ApplicationController
    render json: @user, status: :created
   else
    unprocessable_entity_error_response
-   # render json: { errors: ["Invalid username or password"] }, status: :unprocessable_entity
   end
  end
 

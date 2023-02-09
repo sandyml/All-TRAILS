@@ -10,7 +10,7 @@ const Navigation = () => {
    <nav className='topnav'>
     <Link to="/home" className='topnav-nav'>Home</Link>
     <Link to="/about" className='topnav-nav'>About</Link>
-    <Link to="/me" className='topnav-nav'>My Reviews</Link>
+    {/* <Link to="/me" className='topnav-nav'>My Reviews</Link> */}
     <Link to="/hike_trails" className='topnav-nav'>tRAILS</Link>
     <Link to="/signup" className='topnav-nav-sign'>Signup</Link>
     <Link to="/login" className='topnav-nav-sign'>Login</Link>

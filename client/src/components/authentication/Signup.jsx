@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { headers } from '../../Global'
+import React, { useState } from 'react';
+import { headers } from '../../Global';
 import { useNavigate } from 'react-router-dom';
-import Mountain from '../../img/mountains.png'
+import Mountain from '../../img/mountains.png';
 // import { UserContext } from '../context/UserContext';
 
 const Signup = () => {
@@ -16,9 +16,7 @@ const Signup = () => {
 
   const togglePassword = () => {
     setPasswordShown(!passwordShown)
-  }
-
-  console.log("Inside signup component")
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +28,7 @@ const Signup = () => {
       .then((resp) => resp.json())
       .then((data) => console.log(data))
     navigate("/hike_trails");
-  }
+  };
 
   // const handleSubmit = (e) => {
   //   e.preventDefault();
@@ -69,9 +67,6 @@ const Signup = () => {
   //    })
   //  }
 
-
-  console.log("Inside signup under handlesubmit fetch")
-
   const handleChange = (e) => {
     const key = e.target.id
     const value = e.target.value
@@ -79,7 +74,7 @@ const Signup = () => {
       ...formData,
       [key]: value,
     })
-  }
+  };
 
   // const handleSubmit = (e) => {
   //   e.preventDefault()
@@ -93,10 +88,8 @@ const Signup = () => {
     <body>
       <div className='container-home-div'>
         <img src={Mountain} className="bg-image" alt="background" />
-
         <form onSubmit={handleSubmit} className='main-form-log' action='#!' id='main-form'>
           <h2 className='log-h2'>Please Create An Account</h2>
-
           <div className='input-parent'>
             <label className='lbl-cn' htmlFor='username'>Username</label>
             <input
@@ -108,7 +101,6 @@ const Signup = () => {
               required
             />
           </div>
-
           <div className='input-parent'>
             <label htmlFor='email'>Email</label>
             <input
@@ -120,7 +112,6 @@ const Signup = () => {
               required
             />
           </div>
-
           <div className='input-parent'>
             <label htmlFor='password'>Password</label>
             <input
@@ -128,16 +119,13 @@ const Signup = () => {
               id='password'
               value={formData.password}
               onChange={handleChange}
-              required
               type={passwordShown ? "text" : "password"}
+              required
             />
           </div>
-
-
           <button onClick={togglePassword}>Show Password</button>
           <button type="submit" value="Submit" className="form-button">Submit</button>
         </form>
-
         {/* <label>
             <input type="checkbox" checked="checked" name="remember" /> Remember me
           </label> */}
@@ -146,4 +134,4 @@ const Signup = () => {
   )
 }
 
-export default Signup
+export default Signup;
