@@ -5,11 +5,11 @@ class LocatesController < ApplicationController
   end
 
   def create
-    location = Locate.new(location_params)
-    if location.save
-    render json: location, status: :created
+    @location = Locate.new(location_params)
+    if @location.save
+    render json: @location, status: :created
     else
-    render json: { errors: location.errors.full_messages }, status: :unprocessable_entity
+    render json: { errors: @location.errors.full_messages }, status: :unprocessable_entity
     end
   end
 

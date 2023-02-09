@@ -6,12 +6,12 @@ class UsersController < ApplicationController
 
  # POST /signup 
  def create
-  user = User.new(user_params)
+  @user = User.new(user_params)
   if user.save
-   session[:user_id] = user.id
-   render json: user, status: :created
+   session[:user_id] = @user.id
+   render json: @user, status: :created
   else 
-   unprocessable_entity_error_response(user)
+   unprocessable_entity_error_response(@user)
   end
  end
 

@@ -10,14 +10,14 @@ class HikeTrailsController < ApplicationController
 
  def create
   if user_signed_in?
-   hike = current_user.hike_trails.build(hike_trail_params)
-   if hike.save
-    render json: hike, status: :ok
+   @hike = current_user.hike_trails.build(hike_trail_params)
+   if @hike.save
+    render json: @hike, status: :ok
    else
     require_login
    end
   else
-   unproccessable_entity_errors_response(hike)
+   unproccessable_entity_errors_response(@hike)
    # render json: { errors: hike.errors.full_messages }, serializer: HikeTrailsSerializer
    # render json: { errors: hike.errors.full_messages }, status: :unproccessable_entity 
   end
@@ -29,11 +29,11 @@ class HikeTrailsController < ApplicationController
  # end
 
  def update
-  user = User.find_by(id: session[:user_id])
-  hike = user.hike_trails.find_by(id: params[:id])
-  if hike
-   hike.update(hike_trail_params)
-    render json: hike
+  @user = User.find_by(id: session[:user_id])
+  @hike = @user.hike_trails.find_by(id: params[:id])
+  if @hike
+   @hike.update(hike_trail_params)
+    render json: @hike
   else 
     # review_not_found_error
     render json: { error: ["Review not found"] }, status: :not_found
@@ -41,11 +41,11 @@ class HikeTrailsController < ApplicationController
 end
 
 def destroy
- user = User.find_by(id: session[:user_id])
- hike = user.hike_trails.find_by(id: params[:id])
- if hike
-   hike.destroy
-   render json: hike
+ @user = User.find_by(id: session[:user_id])
+ @hike = user.hike_trails.find_by(id: params[:id])
+ if @hike
+   @hike.destroy
+   render json: @hike
  else 
    # review_not_found_error, #status: :no_content
    render json: { error: ["Review not found"] }, status: :not_found #status: :no_content
@@ -73,7 +73,7 @@ end
   end
 
   def hike_finder
-    hike = HikeTrail.find_by(id: params[:id])
+    @hike = HikeTrail.find_by(id: params[:id])
   end
 
   def review_not_found_error

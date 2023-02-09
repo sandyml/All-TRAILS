@@ -25,6 +25,7 @@ const App = () => {
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/logout" element={<Logout />} />
             <Route exact path="/signup" element={<Signup />} />
+            {/* <Route exact path="/reviews" element={<Reviews />} /> tentative component*/} 
             <Route exact path="/hike_trails" element={<HikeList />} />
             <Route exact path="/hike_trails/:id" element={<HikeItems />} />
           </Routes>

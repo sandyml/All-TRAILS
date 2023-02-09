@@ -5,7 +5,6 @@ import { HikeProvider } from "../context/HikeContext";
 // trail_name, :city, :state, :image_url, :difficulty, :length, :elevation_gain, :route_type
 const HikeItems = ({ hike }) => {
 
-
 const { id, review, date } = hike
 
 

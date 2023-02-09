@@ -11,7 +11,12 @@ const HikeList = () => {
   const hikes = useContext(HikeContext);
   // const { hikes, locations } = HikeContext;
 
-  const hikeCards = hikes.map(hike => <HikeItems key={hike.id} hike={hike}/>)
+  const hikeCards = hikes.map(
+    hike => 
+    <HikeItems 
+    key={hike.id} 
+    hike={hike}/>
+    )
 
   // const locationCard = locations.map(
   //   (location) => 

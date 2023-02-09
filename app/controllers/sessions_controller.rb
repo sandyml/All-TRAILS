@@ -12,16 +12,10 @@ class SessionsController < ApplicationController
   end
  end
 
- # DELETE /logout :destroy 
  def destroy 
   session.delete :user_id
   render json: { message: "You are now logged out! Happy Hiking!" }, status: :no_content
  end
-
- # def destroy
- #  session.delete :user_id
- #  head :no_content
- # end
 
  private
 
