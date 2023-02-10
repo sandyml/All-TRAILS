@@ -1,11 +1,10 @@
 import React from 'react'
-import Background from '../../img/hike.png'
+import Background from '../../img/winter_hike.png'
 
 
 const Home = () => {
   return (
     <div className="container-home-div">
-      {/* <h1 className='text-home-h1'>Welcome to AlltRAILS</h1> */}
       <img src={Background} className="bg-image" alt="background" />
       <div className='content-home'>
       <ul className="text-home">

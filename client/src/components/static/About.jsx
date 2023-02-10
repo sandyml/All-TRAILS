@@ -8,8 +8,7 @@ const About = () => {
         <source src={backgroundVideo} type='video/mp4' />
       </video>
       <div className='content'>
-      <h2>About Hike tRAILS</h2>
-      <p>All tRAILS was inspired by AllTrails Website. Completely fictional with real and fake reviews from friends</p>
+      <p className='about-p'>All tRAILS was inspired by AllTrails Website. Completely fictional with real and fake reviews from friends</p>
       </div>
     </div>
   )

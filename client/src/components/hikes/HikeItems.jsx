@@ -19,9 +19,8 @@ const HikeItems = ({ hike }) => {
             <ul>{review}</ul>
             <ul>Date: {date}</ul>
             <img src={image_url} className="hike-img" alt='hike-img' />
-            <ul>{difficulty}</ul>
-            {/* <p>{location}</p> */}
-            <ul>trail_name: {trail_name}</ul>
+            <ul>name: {trail_name}</ul>
+            <ul>difficulty: {difficulty}</ul>
             <ul>city: {city}</ul>
             <ul>state: {state}</ul>
             <ul>difficulty: {difficulty} </ul>
