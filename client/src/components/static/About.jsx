@@ -4,7 +4,6 @@ import backgroundVideo from '../../video/SandraYunsVideo.mp4'
 const About = () => {
   return (
     <div className="about-div" >
-      <div className='overlay'></div>
       <video autoPlay loop muted id='video'>
         <source src={backgroundVideo} type='video/mp4' />
       </video>
