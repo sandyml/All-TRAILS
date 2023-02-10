@@ -1,13 +1,16 @@
 class HikeTrail < ApplicationRecord
   belongs_to :user
-  belongs_to :locate
+  belongs_to :location
 
   validates :review, 
-    presence: true,
-    length: { in: 10...100 }
+    presence: true
+    #  500 character count
   validates :date, 
-    presence: true,
-    length: { in: 6...8 }
-end
+    presence: true
 
-# [] validates presence 
+    # 2023-12-02
+    def format_date
+      self.date.strftime("%Y-%m-%d")
+    end
+
+end

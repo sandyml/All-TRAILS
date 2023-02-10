@@ -16,6 +16,10 @@ Utilizing two of the things I enjoy - Ruby on Rails and hiking!
 - [AllTrails](https://www.alltrails.com/?ref=header)
 - [New York - New Jersey Trail](https://www.nynjtc.org/)
 
+## Other CSS Resources
+- [Form](https://www.tronic247.com/trycode/?name=login_frm)
+- [w3schools](https://www.w3schools.com/howto/howto_css_icon_bar.asp)
+
 
 # MIT License
 ### The MIT License (MIT)

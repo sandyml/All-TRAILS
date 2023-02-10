@@ -1,6 +1,6 @@
-class CreateLocates < ActiveRecord::Migration[6.1]
+class CreateLocations < ActiveRecord::Migration[6.1]
   def change
-    create_table :locates do |t|
+    create_table :locations do |t|
       t.string :trail_name
       t.string :city
       t.string :state

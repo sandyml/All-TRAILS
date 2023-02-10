@@ -42,12 +42,12 @@ end
 
 def destroy
  @user = User.find_by(id: session[:user_id])
- @hike = user.hike_trails.find_by(id: params[:id])
+ @hike = @user.hike_trails.find_by(id: params[:id])
  if @hike
    @hike.destroy
    render json: @hike
  else 
-   # review_not_found_error, #status: :no_content
+    # review_not_found_error_response
    render json: { error: ["Review not found"] }, status: :not_found #status: :no_content
  end
 end
@@ -60,8 +60,7 @@ end
  private
 
   def hike_trail_params
-    params.require(:hike_trails).permit(:locate_id, :review, :date)
-    # params.permit(:user, :locate, :review, :date)
+    params.require(:hike_trails).permit(:location_id, :review, :date)
   end
 
   def unproccessable_entity_errors_response(hike)
@@ -80,7 +79,8 @@ end
     return render json: { error: ["Review not found"] }, status: :not_found
   end
 
- # def authorize
+#  def review_not_found_error_response
+    # return render json: { error: ["Review not found"] }, status: :not_found
  # end
 
 end

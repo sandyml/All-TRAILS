@@ -26,7 +26,7 @@ npm install --prefix client (frontend PORT=4000)
 rails s (backend PORT=3000)
 
 # PLAN: 
-## User/Hiker -> Hikes/TRails/ Location
+## User/Hiker -> Hikes/TRails/Location
 
 # MVC
 

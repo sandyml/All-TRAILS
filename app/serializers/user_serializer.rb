@@ -1,10 +1,10 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :account_name, :email, :password_digest
 
-  has_many :hike_trails, serializer: HikeLocateSerializer
-  # has_many :locates, dependent: :destroy
-  # has_many :locates
+  has_many :hike_trails, serializer: HikeLocationSerializer
+  # has_many :locations, dependent: :destroy
+  # has_many :locations
 end
 
 # [x] has_many & dependent: :destroy 
-# [] serializer hike_locate_serializer
+# [] serializer hike_location_serializer

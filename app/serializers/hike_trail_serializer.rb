@@ -1,7 +1,7 @@
 class HikeTrailSerializer < ActiveModel::Serializer
-  attributes :id, :review, :date, :user_id, :locate_id
+  attributes :id, :review, :user_id, :location_id, :format_date
+  # client side change formatdate date 
 
-  belongs_to :locate, serializer: LocateSerializer
+  belongs_to :location, serializer: LocationSerializer
   belongs_to :user
-  # belongs_to :locate serializer: HikeLocateSerializer??
 end

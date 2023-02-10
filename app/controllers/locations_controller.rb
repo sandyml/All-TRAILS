@@ -1,11 +1,11 @@
-class LocatesController < ApplicationController
+class LocationsController < ApplicationController
 
   def index
-    render json: Locate.all
+    render json: Location.all
   end
 
   def create
-    @location = Locate.new(location_params)
+    @location = Location.new(location_params)
     if @location.save
     render json: @location, status: :created
     else
@@ -14,7 +14,7 @@ class LocatesController < ApplicationController
   end
 
   def location_params 
-    params.require(:locate).permit(
+    params.require(:location).permit(
       :trail_name, 
       :city, :state, 
       :image_url, 
