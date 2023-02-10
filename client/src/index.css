@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   font-family: Percent,Beatrice,Arial,sans-serif;
-  /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
 }
 
 .about-div {
@@ -30,7 +29,7 @@ video {
 
 .topnav {
   overflow: hidden;
-  background-color: #0f9f52;
+  background-color: #b8d1c4;
   color: #f2f2f2;
   text-align: center;
   padding: 14px 16px;

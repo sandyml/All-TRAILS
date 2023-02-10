@@ -1,12 +1,12 @@
 class SessionsController < ApplicationController
  # skip_before_action :authorize, only: [:create]
  
- # POST /login :create
+ # POST /login
  def create
   @user = User.find_by(account_name: params[:account_name])
   if @user&.authenticate(params[:password])
    session[:user_id] = @user.id
-   render json: @user, status: :created
+   render json: @user, status: :ok
   else
    unprocessable_entity_error_response
   end
@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
  def destroy 
   session.delete :user_id
-  render json: { message: "You are now logged out! Happy Hiking!" }, status: :no_content
+  render json: { message: ["You are now logged out! Happy Hiking!"] }, status: :no_content
  end
 
  private

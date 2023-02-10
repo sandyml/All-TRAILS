@@ -14,10 +14,19 @@ class LocatesController < ApplicationController
   end
 
   def location_params 
-    params.require(:locate).permit(:trail_name, :city, :state, :image_url, :difficulty, :length, :elevation_gain, :route_type)
+    params.require(:locate).permit(
+      :trail_name, 
+      :city, :state, 
+      :image_url, 
+      :difficulty, 
+      :length, 
+      :elevation_gain, 
+      :route_type
+    )
+    
   end
 
- # def unprocessable_entity_errors_response
+ # def unprocessable_entity_errors_response(location)
  #  return render json: { errors: location.errors.full_messages }, status: :unprocessable_entity
  # end
 
