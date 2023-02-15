@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { headers } from '../../Global';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Mountain from '../../img/mountains.png';
 import { UserContext } from '../context/UserContext';
 
@@ -12,38 +12,36 @@ const Signup = () => {
   const [passwordShown, setPasswordShown] = useState(false);
   const { setErrors, errors, signup } = useContext(UserContext);
   const navigate = useNavigate();
-
-
-  const togglePassword = () => {
-    setPasswordShown(!passwordShown)
-  };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch('/signup', {
       method: "POST",
       headers,
-      // body: JSON.stringify(formData)
       body: JSON.stringify({
-              account_name,
-              email,
-              password,
-              password_confirmation: passwordConfirmation
-            })
-    })
-      .then((resp) => resp.json())
-      .then((user) => {
-        // set errors using state userContext
-        if (!user.errors) {
-          console.log(user, "Inside Signup.jsx /signup fetch")
-          signup(user)
-          navigate("/hike_trails")
-        } else {
-          console.log("error thrown")
-          const displayErrors = user.errors.map((err) => <li>{err}</li>);
-          setErrors(displayErrors);
-        }
+        account_name,
+        email,
+        password,
+        password_confirmation: passwordConfirmation
       })
+    })
+    .then((resp) => resp.json())
+    .then((user) => {
+      // set errors using state userContext
+      if (!user.errors) {
+        console.log(user)
+        signup(user)
+        navigate("/hike_trails")
+      } else {
+        console.log("error thrown in login")
+        const displayErrors = user.errors.map((err) => <div key={err}>{err}</div>);
+        setErrors(displayErrors);
+      }
+    })
+  };
+  
+  const togglePassword = () => {
+    setPasswordShown(!passwordShown)
   };
 
   const handleAccountName = (e) => {
@@ -114,9 +112,18 @@ const Signup = () => {
         </div>
         <button onClick={togglePassword}>Show Password</button>
         <button type="submit" value="Submit" className="form-button">Submit</button>
+
+        <p>
+         Already have an account? &nbsp;
+          <Link to="/login" className='signup'>
+            Login
+          </Link>
+        </p>
+
         <div>
           {errors}
         </div>
+
       </form>
     </div>
   )

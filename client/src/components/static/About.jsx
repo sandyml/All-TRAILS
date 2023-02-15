@@ -1,14 +1,19 @@
 import React from 'react';
-import backgroundVideo from '../../video/SandraYunsVideo.mp4'
+// import backgroundVideo from '../../video/SandraYunsVideo.mp4'
+import HikeViews from '../../img/hikeviews.jpg'
 
 const About = () => {
   return (
     <div className="about-div" >
-      <video autoPlay loop muted id='video'>
+      <div className='overlay'></div>
+      <img src={HikeViews} alt='background' className='bg-image-about' />
+      {/* <video autoPlay loop muted id='video'>
         <source src={backgroundVideo} type='video/mp4' />
-      </video>
+      </video> */}
       <div className='content'>
-      <p className='about-p'>All tRAILS was inspired by AllTrails Website. Completely fictional with real and fake reviews from friends</p>
+        <p className='about-p'>
+          All tRAILS was inspired by AllTrails Website. Completely fictional with real and fake reviews from friends
+        </p>
       </div>
     </div>
   )

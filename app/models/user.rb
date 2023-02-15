@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
  validates :email, uniqueness: true
 
- validates :password, length: { in: 2..6 }
+ validates :password, length: { in: 6..10 }
 end
 
 # https://guides.rubyonrails.org/active_record_validations.html#confirmation

@@ -1,5 +1,7 @@
 import React from 'react';
 import Background from '../../img/icelake.jpg'
+import Footer from '../static/Footer';
+import LogoFooter from '../static/LogoFooter';
 
 const Logout = () => {
 
@@ -10,6 +12,8 @@ const Logout = () => {
       <ul className="text-signout">
         <li>HAPPY HIKING!</li>
       </ul>
+      <LogoFooter />
+      <Footer className="Footer-Logout" />
     </div>
   )
 }

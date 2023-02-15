@@ -20,6 +20,7 @@ Utilizing two of the things I enjoy - Ruby on Rails and hiking!
 - [Form](https://www.tronic247.com/trycode/?name=login_frm)
 - [w3schools](https://www.w3schools.com/howto/howto_css_icon_bar.asp)
 - [codepen](https://codepen.io/MartijnBrands/pen/gabzqB)
+- [icons](https://www.flaticon.com/search?word=hike)
 
 
 # MIT License

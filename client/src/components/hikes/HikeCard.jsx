@@ -22,33 +22,33 @@ const HikeCard = ({ hike }) => {
 
   return (
     <HikeProvider>
-      <ul className="card-wrapper" key={id}>
-        <li className="card" key={id}>
-          <h3 className='hike-cr-title'>{trail_name}</h3>
-          <img src={image_url} alt="hike-img" className='hike-item-img' />
+        <ul className="card-wrapper" key={id}>
+          <li className="card" key={id}>
+            <h3 className='hike-cr-title'>{trail_name}</h3>
+            <img src={image_url} alt="hike-img" className='hike-item-img' />
 
-          <div className='hike-card-desc'>
-            <ul>
-              <img src={Location}
-                className="location-image"
-                alt="background" />
-              <b>{city}, {state}</b>
-            </ul>
+            <div className='hike-card-desc'>
+              <ul>
+                <img src={Location}
+                  className="location-image"
+                  alt="background" />
+                <b> {city}, {state}</b>
+              </ul>
 
-            <ul>
-              difficulty: <b>{difficulty} </b>
-              length: <b>{length} </b>
-              elevation_gain: <b>{elevation_gain} </b>
-              route_type: <b>{route_type}</b>
-            </ul>
+              <ul>
+                difficulty: <b>{difficulty} &nbsp;</b>
+                length: <b>{length} &nbsp;</b>
+                elevation_gain: <b>{elevation_gain} &nbsp;</b>
+                route_type: <b>{route_type} &nbsp;</b>
+              </ul>
 
-          </div>
-          <div>
-            <button onClick={reviewOnClick}>Reviews</button>
-            {showReview ? <Review /> : null}
-          </div>
-        </li>
-      </ul>
+            </div>
+            <div>
+              <button onClick={reviewOnClick}>Reviews</button>
+              {showReview ? <Review /> : null}
+            </div>
+          </li>
+        </ul>
     </HikeProvider>
   )
 }

@@ -7,16 +7,15 @@ const UserContext = createContext();
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
-  //  const [favorites, setFavorites] = useState([]);
   const [errors, setErrors] = useState([])
+  //  const [favorites, setFavorites] = useState([]);
   
  useEffect(() => {
   fetch("/me")
   .then(resp => resp.json())
   .then(data => {
-    console.log(data, "Inside useEffect '/me' UserContext fetch");
+    console.log(data);
     setUser(data);
-    // data.error ? setLoggedIn(false) : setLoggedIn(true)
   })
 }, []);
 
