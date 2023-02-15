@@ -30,9 +30,9 @@ const Navigation = () => {
     <div>
      {
      loggedIn ?
-     <Link to="/logout" className='topnav-nav-sign' onClick={handleLogout}>Logout</Link>
+     <Link to="/logout" className='topnav-nav-sign' onClick={handleLogout}>Logout</Link> 
       :
-     <Link to="/login" className='topnav-nav-sign'>Login</Link>
+     <Link to="/login" className='topnav-nav-sign'>Login</Link> 
      }
     </div>
     
