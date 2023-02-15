@@ -13,15 +13,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
   );
-  
-  // ReactDOM.render(
-  //   <React.StrictMode>
-  //     <BrowserRouter>
-  //       <Routes>
-  //         <Route path="/" element={ <App /> }>
-  //         </Route>
-  //       </Routes>
-  //     </BrowserRouter>
-  //   </React.StrictMode>,
-  //   document.getElementById('root')
-  //   );

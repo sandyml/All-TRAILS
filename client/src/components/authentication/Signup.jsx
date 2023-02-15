@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { headers } from '../../Global';
 import { useNavigate } from 'react-router-dom';
 import Mountain from '../../img/mountains.png';
-// import { UserContext } from '../context/UserContext';
+import { UserContext } from '../context/UserContext';
 
 const Signup = () => {
-  const navigate = useNavigate();
+  const [account_name, setAccount_Name] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
-  const [formData, setFormData] = useState({
-    id: 0,
-    username: "",
-    email: "",
-    password: ""
-  });
+  const { setErrors, errors, signup } = useContext(UserContext);
+  const navigate = useNavigate();
+
 
   const togglePassword = () => {
     setPasswordShown(!passwordShown)
@@ -23,114 +23,102 @@ const Signup = () => {
     fetch('/signup', {
       method: "POST",
       headers,
-      body: JSON.stringify(formData)
+      // body: JSON.stringify(formData)
+      body: JSON.stringify({
+              account_name,
+              email,
+              password,
+              password_confirmation: passwordConfirmation
+            })
     })
       .then((resp) => resp.json())
-      .then((data) => console.log(data))
-    navigate("/hike_trails");
+      .then((user) => {
+        // set errors using state userContext
+        if (!user.errors) {
+          console.log(user, "Inside Signup.jsx /signup fetch")
+          signup(user)
+          navigate("/hike_trails")
+        } else {
+          console.log("error thrown")
+          const displayErrors = user.errors.map((err) => <li>{err}</li>);
+          setErrors(displayErrors);
+        }
+      })
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   fetch(backendUrl, {
-  //    method: 'POST',
-  //    headers,
-  //    body: JSON.stringify({
-  //     hike_trail: {
-  //       user_id,
-  //       locate_id,
-  //       review,
-  //       date
-  //     },
-  //     user: {
-  //       account_name,
-  //       email,
-  //       password
-  //     },
-  //     locate: {
-  //       trail_name,
-  //       city,
-  //       state, 
-  //       image_url,
-  //       difficulty,
-  //       legnth,
-  //       elevation_gain,
-  //       route_type
-  //     }
-  //    })
-  //   })
-  //    .then(resp => resp.json())
-  //    .then(data => {
-  //     console.log(data)
-  //     // set(data)
-  //     navigate("/hike_trails");
-  //    })
-  //  }
+  const handleAccountName = (e) => {
+    setAccount_Name(e.target.value)
+  }
 
-  const handleChange = (e) => {
-    const key = e.target.id
-    const value = e.target.value
-    setFormData({
-      ...formData,
-      [key]: value,
-    })
-  };
+  const handleEmail = (e) => {
+    setEmail(e.target.value)
+  }
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   fetch(serverUrl + "/signup", {
-  //     method: "POST",
-  //     headers,
-  //   })
-  // }
+  const handlePassword = (e) => {
+    setPassword(e.target.value)
+  }
+
+  const handleConfirmPassword = (e) => {
+    setPasswordConfirmation(e.target.value)
+  }
 
   return (
-    <body>
-      <div className='container-home-div'>
-        <img src={Mountain} className="bg-image" alt="background" />
-        <form onSubmit={handleSubmit} className='main-form-log' action='#!' id='main-form'>
-          <h2 className='log-h2'>Please Create An Account</h2>
-          <div className='input-parent'>
-            <label className='lbl-cn' htmlFor='username'>Username</label>
-            <input
-              type='text'
-              id='username'
-              placeholder="Create Username"
-              value={formData.username}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className='input-parent'>
-            <label htmlFor='email'>Email</label>
-            <input
-              type='text'
-              id='email'
-              placeholder="Enter Email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className='input-parent'>
-            <label htmlFor='password'>Password</label>
-            <input
-              placeholder="Create Password"
-              id='password'
-              value={formData.password}
-              onChange={handleChange}
-              type={passwordShown ? "text" : "password"}
-              required
-            />
-          </div>
-          <button onClick={togglePassword}>Show Password</button>
-          <button type="submit" value="Submit" className="form-button">Submit</button>
-        </form>
-        {/* <label>
-            <input type="checkbox" checked="checked" name="remember" /> Remember me
-          </label> */}
-      </div>
-    </body>
+    <div className='container-home-div'>
+      <img src={Mountain} className="bg-image" alt="background" />
+      <form className='main-form-log' action='#!' id='main-form' onSubmit={handleSubmit}>
+        <h2 className='log-h2'>Please Create An Account</h2>
+        <div className='input-parent'>
+          <span className='lbl-cn'>Username</span>
+          <input
+            type='text'
+            id='account_name'
+            placeholder="Create Username"
+            value={account_name}
+            onChange={handleAccountName}
+            // required
+          />
+          
+        </div>
+        <div className='input-parent'>
+          <span>Email</span>
+          <input
+            type='text'
+            id='email'
+            placeholder="Enter Email"
+            value={email}
+            onChange={handleEmail}
+            // required
+          />
+        </div>
+        <div className='input-parent'>
+          <span>Password</span>
+          <input
+            placeholder="Create Password"
+            id='password'
+            value={password}
+            onChange={handlePassword}
+            type={passwordShown ? "text" : "password"}
+            // required
+          />
+        </div>
+        <div className='input-parent'>
+          <span>Confirm Password</span>
+          <input
+            placeholder="Confirm Password"
+            id='password_confirmation'
+            value={passwordConfirmation}
+            onChange={handleConfirmPassword}
+            type={passwordShown ? "text" : "password"}
+            // required
+          />
+        </div>
+        <button onClick={togglePassword}>Show Password</button>
+        <button type="submit" value="Submit" className="form-button">Submit</button>
+        <div>
+          {errors}
+        </div>
+      </form>
+    </div>
   )
 }
 

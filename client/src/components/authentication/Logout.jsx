@@ -1,9 +1,8 @@
 import React from 'react';
-// import Background from '../../img/switzerland.png'
-// import Background from '../../img/LOWA.png'
 import Background from '../../img/icelake.jpg'
 
 const Logout = () => {
+
   return (
     <div className="container-signout-div">
       <img src={Background} className="bg-image" alt="background" />

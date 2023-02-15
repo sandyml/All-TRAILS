@@ -53,7 +53,7 @@ class UsersController < ApplicationController
  private
 
  def user_params
-  params.require(:user).permit(:account_name, :email, :password)
+  params.require(:user).permit(:account_name, :email, :password, :password_confirmation)
  end
 
  def unprocessable_entity_error_response(user)

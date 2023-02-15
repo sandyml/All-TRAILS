@@ -53,6 +53,12 @@ video {
   font-size: 17px;
 }
 
+/* .topnav-nav {
+  font-size: 2.4rem;
+  font-weight: bold;
+  margin: 0.4rem;
+} */
+
 /* .tab-nav-container {
     background-color: #fff;
     border-bottom-right-radius: 30px;
@@ -111,6 +117,11 @@ a:link {
   margin: 24px 0 12px 0;
 }
 
+/* img {
+  border-radius: 8px;
+  max-width: 50%;
+} */
+
 .container-form-sub {
   padding: 16px;
   /* box-sizing: content-box; */
@@ -143,12 +154,6 @@ button:hover {
   opacity: 0.8;
 }
 
-img.avatar {
-  width: 40%;
-  border-radius: 50%;
-  color: black;
-}
-
 .container {
   padding: 16px;
 }
@@ -175,23 +180,6 @@ button {
 button:hover {
   opacity: 0.8;
 }
-
-/* @media screen and (max-width: 600px) {
-  .topnav .login-container {
-    float: none;
-  }
-  .topnav a, .topnav input[type=text], .topnav .login-container button {
-    float: none;
-    display: block;
-    text-align: left;
-    width: 100%;
-    margin: 0;
-    padding: 14px;
-  }
-  .topnav input[type=text] {
-    border: 1px solid #ccc;  
-  }
-} */
 
 img.bg-image {
   display: flex;
@@ -400,4 +388,39 @@ body {
   border-radius: 4px;
   outline: none;
   transition: all 0.2s ease;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0.05rem 0.1rem 0.3rem -0.03rem rgba(0, 0, 0, 0.45);
+  padding-bottom: 1rem;
+}
+
+.card > :last-child {
+  margin-bottom: 0;
+}
+
+.card h3 {
+  margin-top: 1rem;
+  font-size: 1.25rem;
+}
+
+.hike-item-img {
+  border-radius: 0.5rem 0.5rem 0 0;
+  width: 50%;
+}
+
+.hike-item-img ~ * {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.card-wrapper {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr));
+  grid-gap: 1.5rem;
 }
