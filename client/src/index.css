@@ -28,7 +28,7 @@ video {
   color: black;
 }
 
-.about-p { 
+topnav-nav.about-p { 
   font-family: Manrope,Arial,sans-serif;
   margin-left: auto;
   margin-right: auto;
@@ -52,12 +52,6 @@ video {
   text-decoration: none;
   font-size: 17px;
 }
-
-/* .topnav-nav {
-  font-size: 2.4rem;
-  font-weight: bold;
-  margin: 0.4rem;
-} */
 
 /* .tab-nav-container {
     background-color: #fff;
@@ -117,10 +111,20 @@ a:link {
   margin: 24px 0 12px 0;
 }
 
-/* img {
+img {
   border-radius: 8px;
-  max-width: 50%;
-} */
+  max-width: 100%;
+}
+
+.location-image {
+  max-width: 1.2%;
+}
+
+.hike-image-nav {
+  max-width: 3%;
+  margin-left: auto;
+  float: left;
+}
 
 .container-form-sub {
   padding: 16px;
@@ -395,12 +399,50 @@ body {
   border-radius: 0.5rem;
   box-shadow: 0.05rem 0.1rem 0.3rem -0.03rem rgba(0, 0, 0, 0.45);
   padding-bottom: 1rem;
+  /* display: grid;
+  grid-template-rows: max-content 200px 1fr; */
+}
+
+.hike-cr-review {
+  color: black;
+  background-color: #04AA6D;
+  color: black;
+  font-family: Manrope,Arial,sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.hike-cr-title {
+  font-family: Manrope,Arial,sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.hike-card-desc {
+  font-family: Manrope,Arial,sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #2b381f;
+  color: #656e5e;
+  display: block;
+  width: auto;
+}
+
+.card-desc {
+  font-family: Manrope,Arial,sans-serif;
+  font-size: 13px;
+  font-weight: 450;
+  line-height: 1.5;
+  color: black;
+  color: #656e5e;
+  display: block;
+  width: auto;
 }
 
 .card > :last-child {
   margin-bottom: 0;
 }
-
 .card h3 {
   margin-top: 1rem;
   font-size: 1.25rem;
@@ -417,9 +459,11 @@ body {
 }
 
 .card-wrapper {
+  border-style: solid;
+  border-radius: 0.9rem 0.5rem 0 0;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 5rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr));
   grid-gap: 1.5rem;

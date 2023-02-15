@@ -2,7 +2,7 @@ class HikeTrailsController < ApplicationController
  before_action :hike_finder, only: [:update, :destroy]
  # before_action :hike_finder
  # skip_before_action :hike_finder, only: [:update, :destroy]
- # skip_before_action :authorize, only: [:index]
+ # skip_before_action :authorize, only: [:index, :show]
 
   def index
     render json: HikeTrail.all
@@ -18,8 +18,6 @@ class HikeTrailsController < ApplicationController
    end
   else
    unproccessable_entity_errors_response(@hike)
-   # render json: { errors: hike.errors.full_messages }, serializer: HikeTrailsSerializer
-   # render json: { errors: hike.errors.full_messages }, status: :unproccessable_entity 
   end
  end
 
@@ -60,7 +58,7 @@ end
  private
 
   def hike_trail_params
-    params.require(:hike_trails).permit(:location_id, :review, :date)
+    params.require(:hike_trails).permit(:location_id, :account_name, :review, :date)
   end
 
   def unproccessable_entity_errors_response(hike)

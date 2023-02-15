@@ -23,7 +23,6 @@ class LocationsController < ApplicationController
       :elevation_gain, 
       :route_type
     )
-    
   end
 
  # def unprocessable_entity_errors_response(location)

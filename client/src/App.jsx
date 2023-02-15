@@ -7,7 +7,7 @@ import Login from './components/authentication/Login';
 import Logout from './components/authentication/Logout';
 import Signup from './components/authentication/Signup'
 import HikeList from './components/hikes/HikeList';
-import HikeItems from './components/hikes/HikeItems';
+import HikeCard from './components/hikes/HikeCard';
 import About from './components/static/About';
 import Navigation from './components/navigation/Navigation';
 import Footer from './components/static/Footer';
@@ -15,7 +15,6 @@ import Footer from './components/static/Footer';
 const App = () => {
   
   return (
-    <div className="app-div">
       <UserProvider>
         <HikeProvider>
           <Navigation />
@@ -27,12 +26,11 @@ const App = () => {
             <Route path="/logout" element={<Logout />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/hike_trails" element={<HikeList />} />
-            <Route path="/hike_trails/:id" element={<HikeItems />} />
+            <Route path="/hike_trails/:id" element={<HikeCard />} />
           </Routes>
           <Footer />
         </HikeProvider>
       </UserProvider>
-    </div>
   );
 }
 

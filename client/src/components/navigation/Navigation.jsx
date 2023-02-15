@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext, UserProvider } from '../context/UserContext';
+import Hiking from '../../img/hiking.png'
 
 const Navigation = () => {
  const { logout, loggedIn } = useContext(UserContext);
@@ -19,6 +20,7 @@ const Navigation = () => {
   <div>
   <UserProvider>
    <nav className='topnav'>
+    <Link to="/hike_trails"><img src={Hiking} className="hike-image-nav" alt="background" /></Link>
     <Link to="/hike_trails" className='topnav-nav'><h1>AlltRAILS</h1></Link>
     <Link to="/hike_trails" className='topnav-nav'>Reviews</Link>
     <Link to="/home" className='topnav-nav'>Home</Link>

@@ -9,9 +9,8 @@ const Login = () => {
   const [account_name, setAccount_name] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  // const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
-  // const [errors, setErrors] = useState([])
   const { login, setErrors, errors } = useContext(UserContext);
 
   const handleSubmit = (e) => {
@@ -21,7 +20,7 @@ const Login = () => {
       account_name,
       email,
       password,
-      password_confirmation: passwordConfirmation,
+      // password_confirmation: passwordConfirmation,
     }
     fetch('/login', {
       method: "POST",
@@ -37,12 +36,17 @@ const Login = () => {
         })
         } else {
           // resp.json().then((data) => {
-          //   console.log("hello", data)
-          //   setErrors(data)
-          // })
-          resp.json().then(
-            // (err) => console.log(err.errors, "working!!!")
-            (errors) => console.log(errors)
+            //   console.log("hello", data)
+            //   setErrors(data)
+            // })
+            resp.json().then(
+              // (err) => console.log(err.errors, "working!!!")
+              (err) => {
+                console.log(err.errors, "Login error message")
+                // setErrors(err.errors)
+                // const displayErrors = user.errors.map((err) => <li>{err}</li>);
+                // setErrors(displayErrors);
+            }
             );
           }
       })
@@ -66,9 +70,9 @@ const Login = () => {
     setPassword(e.target.value)
   }
 
-  const handleConfirmPassword = (e) => {
-    setPasswordConfirmation(e.target.value)
-  }
+  // const handleConfirmPassword = (e) => {
+  //   setPasswordConfirmation(e.target.value)
+  // }
 
   return (
       <div className='container-home-div' >
@@ -112,7 +116,7 @@ const Login = () => {
             />
           </div>
 
-          <div className='input-parent'>
+          {/* <div className='input-parent'>
             <label htmlFor='confirm-password'>Confirm Password</label>
             <input
               placeholder="Confirm Password"
@@ -121,7 +125,8 @@ const Login = () => {
               onChange={handleConfirmPassword}
               type={passwordShown ? "text" : "password"}
             />
-          </div>
+          </div> */}
+
           <button onClick={togglePassword}>Show Password</button>
           <button type='submit'>Login</button>
         </form>
