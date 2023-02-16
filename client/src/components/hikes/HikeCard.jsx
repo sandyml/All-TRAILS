@@ -18,7 +18,8 @@ const HikeCard = ({ hike }) => {
       <ul><b>user id:</b> {user_id}</ul>
       <ul>{account_name}</ul>
       <ul>{review}</ul>
-    </div>;
+    </div>
+
 
   return (
     <HikeProvider>

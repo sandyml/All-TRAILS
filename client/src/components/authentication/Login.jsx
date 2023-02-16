@@ -12,34 +12,7 @@ const Login = () => {
   const [passwordShown, setPasswordShown] = useState(false);
   const { login, setErrors, errors } = useContext(UserContext);
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   const user = {
-  //     account_name,
-  //     email,
-  //     password,
-  //   }
-
-  //   fetch('/login', {
-  //     method: "POST",
-  //     headers,
-  //     body: JSON.stringify(user)
-  //   })
-  //     .then((resp) => resp.json())
-  //     .then((user) => {
-  //       if (!user.errors) {
-  //         login(user)
-  //         navigate("/home")
-  //       } else {
-  //         const displayLoginErrors = user.errors.map((err) => <li>{err}</li>);
-  //         console.log(displayLoginErrors);
-  //       }
-  //     })
-  // };
-
   const handleSubmit = (e) => {
-    console.log("clicked login")
     e.preventDefault();
     const user = {
       account_name,
@@ -49,7 +22,7 @@ const Login = () => {
     fetch('/login', {
       method: "POST",
       headers,
-      body: JSON.stringify(user)
+      body: JSON.stringify(user) 
     })
       .then((resp) => {
         if (resp.ok) {
@@ -61,9 +34,9 @@ const Login = () => {
         } else {
           resp.json().then(
             (err) => {
-              console.log(err.errors, "Login error message")
-              setErrors(err.errors)
-              // setErrors(err.errors.map((err) => <ul>{err}</ul>));
+              // debugger
+              console.log(err, "Login error message")
+              // setErrors(err.errors)
             }
           );
         }

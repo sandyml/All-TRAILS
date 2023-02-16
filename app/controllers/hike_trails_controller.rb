@@ -1,89 +1,73 @@
 class HikeTrailsController < ApplicationController
- before_action :hike_finder, only: [:update, :destroy]
- # before_action :hike_finder
- # skip_before_action :hike_finder, only: [:update, :destroy]
- # skip_before_action :authorize, only: [:index, :show]
+#  before_action :authorize, only: [:create, :index]
+#  before_action :hike_finder
+#  skip_before_action :authorize, only: [:update, :destroy]
+ skip_before_action :authorize, only: [:index, :show]
 
   def index
     render json: HikeTrail.all
   end
 
- def create
-  if user_signed_in?
-   @hike = current_user.hike_trails.build(hike_trail_params)
-   if @hike.save
-    render json: @hike, status: :ok
-   else
-    require_login
-   end
-  else
-   unproccessable_entity_errors_response(@hike)
+  def create
+    hike = HikeTrail.create!(hike_trail_params)
+    render json: hike, status: :ok
   end
- end
 
- # def update
- #  hike = HikeTrail.find_by_id(params[:id]) 
- #  return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
- # end
+  # def show
+  #   hike_reviews = find_hike_trail_by_review
+  #   render json: hike_reviews, status: :ok
+  # end
 
- def update
-  @user = User.find_by(id: session[:user_id])
-  @hike = @user.hike_trails.find_by(id: params[:id])
-  if @hike
-   @hike.update(hike_trail_params)
-    render json: @hike
-  else 
-    # review_not_found_error
-    render json: { error: ["Review not found"] }, status: :not_found
+  # def update
+  #  hike = HikeTrail.find_by_id(params[:id]) 
+  #  return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
+  # end
+
+  # def update
+  #   @user = User.find_by(id: session[:user_id])
+  #   @hike = @user.hike_trails.find_by(id: params[:id])
+  #   if @hike
+  #   @hike.update(hike_trail_params)
+  #     render json: @hike
+  #   else 
+  #     render json: { error: ["Review not found"] }, status: :not_found
+  #   end
+  # end
+
+  # def destroy
+  # @user = User.find_by(id: session[:user_id])
+  # @hike = @user.hike_trails.find_by(id: params[:id])
+  # if @hike
+  #   @hike.destroy
+  #   render json: @hike
+  # else 
+  #     # review_not_found_error_response
+  #   render json: { error: ["Review not found"] }, status: :not_found #status: :no_content
+  # end
+  # end
+
+  # def destroy
+  #  session.delete :user_id
+  #  head :no_content
+  # end
+
+  private
+
+  def find_hike_trail
+    HikeTrail.find_by(id: params[:id])
   end
-end
 
-def destroy
- @user = User.find_by(id: session[:user_id])
- @hike = @user.hike_trails.find_by(id: params[:id])
- if @hike
-   @hike.destroy
-   render json: @hike
- else 
-    # review_not_found_error_response
-   render json: { error: ["Review not found"] }, status: :not_found #status: :no_content
- end
-end
-
- # def destroy
- #  session.delete :user_id
- #  head :no_content
- # end
-
- private
+  # def find_hike_trail_by_review
+  #   HikeTrail.find_by(review: params[:review])
+  # end
 
   def hike_trail_params
-    params.require(:hike_trails).permit(:location_id, :account_name, :review, :date)
+    params.permit(:location_id, :account_name, :review, :date)
   end
-
-  def unproccessable_entity_errors_response(hike)
-    render json: { errors: hike.errors.full_messages }, status: :unproccessable_entity 
-  end
-
-  def require_login
-  return render json: { errors: ["Please log in to your account!"]}
-  end
-
-  def hike_finder
-    @hike = HikeTrail.find_by(id: params[:id])
-  end
-
-  def review_not_found_error
-    return render json: { error: ["Review not found"] }, status: :not_found
-  end
-
-#  def review_not_found_error_response
-    # return render json: { error: ["Review not found"] }, status: :not_found
- # end
 
 end
 
-# [] FULL CRUD FOR JOIN TABLE 
+  # [] FULL CRUD FOR JOIN TABLE 
  # [] POST /hikes create
  # [] PATCH /hiketrails/:id update
  # [] DELETE/DESTROY /hiketrails/:id delete

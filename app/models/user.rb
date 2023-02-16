@@ -5,7 +5,6 @@ class User < ApplicationRecord
  has_many :location, through: :hike_trails
 
  validates :account_name, 
-            presence: true, 
             uniqueness: true,
             length: { in: 5...7 }
 

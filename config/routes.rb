@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :users, only: [:index, :create, :show]
-  resources :hike_trails, only: [:index, :create, :update, :destroy]
+  resources :hike_trails, only: [:index, :create, :show, :update, :destroy]
   resources :locations, only: [:index, :create] 
 
   post "/signup", to: "users#create"
