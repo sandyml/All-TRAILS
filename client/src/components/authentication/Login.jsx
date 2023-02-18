@@ -36,7 +36,7 @@ const Login = () => {
             (err) => {
               // debugger
               console.log(err, "Login error message")
-              // setErrors(err.errors)
+              setErrors(err.errors)
             }
           );
         }
@@ -109,7 +109,7 @@ const Login = () => {
           <Link to="/signup" className='signup'>
             Signup
           </Link>
-        </p>
+        </p><br />
         <div>{errors}</div>
 
       </form>

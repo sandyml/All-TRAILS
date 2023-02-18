@@ -1,4 +1,4 @@
 class HikeLocationSerializer < ActiveModel::Serializer
- attributes :id, :review, :date, :location
+ # attributes :id, :review, :date, :location
 
 end

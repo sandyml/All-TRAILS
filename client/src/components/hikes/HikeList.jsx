@@ -6,17 +6,20 @@ import HikeCard from './HikeCard';
 const HikeList = () => {
   const hikes = useContext(HikeContext);
 
+  // debugger
+
   const hikeCards = hikes.map(
-    hike => 
-    <HikeCard 
-    key={hike.id} 
-    hike={hike}/>
-    )
+    hike =>
+      <HikeCard
+        key={hike.id}
+        hike={hike}
+      />
+  )
 
   return (
-    <div>
-      {hikeCards}
-    </div>
+      <div>
+        {hikeCards}
+      </div>
   )
 }
 

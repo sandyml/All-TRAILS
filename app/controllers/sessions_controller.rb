@@ -14,7 +14,8 @@ class SessionsController < ApplicationController
 
  def destroy 
   session.delete :user_id
-  render json: { message: ["You are now logged out! Happy Hiking!"] }, status: :unauthorized
+  render json: { message: ["You are now logged out! Happy Hiking!"] }, status: :no_content 
+  # head :no_content 
  end
 
  private

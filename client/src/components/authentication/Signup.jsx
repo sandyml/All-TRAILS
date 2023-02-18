@@ -85,7 +85,7 @@ const Signup = () => {
             placeholder="Enter Email"
             value={email}
             onChange={handleEmail}
-            required
+            // required
           />
         </div>
         <div className='input-parent'>
@@ -96,7 +96,7 @@ const Signup = () => {
             value={password}
             onChange={handlePassword}
             type={passwordShown ? "text" : "password"}
-            required
+            // required
           />
         </div>
         <div className='input-parent'>
@@ -107,7 +107,7 @@ const Signup = () => {
             value={passwordConfirmation}
             onChange={handleConfirmPassword}
             type={passwordShown ? "text" : "password"}
-            required
+            // required
           />
         </div>
         <button onClick={togglePassword}>Show Password</button>
@@ -119,7 +119,7 @@ const Signup = () => {
             Login
           </Link>
         </p>
-
+        <br />
         <div>
           {errors}
         </div>

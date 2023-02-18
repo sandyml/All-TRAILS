@@ -14,3 +14,7 @@ class HikeTrail < ApplicationRecord
     end
 
 end
+
+# Need to grab review: 
+  # HikeTrail.pluck(:review)
+  # HikeTrail.all.pluck(:review)

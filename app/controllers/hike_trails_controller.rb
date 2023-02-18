@@ -2,12 +2,15 @@ class HikeTrailsController < ApplicationController
 #  before_action :authorize, only: [:create, :index]
 #  before_action :hike_finder
 #  skip_before_action :authorize, only: [:update, :destroy]
+#  skip_before_action :authorize, only: [:index]
  skip_before_action :authorize, only: [:index, :show]
 
+  # GET REQUEST /hike_trails 
   def index
-    render json: HikeTrail.all
+    render json: HikeTrail.all, status: :ok
   end
 
+  # POST REQUEST /hike_trails
   def create
     hike = HikeTrail.create!(hike_trail_params)
     render json: hike, status: :ok
@@ -50,6 +53,18 @@ class HikeTrailsController < ApplicationController
   #  session.delete :user_id
   #  head :no_content
   # end
+
+  # tentative for nested reviews 
+  def reviews_index
+    hikes = HikeTrail.find(params[:id])
+    reviews = hike_trail.reviews
+    render json: reviews, include: :hike_trails    
+  end
+
+  def reviews
+    review = User.find(params[:id])
+    render json: review, include: :hike_trails    
+  end
 
   private
 
