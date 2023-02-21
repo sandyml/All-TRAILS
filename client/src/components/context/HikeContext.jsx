@@ -15,7 +15,7 @@ const HikeProvider = ({ children }) => {
       fetch("/hike_trails")
         .then((resp) => resp.json())
         .then((hikeData) => { 
-          console.log(hikeData, "HikeContext")
+          // console.log(hikeData, "HikeContext")
           setHikes(hikeData)
           // setReviews(hikeData)
         })

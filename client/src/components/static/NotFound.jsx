@@ -8,7 +8,7 @@ const NotFound = () => {
    <div class='label-container'>
     <div class='label1'>
      <label class="fullWidthRow"></label>
-     <label class='label'>404 NOT FOUND. <br/> SORRY..wrong route..</label>
+     <label class='label'>404 NOT FOUND. <br/> wrong route..no hikes found here..</label>
     </div>
    </div>
   </>

@@ -1,7 +1,7 @@
 * { 
   margin: 0;
   padding: 0;
-  font-family: Manrope,Arial,sans-serif;
+  /* font-family: 'Manrope,Arial,sans-serif'; */
   /* font-family: Percent,Beatrice,Arial,sans-serif; */
 }
 
@@ -169,6 +169,17 @@ button {
 
 button:hover {
   opacity: 0.8;
+}
+
+.location-btn {
+  background-color: #6D7A71;
+  color: white;
+  padding: 10px 14px;
+  width: 20px;
+  margin: 20px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
 }
 
 .container {
@@ -584,7 +595,6 @@ button.button2 {
 }
 
 .label1 {
-  position: absolute;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 0.1fr 1fr;
@@ -594,20 +604,10 @@ button.button2 {
   text-align: center;
   grid-gap: 20px;
 }
-/* 
-.label {
-  align-self: center;
-  word-wrap: break-word;
-  min-height: 0;
-  min-width: 0;
-  
-} */
 
 div.label {
   margin-top: 6rem;
   position: absolute;
-  /* top: 10px; */
-  /* right: none; */
   text-align: center;
   color: black;
   font-size: 4.5rem;
@@ -615,6 +615,11 @@ div.label {
   list-style: none;
   opacity: .5;
 }
-.fullWidthRow {
-  grid-column: 1 / 4;
+
+.location-card {
+  background-color: #e0d4ca;
+}
+
+.h1-location {
+  font-family: "Montage";
 }

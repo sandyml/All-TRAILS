@@ -1,18 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import Location from '../../img/locationicon.png'
-import { HikeContext } from '../context/HikeContext';
-import { UserContext } from '../context/UserContext';
-// import { HikeContext } from '../context/HikeContext';
-// import { UserContext } from '../context/UserContext';
 import Reviews from './Reviews';
 
 const HikeCard = ({ hike }) => {
   const { id, location } = hike
   const { trail_name, city, state, image_url, difficulty, length, elevation_gain, route_type } = location
-  const hikes = useContext(HikeContext)
-  const user = useContext(UserContext)
   const [showReview, setShowReview] = useState(false); //toggle to show reviews 
-  // const [displayReview, setDisplayReviews] = useState([])
   const reviewOnClick = () => {
     (showReview === false) ? setShowReview(true) :
       setShowReview(false);

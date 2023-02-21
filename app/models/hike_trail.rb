@@ -7,6 +7,8 @@ class HikeTrail < ApplicationRecord
     #  500 character count
   validates :date, 
     presence: true
+  validates :format_date, 
+    presence: true
 
     def format_date
       self.date.strftime("%Y-%m-%d")

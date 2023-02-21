@@ -1,6 +1,6 @@
 import React from 'react';
-// import backgroundVideo from '../../video/SandraYunsVideo.mp4'
 import HikeViews from '../../img/hikeviews.jpg'
+// import backgroundVideo from '../../video/SandraYunsVideo.mp4'
 
 const About = () => {
   return (

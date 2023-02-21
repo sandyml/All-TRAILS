@@ -5,13 +5,8 @@ class HikeTrailSerializer < ActiveModel::Serializer
   belongs_to :location, serializer: LocationSerializer
   belongs_to :user
 
-  # reviews 
-  # def new_review
-  #   "#{self.object.review[0...500]...}" #text? 
-  # end
-
-  def reviews(user)
-    HikeTrail.where(user_id: user.id).pluck(:review)
+  def format_date
+    self.date.strftime("%Y-%m-%d")
   end
 
 end
