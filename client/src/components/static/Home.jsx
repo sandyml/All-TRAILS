@@ -9,7 +9,6 @@ const Home = () => {
       <div className='content-home'>
       <ul className="text-home">
         <li className='li-home-hike'>HIKE</li>
-        
         <li className='li-home-explore'>
           <a href="http://localhost:4000/locations">
             EXPLORE
