@@ -6,9 +6,13 @@ class User < ApplicationRecord
 
  validates :account_name, 
             uniqueness: true,
-            length: { in: 5...7 }
+            length: { in: 5...9 }
  validates :email, presence: true, uniqueness: true
  validates :password, length: { in: 6..10 }
+
+ # validates :account_name, :email, presence: true
+ # validates :account_name, :email, uniqueness: true
+ # validates :account_name, length: { in: 5...9 }
 end
 
 # https://guides.rubyonrails.org/active_record_validations.html#confirmation

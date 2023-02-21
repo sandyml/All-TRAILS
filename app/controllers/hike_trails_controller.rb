@@ -16,15 +16,21 @@ class HikeTrailsController < ApplicationController
     render json: hike, status: :ok
   end
 
+  def show
+    hk = HikeTrail.find(params[:id]) #will raise the error of rescue from 
+    render json: hk, status: :ok    
+    # render json: hk, include: [:users], status: :ok    
+  end
+
   # def show
   #   hike_reviews = find_hike_trail_by_review
   #   render json: hike_reviews, status: :ok
   # end
 
-  # def update
-  #  hike = HikeTrail.find_by_id(params[:id]) 
-  #  return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
-  # end
+  def update
+   hike = HikeTrail.find_by_id(params[:id]) 
+   render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
+  end
 
   # def update
   #   @user = User.find_by(id: session[:user_id])
@@ -49,10 +55,10 @@ class HikeTrailsController < ApplicationController
   # end
   # end
 
-  # def destroy
-  #  session.delete :user_id
-  #  head :no_content
-  # end
+  def destroy
+   session.delete :user_id
+   head :no_content
+  end
 
   # tentative for nested reviews 
   def reviews_index

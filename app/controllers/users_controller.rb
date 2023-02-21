@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
- skip_before_action :authorize, only: [:create]
+ skip_before_action :authorize, only: [:index, :create]
+ rescue_from ActiveRecord::RecordNotFound, with: :record_not_found #will raise errors along side find instead of find_by
 
  # signup 
 
  def index
-  render json: User.all
+  render json: User.all, except: [:created_at, :updated_at], status: :ok
+  # render json: User.all, adapter: nil, // turn off serializer gem and gives us access to the built in serializers again except: [:created_at, :updated_at], status: :ok
  end
 
  # POST /signup 
@@ -37,7 +39,9 @@ class UsersController < ApplicationController
  # end
 
  def show
-  render json: @user
+  render json: @user, serializer: UserHikeTrailsSerializer
+  # user = User.find(params[:id])
+  # render json: user, serializer: UserHikeTrailsSerializer
  end
 
  private

@@ -10,4 +10,8 @@ class HikeTrailSerializer < ActiveModel::Serializer
   #   "#{self.object.review[0...500]...}" #text? 
   # end
 
+  def reviews(user)
+    HikeTrail.where(user_id: user.id).pluck(:review)
+  end
+
 end

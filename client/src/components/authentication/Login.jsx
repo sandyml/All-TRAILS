@@ -26,7 +26,6 @@ const Login = () => {
     })
       .then((resp) => {
         if (resp.ok) {
-          // debugger
           resp.json().then((user) => {
             login(user);
             navigate('/home')
@@ -34,7 +33,6 @@ const Login = () => {
         } else {
           resp.json().then(
             (err) => {
-              // debugger
               console.log(err, "Login error message")
               setErrors(err.errors)
             }

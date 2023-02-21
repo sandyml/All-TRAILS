@@ -6,8 +6,6 @@ import HikeCard from './HikeCard';
 const HikeList = () => {
   const hikes = useContext(HikeContext);
 
-  // debugger
-
   const hikeCards = hikes.map(
     hike =>
       <HikeCard

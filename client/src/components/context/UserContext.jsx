@@ -5,7 +5,9 @@ const UserContext = createContext();
 
 // create the context provider (component)
 const UserProvider = ({ children }) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState([]);
+  // const [user, setUser] = useState({});
+  // const [allUsers, setAllUsers] = useState({})
   const [loggedIn, setLoggedIn] = useState(false);
   const [errors, setErrors] = useState([])
   //  const [favorites, setFavorites] = useState([]);
@@ -15,6 +17,7 @@ const UserProvider = ({ children }) => {
   .then(resp => resp.json())
   .then(data => {
     console.log(data);
+    // setAllUsers(data)
     setUser(data);
   })
 }, []);
@@ -34,6 +37,7 @@ const UserProvider = ({ children }) => {
   setLoggedIn(true);
  }
 
+//  console.log(user.account_name, "usercontext")
 //  const addFavorites = (hike) => {
 //   const prevFavorites = [...favorites];
 //   const newFavorites = prevFavorites.concat(hike);

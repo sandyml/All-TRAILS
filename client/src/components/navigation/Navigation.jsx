@@ -23,8 +23,8 @@ const Navigation = () => {
     <Link to="/hike_trails"><img src={Hiking} className="hike-image-nav" alt="background" /></Link>
     <Link to="/hike_trails" className='topnav-nav'><h1>AlltRAILS</h1></Link>
     <Link to="/hike_trails" className='topnav-nav'>Reviews</Link>
-    <Link to="/home" className='topnav-nav'>Home</Link>
     <Link to="/about" className='topnav-nav'>About</Link>
+    <Link to="/home" className='topnav-nav'>Home</Link>
     <Link to="/signup" className='topnav-nav-sign'>Signup</Link>
 
     <div>

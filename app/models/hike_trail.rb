@@ -8,7 +8,6 @@ class HikeTrail < ApplicationRecord
   validates :date, 
     presence: true
 
-    # 2023-12-02
     def format_date
       self.date.strftime("%Y-%m-%d")
     end

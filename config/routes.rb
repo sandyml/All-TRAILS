@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy" 
 
   # hike_trails -> nested reviews 
-  # resources :hike_trails, only: [:show] do
-  #   resources :reviews, only: [:show, :index]
-  # end
+  resources :users, only: [:show] do
+    resources :hike_trails, only: [:index, :create, :show, :update, :destroy]
+  end
 
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

@@ -1,50 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import { HikeContext } from "../context/HikeContext";
+import { UserContext } from '../context/UserContext';
 
-const Reviews = () => {
-
+const Reviews = ({ hike }) => {
+  const hikes = useContext(HikeContext)
+  const users = useContext(UserContext)
+  const {  review, format_date, user_id } = hike
+  console.log(hike, "Review JSX")
   return (
-    <div class="container">
-      <form action="action_page.php">
-        <div class="row">
-          <div class="col-25">
-            <label for="fname">Username</label>
-          </div>
-          <div class="col-75">
-            <input type="text" id="fname" name="firstname" placeholder="Your name.." />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Location</label>
-          </div>
-          <div class="col-75">
-            <input type="text" id="lname" name="lastname" placeholder="Your last name.." />
-          </div>
-        </div>
-        {/* <div class="row">
-          <div class="col-25">
-            <label for="country">Review</label>
-          </div>
-          <div class="col-75"> */}
-            {/* <select id="country" name="country">
-              <option value="australia">Australia</option>
-              <option value="canada">Canada</option>
-              <option value="usa">USA</option>
-            </select> */}
-          {/* </div> */}
-        {/* </div> */}
-        <div class="row">
-          <div class="col-25">
-            <label for="review">Review</label>
-          </div>
-          <div class="col-75">
-            <textarea id="review" name="review" placeholder="Write something.." style="height:200px"></textarea>
-          </div>
-        </div>
-        <div class="row">
-          <input type="submit" value="Submit" />
-        </div>
-      </form>
+    <div className='hike-cr-review'>
+      <ul>{format_date}</ul>
+      <ul><b>user id:</b> {user_id}</ul>
+      <ul className='review-list-card'>{review}</ul>
+      {hikes.map((hk) => <div key={hk.id}>{hk.user_id}: {hk.review}
+        <hr /></div>)}
+      {/* {users.user.map((user) => <div key={user.id}>{user.user_id}: {user.review} </div>)} */}
     </div>
   )
 }

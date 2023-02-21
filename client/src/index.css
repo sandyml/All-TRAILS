@@ -202,19 +202,23 @@ img.bg-image {
   display: flex;
   background-repeat: repeat;
   background-position: center;
+  /* background-size: cover; */
   width: 100%;
   height: auto;
   /* object-fit: cover; */
 }
 
+.bg-image-home {
+  background-size: cover;
+  display: flex;
+}
+
 .bg-image-about {
   display: flex;
-  background-repeat: repeat;
-  background-position: center;
+  background-size: cover;
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,.1)
-  /* object-fit: cover; */
 }
 .overlay {
   background-color: rgba(0,0,0,.1)
@@ -235,9 +239,11 @@ img.bg-image {
 
 .container-home-div {
   position: relative;
+  background-color: #6D7A71;
+  /* background-size: 100%; */
 }
 
-.container-home-div .text-home {
+.text-home {
   margin-top: 6rem;
   position: absolute;
   top: 10px;
@@ -430,7 +436,7 @@ body {
   grid-template-rows: max-content 200px 1fr; */
 }
 
-.hike-cr-review {
+.hike-cr-review { 
   background-color: #6D7A71;
   color: black;
   font-family: Manrope,Arial,sans-serif;
@@ -517,3 +523,98 @@ body {
   background-color: #04AA6D;
   background-size: 450px 350px;
 } */
+
+.review-list-card {
+  line-height: 26pt; 
+}
+
+/* .button2 {
+  size: 1rem;
+} */
+
+button.button2 {
+  margin: 4px 4px;
+  background-color: c7c7c7;
+  border-radius: 2px;
+  border-width: 0;
+  color: #333333;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  padding: 1px 1px;
+  text-align: center;
+  transition: all 200ms;
+  vertical-align: baseline;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+.col {
+  background-color: #ddd;
+  width: 25%;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.col p {
+  font-size: 14px;
+}
+
+.container-not-found {
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+.label-container {
+  padding: 0;
+  margin: 0;
+}
+
+.label1 {
+  position: absolute;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 0.1fr 1fr;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  grid-gap: 20px;
+}
+/* 
+.label {
+  align-self: center;
+  word-wrap: break-word;
+  min-height: 0;
+  min-width: 0;
+  
+} */
+
+div.label {
+  margin-top: 6rem;
+  position: absolute;
+  /* top: 10px; */
+  /* right: none; */
+  text-align: center;
+  color: black;
+  font-size: 4.5rem;
+  font-weight: bold;
+  list-style: none;
+  opacity: .5;
+}
+.fullWidthRow {
+  grid-column: 1 / 4;
+}

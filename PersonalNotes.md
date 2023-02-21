@@ -104,3 +104,55 @@ MEETING:
 2. rspec folder with pry 
  - pet_spec needs to have the underscore 
 3. --fail-f  
+
+
+
+    <div className="card-wrapper" key={id}>
+
+      <ul className="card-wrapper" key={id}>
+        <li className="card" key={id}>
+          <h3 className='hike-cr-title'>{trail_name}</h3>
+          <img src={image_url} alt="hike-img" className='hike-item-img' />
+
+          <div className='hike-card-desc'>
+            <ul>
+              <img src={Location}
+                className="location-image"
+                alt="background" />
+              <b> {city}, {state}</b>
+            </ul>
+
+            <ul>
+              difficulty: <b>{difficulty} &nbsp;</b>
+              length: <b>{length} &nbsp;</b>
+              elevation_gain: <b>{elevation_gain} &nbsp;</b>
+              route_type: <b>{route_type} &nbsp;</b>
+            </ul>
+
+            <div>
+              {
+                hikes.map((hk) => <div key={hk.id}>name: {hk.user_id}: {hk.review}
+                  <button className='button2'
+                    // onClick={handleDelete}
+                    type="delete">
+                    Remove
+                  </button><hr />
+                </div>
+                )
+              }
+
+            </div>
+
+            {/* <div>
+              {users.map((user) => <div key={user.id}>name: {user.account_name}</div>)}
+              </div> */}
+
+          </div>
+          <div>
+            <button onClick={reviewOnClick}>Reviews</button>
+            {showReview ? <Reviews /> : null}
+          </div>
+        </li>
+      </ul>
+
+    </div>

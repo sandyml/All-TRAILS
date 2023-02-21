@@ -9,12 +9,16 @@ class ApplicationController < ActionController::API
   
   def authorize
     @user = User.find_by(id: session[:user_id])
-    render json: { errors: ["Not Authorized"] }, status: :unauthorized unless @user
+    render json: { error: ["Not Authorized"] }, status: :unauthorized unless @user
   end
 
   def record_not_found
-   render json: { errors: ["Record not found"] }, status: :not_found
+    render json: { error: ["Record not found"] }, status: :not_found
   end
+
+  # def record_not_found(invalid)
+  #   render json: { error: "#{invalid.model} not found" }, status: :not_found
+  # end
 
   def render_unprocessable_entity_response(object)
    render json: { errors: object.record.errors.full_messages }, status: :unprocessable_entity

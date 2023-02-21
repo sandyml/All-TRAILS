@@ -1,11 +1,11 @@
 import React from 'react'
-import Background from '../../img/winter_hike.png'
+import Background from '../../img/winter_hike.jpg'
 
 
 const Home = () => {
   return (
     <div className="container-home-div">
-      <img src={Background} className="bg-image" alt="background" />
+      <img src={Background} className="bg-image-home" alt="background" />
       <div className='content-home'>
       <ul className="text-home">
         <li className='li-home-hike'>HIKE</li>
