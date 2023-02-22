@@ -16,7 +16,7 @@ const LocationList = () => {
  )
 
   return (
-    <div className='location-card'>
+    <div className='location-card-list'>
      <h1 className='h1-location'>Hikes & Reviews</h1><hr/><br/><br/>
       {locationCards}
     </div>

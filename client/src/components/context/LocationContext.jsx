@@ -9,7 +9,7 @@ const LocationProvider = ({ children }) => {
     fetch("/locations")
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data, "LocationContext")
+        // console.log(data, "LocationContext")
         setLocations(data)
       })
       .catch((error) => console.log(error, "An error occurred.")

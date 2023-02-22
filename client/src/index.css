@@ -24,7 +24,7 @@
   top: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   color: black;
 }
@@ -243,7 +243,7 @@ img.bg-image {
   top: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   color: black;
 }
@@ -496,10 +496,10 @@ body {
   width: 50%;
 }
 
-.hike-item-img ~ * {
+/* .hike-item-img {
   margin-left: 1rem;
   margin-right: 1rem;
-}
+} */
 
 .card-div {
   color: rgba(0, 0, 0, 0.16);
@@ -572,6 +572,7 @@ button.button2 {
   display: flex;
   justify-content: space-between;
 }
+
 .col {
   background-color: #ddd;
   width: 25%;
@@ -615,11 +616,33 @@ div.label {
   list-style: none;
   opacity: .5;
 }
+/* .h1-location {
+  font-family: "Montage";
+} */
 
 .location-card {
-  background-color: #e0d4ca;
+  /* height: 600px; 
+  width: 1150px; */
+  margin: 10px;
+  border-radius: 10px 10px 10px 10px;
+  background:  #ddd;
+  box-shadow: 5px 10px 20px #040f74;
 }
 
-.h1-location {
-  font-family: "Montage";
+.pic {
+  width: 850px;
+  height: 450px;
+  position: relative;
+  object-fit: cover;
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 5px 10px 20px #040f74;
 }
+
+/* @media(max-width: 1000px) {
+  .location-card-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center;
+  } */
+/* }  */
