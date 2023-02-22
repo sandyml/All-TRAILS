@@ -6,7 +6,7 @@ class HikeTrailSerializer < ActiveModel::Serializer
   belongs_to :user
 
   def format_date
-    self.date.strftime("%Y-%m-%d")
+    self.object.date.strftime("%Y-%m-%d")
   end
 
 end

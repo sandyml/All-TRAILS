@@ -11,6 +11,7 @@ import Footer from './components/static/Footer';
 import NotFound from './components/static/NotFound';
 import LocationList from './components/hikes/LocationList';
 import { LocationProvider } from './components/context/LocationContext';
+import Test from './components/static/Test';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/signup" element={<Signup />} />
           <Route path="/*" element={<NotFound />} />
           <Route path="/locations" element={<LocationList />} />
+          <Route path="/test" element={<Test />} />
         </Routes>
         <Footer />
       </LocationProvider>

@@ -14,7 +14,6 @@ const UserProvider = ({ children }) => {
     fetch("/me")
       .then(resp => resp.json())
       .then(data => {
-        // console.log(data, "UserContext")
         setUser(data);
       })
   }, []);

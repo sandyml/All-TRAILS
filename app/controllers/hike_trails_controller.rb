@@ -17,15 +17,14 @@ class HikeTrailsController < ApplicationController
   end
 
   def show
-    hk = HikeTrail.find(params[:id]) #will raise the error of rescue from 
-    render json: hk, status: :ok    
-    # render json: hk, include: [:users], status: :ok    
+    @hike = find_hike #will raise the error of rescue from 
+    render json: @hike, status: :ok      
   end
 
-  # def show
-  #   hike_reviews = find_hike_trail_by_review
-  #   render json: hike_reviews, status: :ok
-  # end
+  def show
+    hike = HikeTrail.find(params[:id])
+    render json: hike, include: :users, status: :ok
+  end 
 
   def update
    hike = HikeTrail.find_by_id(params[:id]) 
@@ -56,21 +55,11 @@ class HikeTrailsController < ApplicationController
   # end
 
   def destroy
-   session.delete :user_id
-   head :no_content
-  end
-
-  # tentative for nested reviews 
-  def reviews_index
-    hikes = HikeTrail.find(params[:id])
-    reviews = hike_trail.reviews
-    render json: reviews, include: :hike_trails    
-  end
-
-  def reviews
-    review = User.find(params[:id])
-    render json: review, include: :hike_trails    
-  end
+    # byebug
+    @hike_trail = HikeTrail.find(params[:id])
+    @hike_trail.destroy
+    render json: @hike_trail, status: :ok 
+  end 
 
   private
 
@@ -78,9 +67,9 @@ class HikeTrailsController < ApplicationController
     HikeTrail.find_by(id: params[:id])
   end
 
-  # def find_hike_trail_by_review
-  #   HikeTrail.find_by(review: params[:review])
-  # end
+  def find_hike
+    @hike = HikeTrail.find(params[:id])
+  end
 
   def hike_trail_params
     params.permit(:location_id, :account_name, :review, :date)

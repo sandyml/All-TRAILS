@@ -24,6 +24,7 @@ const Navigation = () => {
     <Link to="/locations" className='topnav-nav'><h1>AlltRAILS</h1></Link>
     <Link to="/locations" className='topnav-nav'>Reviews</Link>
     <Link to="/about" className='topnav-nav'>About</Link>
+    <Link to="/test" className='topnav-nav'>Test</Link>
     <Link to="/home" className='topnav-nav'>Home</Link>
     <Link to="/signup" className='topnav-nav-sign'>Signup</Link>
     <div>

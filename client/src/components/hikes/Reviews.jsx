@@ -11,7 +11,7 @@ const Reviews = ({ hike }) => {
       <ul><b>user id:</b> {user_id}</ul>
       <ul className='review-list-card'>{review}</ul>
       {hikes.map((hk) => <div key={hk.id}>{hk.user_id}: {hk.review}
-        <hr /></div>)}
+        </div>)}
     </div>
   )
 }

@@ -1,40 +1,62 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Location from '../../img/locationicon.png';
+import { LocationContext } from '../context/LocationContext';
+import HikesReviews from './HikesReviews';
 
 const LocationCard = ({ location }) => {
-  const { trail_name, city_state, image_url, difficulty, length, elevation_gain, route_type, hike_trails } = location;
+  const { trail_name, city_state, image_url, difficulty, length, elevation_gain, route_type } = location;
   const [showReview, setShowReview] = useState(false);
+  const {locations, setLocations} = useContext(LocationContext);
+
 
   const reviewOnClick = () => {
     (showReview === false) ? setShowReview(true) :
       setShowReview(false);
-  };
+  };  
 
-  const allReviews = hike_trails.map(
-    (ht) => <div key={ht}>{ht.format_date}<br />{ht.user.account_name}{ht.user_id}:&nbsp;{ht.review}<hr /></div>
-  );
+  const handleDelete = (id) => {
+    fetch(`/hike_trails/${id}`, {
+      method: 'DELETE',
+    })
+      .then(resp => resp.json())
+      .then(data => {
+        console.log(data, "deleted!")
+        const updatedState = locations.map(l => {
+          // eslint-disable-next-line 
+          if(data.location_id == l.id) {
+            return {
+              ...l,
+              hike_trails: l.hike_trails.filter(ht => ht.id !== data.id)
+            }
+          } else {
+            return l;
+          }
+        })
+        setLocations(updatedState);
+      })
+  }
+
 
   return (
-    <div className='location-card-container'>
-      <div className='location-card'>
-        <h2>{trail_name}</h2>
-        <img src={image_url} alt="hike-img" className='pic' />
-        <div className='info'>
-          <ul><img src={Location} className="location-image" alt="background" />
-            <b>&nbsp;{city_state}</b>
-          </ul>
-          <p>
-            difficulty: <b>{difficulty} &nbsp;</b>
-            length: <b>{length} &nbsp;</b>
-            elevation_gain: <b>{elevation_gain} &nbsp;</b>
-            route_type: <b>{route_type} &nbsp;</b>
-          </p>
-        </div>
-        <div>
+    <div>
+      <hr /><br />
+      <h2>{trail_name}</h2><br />
+      <img src={image_url} alt="hike-img" className='pic' />
+      <ul><img src={Location} className="location-image" alt="background" />
+        <b>&nbsp;{city_state}</b>
+      </ul><br />
+      <p>
+        difficulty: <b>{difficulty} &nbsp;</b>
+        length: <b>{length} &nbsp;</b>
+        elevation_gain: <b>{elevation_gain} &nbsp;</b>
+        route_type: <b>{route_type} &nbsp;</b>
+      </p><br /><hr />
+      <div className='testimonial-box-container'>
+        <div className='testimonial-box'>
           <button className='location-btn' onClick={reviewOnClick}>Reviews</button>
-          {showReview ? allReviews : null}
+          {showReview ? <HikesReviews location={location} handleDelete={handleDelete} /> : null}
+          <hr /><br />
         </div>
-        <hr /><br />
       </div>
     </div>
   );

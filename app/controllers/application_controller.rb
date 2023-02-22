@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::API
   include ActionController::Cookies # gives access to cookies to all subsequent controllers 
 
-  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+
   before_action :authorize
   
   private 
@@ -11,6 +12,11 @@ class ApplicationController < ActionController::API
     @user = User.find_by(id: session[:user_id])
     render json: { error: ["Not Authorized"] }, status: :unauthorized unless @user
   end
+
+  # def authorized
+  #   @current_user = User.find_by(id: session[:user_id])
+  #   render json: { error: "Not Authorized" }, status: :unauthorized unless @current_user
+  # end
 
   def record_not_found
     render json: { error: ["Record not found"] }, status: :not_found
@@ -27,7 +33,6 @@ class ApplicationController < ActionController::API
   # def require_login
   #   return render json: { errors: ["Please log in to your account!"]}
   # end 
-
 
 end
 

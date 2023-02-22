@@ -15,6 +15,7 @@ const Signup = () => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
+    // console.log(password)
     fetch('/signup', {
       method: "POST",
       headers,
@@ -27,13 +28,12 @@ const Signup = () => {
     })
     .then((resp) => resp.json())
     .then((user) => {
-      // set errors using state userContext
       if (!user.errors) {
         console.log(user)
         signup(user)
-        navigate("/hike_trails")
+        navigate("/home")
       } else {
-        console.log("error thrown in login")
+        console.log(user, "error thrown in signup")
         const displayErrors = user.errors.map((err) => <div key={err}>{err}</div>);
         setErrors(displayErrors);
       }
@@ -121,7 +121,7 @@ const Signup = () => {
         </p>
         <br />
         <div>
-          {errors}
+          { errors }
         </div>
 
       </form>
