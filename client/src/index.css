@@ -30,7 +30,6 @@
 }
 
 topnav-nav.about-p { 
-  font-family: Manrope,Arial,sans-serif;
   margin-left: auto;
   margin-right: auto;
   margin-top: 25rem;
@@ -46,7 +45,6 @@ topnav-nav.about-p {
 
 .about-p {
   color: white;
-  font-family: Manrope,Arial,sans-serif;
   font-size: 20px;
   font-weight: 400;
   line-height: 1.5;
@@ -58,7 +56,6 @@ topnav-nav.about-p {
 }
 
 .topnav {
-  /* font-family: 'NewYork'; */
   overflow: hidden;
   background-color: #6D7A71;
   color: #f2f2f2;
@@ -149,7 +146,7 @@ img {
 }
 
 body {
-  font-family: Manrope,Arial,sans-serif;
+  font-family: 'Astralaga Regular', Astralaga;
 }
 
 form {
@@ -333,7 +330,6 @@ img.bg-image {
 #main-form {
   width: max-content;
   margin: 40px auto;
-  font-family: Manrope,Arial,sans-serif;
   padding: 25px 28px;
   background: #EFEADD;
   border-radius: 4px;
@@ -450,19 +446,20 @@ body {
 .hike-cr-review { 
   background-color: #6D7A71;
   color: black;
-  font-family: Manrope,Arial,sans-serif;
+  /* font-family: Manrope,Arial,sans-serif; */
+  font-family: 'Astralaga Regular', Astralaga;
   font-size: 15px;
   font-weight: 400;
 }
 
 .hike-cr-title {
-  font-family: Manrope,Arial,sans-serif;
+  font-family: 'Astralaga Regular', Astralaga;
   font-size: 20px;
   font-weight: 400;
 }
 
 .hike-card-desc {
-  font-family: Manrope,Arial,sans-serif;
+  font-family: 'Astralaga Regular', Astralaga;
   font-size: 13px;
   font-weight: 400;
   line-height: 1.5;
@@ -473,7 +470,7 @@ body {
 }
 
 .card-desc {
-  font-family: Manrope,Arial,sans-serif;
+  font-family: 'Astralaga Regular', Astralaga;
   font-size: 13px;
   font-weight: 450;
   line-height: 1.5;
@@ -496,17 +493,12 @@ body {
   width: 50%;
 }
 
-/* .hike-item-img {
-  margin-left: 1rem;
-  margin-right: 1rem;
-} */
-
 .card-div {
   color: rgba(0, 0, 0, 0.16);
 
 }
-.card-wrapper {
 
+.card-wrapper {
   border-style: solid;
   border-radius: 0.9rem 0.5rem 0 0;
   list-style: none;
@@ -529,19 +521,9 @@ body {
   padding: none;
 }
 
-/* .Footer-Logout {
-  margin-bottom: 30px;
-  background-color: #04AA6D;
-  background-size: 450px 350px;
-} */
-
 .review-list-card {
   line-height: 26pt; 
 }
-
-/* .button2 {
-  size: 1rem;
-} */
 
 button.button2 {
   margin: 4px 4px;
@@ -565,8 +547,6 @@ button.button2 {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
-
-
 
 .row {
   display: flex;
@@ -616,9 +596,7 @@ div.label {
   list-style: none;
   opacity: .5;
 }
-/* .h1-location {
-  font-family: "Montage";
-} */
+
 
 .location-card {
   /* height: 600px; 
@@ -648,23 +626,23 @@ div.label {
 /* }  */
 
 
-*{
+* {
   margin: 0px;
   padding: 0px;
-  font-family: poppins;
   box-sizing: border-box;
+  font-family: 'Astralaga Regular', Astralaga;
 }
-a{
+a {
   text-decoration: none;
 }
-#testimonials{
+#testimonials {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width:100%;
 }
-.testimonial-heading{
+.testimonial-heading {
   letter-spacing: 1px;
   margin: 30px 0px;
   padding: 10px 20px;
@@ -674,7 +652,7 @@ a{
   align-items: center;
 }
 
-.testimonial-heading span{
+.testimonial-heading span {
   font-size: 1.3rem;
   color: #252525;
   margin-bottom: 10px;
@@ -682,7 +660,7 @@ a{
   text-transform: uppercase;
 }
 
-.testimonial-box-container{
+.testimonial-box-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -690,7 +668,7 @@ a{
   width:100%;
 }
 
-.testimonial-box{
+.testimonial-box {
   width: 900px;
   box-shadow: 2px 2px 30px rgba(0,0,0,0.1);
   background-color: #ffffff;
@@ -699,7 +677,7 @@ a{
   cursor: pointer;
 }
 
-.profile-img{
+.profile-img {
   width:50px;
   height: 50px;
   border-radius: 50%;
@@ -707,7 +685,7 @@ a{
   margin-right: 10px;
 }
 
-.profile-img img{
+.profile-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -737,54 +715,64 @@ a{
   font-size: 0.8rem;
 }
 
-.reviews{
+.reviews {
   color: #f9d71c;
 }
 
-.box-top{
+.box-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
 
-.client-comment p{
+.client-comment p {
   font-size: 0.9rem;
   color: #4b4b4b;
 }
 
-.testimonial-box:hover{
+.testimonial-box:hover {
   transform: translateY(-10px);
   transition: all ease 0.3s;
 }
 
-@media(max-width:1060px){
+@media(max-width:1060px) {
   .testimonial-box{
       width:45%;
       padding: 10px;
   }
 }
 
-@media(max-width:790px){
+@media(max-width:790px) {
   .testimonial-box{
       width:100%;
   }
-  .testimonial-heading h1{
+  .testimonial-heading h1 {
       font-size: 1.4rem;
   }
 }
 
-@media(max-width:340px){
-  .box-top{
+@media(max-width:340px) {
+  .box-top {
       flex-wrap: wrap;
       margin-bottom: 10px;
   }
-  .reviews{
+  .reviews {
       margin-top: 10px;
   }
 }
 
-::selection{
+::selection {
   color: #ffffff;
   background-color: #252525;
+}
+
+.trail-name {
+  letter-spacing: .5px;
+  font-family: 'Astralaga Semibold', Astralaga;
+  font-size: 3rem;
+}
+
+.h1-nav {
+  letter-spacing: .5px;
 }

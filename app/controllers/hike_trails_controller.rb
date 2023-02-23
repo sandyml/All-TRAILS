@@ -42,18 +42,6 @@ class HikeTrailsController < ApplicationController
   #   end
   # end
 
-  # def destroy
-  # @user = User.find_by(id: session[:user_id])
-  # @hike = @user.hike_trails.find_by(id: params[:id])
-  # if @hike
-  #   @hike.destroy
-  #   render json: @hike
-  # else 
-  #     # review_not_found_error_response
-  #   render json: { error: ["Review not found"] }, status: :not_found #status: :no_content
-  # end
-  # end
-
   def destroy
     # byebug
     @hike_trail = HikeTrail.find(params[:id])

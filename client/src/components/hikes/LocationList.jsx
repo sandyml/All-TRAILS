@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { LocationContext } from '../context/LocationContext'
+import React, { useContext } from 'react';
+import { LocationContext } from '../context/LocationContext';
 import LocationCard from './LocationCard';
 
 const LocationList = () => {
@@ -23,4 +23,4 @@ const LocationList = () => {
   )
 }
 
-export default LocationList
+export default LocationList;

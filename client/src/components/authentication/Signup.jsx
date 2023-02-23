@@ -37,7 +37,12 @@ const Signup = () => {
         const displayErrors = user.errors.map((err) => <div key={err}>{err}</div>);
         setErrors(displayErrors);
       }
-    })
+    });
+    console.log("Registered/Sigup");
+    setAccount_Name("");
+    setEmail("");
+    setPassword("");
+    setPasswordConfirmation("");
   };
   
   const togglePassword = () => {
@@ -111,7 +116,10 @@ const Signup = () => {
           />
         </div>
         <button onClick={togglePassword}>Show Password</button>
-        <button type="submit" value="Submit" className="form-button">Submit</button>
+        <p>By creating an account you agree to our 
+        <Link to="/termsandconditions">&nbsp;Terms & Privacy</Link>
+        </p><br/>
+        <button type="submit" value="Submit" className="form-button">Register</button>
 
         <p>
          Already have an account? &nbsp;

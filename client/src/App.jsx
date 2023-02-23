@@ -12,6 +12,9 @@ import NotFound from './components/static/NotFound';
 import LocationList from './components/hikes/LocationList';
 import { LocationProvider } from './components/context/LocationContext';
 import Test from './components/static/Test';
+import TermsPolicy from './components/static/TermsPolicy';
+import AddForm from './components/hikes/AddForm';
+import EditForm from './components/hikes/EditForm';
 
 const App = () => {
   return (
@@ -27,6 +30,9 @@ const App = () => {
           <Route path="/signup" element={<Signup />} />
           <Route path="/*" element={<NotFound />} />
           <Route path="/locations" element={<LocationList />} />
+          <Route path="/termsandconditions" element={<TermsPolicy />} />
+          <Route path="/hike_trails/new" element={<AddForm />} />
+          <Route path="/hike_trails/:id/edit" element={<EditForm />} />
           <Route path="/test" element={<Test />} />
         </Routes>
         <Footer />

@@ -7,7 +7,7 @@ const UserContext = createContext();
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [errors, setErrors] = useState([])
+  const [errors, setErrors] = useState([]);
   //  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {

@@ -5,7 +5,6 @@ const LocationContext = createContext();
 const LocationProvider = ({ children }) => {
   const [locations, setLocations] = useState([]);
 
-
   useEffect(() => {
     fetch("/locations")
       .then((resp) => resp.json())
@@ -15,17 +14,6 @@ const LocationProvider = ({ children }) => {
       .catch((error) => console.log(error, "An error occurred.")
       );
   }, []);
-
-
-
-  // const addReview = (review) => {
-  //   setReviews([review, ...reviews])
-  // }
-
-  // const onDeleteReview = (delR) => {
-  //   const updateReview = reviews.filter(review => review.id !== delR.id)
-  //   setReviews(updateReview)
-  // }
 
   return (
     <LocationContext.Provider value={{locations, setLocations}}>

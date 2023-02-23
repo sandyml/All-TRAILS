@@ -38,7 +38,11 @@ const Login = () => {
             }
           );
         }
-      })
+      });
+      console.log("Login!")
+      setAccount_name("");
+      setEmail("");
+      setPassword("");
   }
 
   const togglePassword = () => {

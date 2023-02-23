@@ -1,13 +1,11 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-// http://localhost:9292/hike_trails
 // create the context object (default value)
 const HikeContext = createContext();
 
 // create the context provider (component)
 const HikeProvider = ({ children }) => {
   const [hikes, setHikes] = useState([]);
-  // const [reviews, setReviews] = useState([])
   // const [createReviews, setCreateReviews] = useState([]); // if I want to create edit for more reviews 
 
   useEffect(() => {
@@ -15,9 +13,8 @@ const HikeProvider = ({ children }) => {
       fetch("/hike_trails")
         .then((resp) => resp.json())
         .then((hikeData) => { 
-          // console.log(hikeData, "HikeContext")
+          console.log(hikeData)
           setHikes(hikeData)
-          // setReviews(hikeData)
         })
         .catch((error) => console.log(error, "An error occurred.")
         );
@@ -25,28 +22,15 @@ const HikeProvider = ({ children }) => {
     fetchHikes();
   }, []);
 
-
- 
-
-  // DELETE REQUEST 
   // const addReview = (review) => {
-  //   // setQuotes([...quotes, review])
   //   setReviews([review, ...reviews])
   // }
 
-  // const onDeleteReview = (delR) => {
-  //   const updateReview = reviews.filter(review => review.id !== delR.id)
-  //   setReviews(updateReview)
-  // }
-
   return (
-    <HikeContext.Provider 
-    value={hikes}
-    // value={{ hikes, onDeleteReview, addQuote }}
-    >
+    <HikeContext.Provider value={hikes} >
       {children}
     </HikeContext.Provider>
-  )
-}
+  );
+};
 
 export { HikeContext, HikeProvider };

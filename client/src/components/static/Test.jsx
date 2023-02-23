@@ -27,14 +27,6 @@ const Test = () => {
         <span>@smy</span>
        </div>
       </div>
-
-      <div className="reviews">
-       <i className="fas fa-star"></i>
-       <i className="fas fa-star"></i>
-       <i className="fas fa-star"></i>
-       <i className="fas fa-star"></i>
-       <i className="far fa-star"></i>
-      </div>
      </div>
 
      <div className="client-comment">

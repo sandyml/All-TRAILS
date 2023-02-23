@@ -11,20 +11,6 @@ const HikeCard = ({ hike }) => {
       setShowReview(false);
   };
 
-
-  // const handleDelete = () => {
-  //   fetch(`/hike_trails/${review.id}`, {
-  //     method: 'DELETE',
-  //   })
-  //     .then(resp => resp.json())
-  //     .then(data => {
-  //       console.log(data, "review deleted")
-  //       onDeleteReview(data, "deleted!")
-  //     })
-  // }
-  // console.log(user, "User Card")
-  // debugger
-
   return (
     <div className="card-wrapper" key={id}>
           <h2 className='hike-cr-title'>{trail_name}</h2>
