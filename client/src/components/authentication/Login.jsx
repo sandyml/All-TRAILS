@@ -44,6 +44,7 @@ const Login = () => {
       setEmail("");
       setPassword("");
   }
+  // setErrors([]);
 
   const togglePassword = () => {
     setPasswordShown(!passwordShown)

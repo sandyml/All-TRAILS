@@ -62,7 +62,7 @@ const EditForm = () => {
        onChange={handleEditReview}
       />
      </div>
-     <button type='submit' onClick={handleEdit}>Add Review</button>
+     <button type='submit' onClick={handleEdit}>Submit</button>
     </form>
    </div>
    {errors}

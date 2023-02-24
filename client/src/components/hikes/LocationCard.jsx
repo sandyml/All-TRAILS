@@ -1,11 +1,7 @@
-import React, { useState, useContext   } from 'react';
-// import React, { useContext, useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
 import Location from '../../img/locationicon.png';
-import { HikeContext } from '../context/HikeContext';
 import { LocationContext } from '../context/LocationContext';
 import HikesReviews from './HikesReviews';
-// import { headers } from '../../Global';
 
 // [x] delete review
 // [] patch review
@@ -15,14 +11,9 @@ import HikesReviews from './HikesReviews';
 
 const LocationCard = ({ location }) => {
   const { trail_name, city_state, image_url, difficulty, length, elevation_gain, route_type } = location;
-  const hikes = useContext(HikeContext);
   const [showReview, setShowReview] = useState(false);
   const {locations, setLocations} = useContext(LocationContext);
-  // const [edit, setEdit] = useState([]);
-  // const [newReview, setNewReview] = useState([]);
-  // const { id } = useParams();
 
-  console.log(hikes, "LocationCard")
   const toggleSeeReviews = () => {
     (showReview === false) ? setShowReview(true) :
       setShowReview(false);
@@ -50,50 +41,6 @@ const LocationCard = ({ location }) => {
         setLocations(updatedState);
       })
   }
-
-  // useEffect(() => {
-  //   // const fetchReview = () => {
-  //     fetch("/hike_trails")
-  //       .then((res) => res.json())
-  //       .then((rData) => {
-  //         console.log(rData, "Hike Data for Reviews")
-  //         setNewReview(rData)
-  //       })
-  //       .catch((error) => console.log("Review"))
-  //   // };
-  //   // fetchReview();
-  // }, [])
- 
-  // const handleAddNewReview = (newReview) => {
-  //   setNewReview([...newReview, newReview])
-  // }
-
-
-  // const handleEditReview = () => {
-  //   const updatedReview = locations.reviews.map((r) => (r.id === updatedReview.id ? updatedReview : newReview))
-  //   setNewReview(updatedReview)
-  // }
-
-  // const handleReview = () => {
-  //   fetch('/hike_trails')
-  //     .then((resp) => resp.json())
-  //     .then(rData => {
-  //       console.log(rData, "reviewData")
-  //     })
-  // }
-
-  // PATCH REVIEW
-  // const handleUpdateReview = (id) => {
-  //   // e.preventDefault();
-  //   fetch(`/hike_trails/${id}`, {
-  //     method: 'PATCH',
-  //     headers,
-  //     body: JSON.stringify({
-
-  //     })
-
-  //   })
-  // }
 
   // EDIT REVIEW 
   // const editReview = () => {

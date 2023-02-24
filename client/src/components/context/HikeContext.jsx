@@ -6,28 +6,39 @@ const HikeContext = createContext();
 // create the context provider (component)
 const HikeProvider = ({ children }) => {
   const [hikes, setHikes] = useState([]);
-  // const [createReviews, setCreateReviews] = useState([]); // if I want to create edit for more reviews 
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    const fetchHikes = () => {
-      fetch("/hike_trails")
-        .then((resp) => resp.json())
-        .then((hikeData) => { 
-          console.log(hikeData)
-          setHikes(hikeData)
-        })
-        .catch((error) => console.log(error, "An error occurred.")
-        );
-    };
-    fetchHikes();
+    // const fetchHikes = () => {
+    fetch("/hike_trails")
+      .then((resp) => resp.json())
+      .then((hikeData) => {
+        console.log(hikeData, "HikeContext")
+        setReviews(hikeData)
+        setHikes(hikeData)
+      })
+      .catch((error) => console.log(error, "An error occurred.")
+      );
+    // };
+    // fetchHikes();
   }, []);
 
-  // const addReview = (review) => {
-  //   setReviews([review, ...reviews])
-  // }
+
+  // useEffect(() => {
+  //   fetch('/hike_trails')
+  //     .then((resp) => resp.json())
+  //     .then((data) => {
+  //       console.log(data, "Hike trails!")
+  //       setReviews(data)
+  //     })
+  // }, [])
+
+  const addReview = review => {
+    setReviews([...reviews, review]);
+  }
 
   return (
-    <HikeContext.Provider value={hikes} >
+    <HikeContext.Provider value={{ hikes, addReview }} >
       {children}
     </HikeContext.Provider>
   );

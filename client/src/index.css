@@ -319,12 +319,13 @@ img.bg-image {
   left: 0;
   bottom: 0;
   width: 100%;
-  color: white;
+  color: #6D7A71;
   text-align: center;
+
 }
 
 .footer-gh-link {
-  color: white;
+  color: #6D7A71;
 }
 
 #main-form {
@@ -775,4 +776,9 @@ a {
 
 .h1-nav {
   letter-spacing: .5px;
+}
+
+body.body-logout {
+  background-color:#6D7A71;
+  margin: none;
 }

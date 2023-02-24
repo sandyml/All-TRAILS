@@ -7,6 +7,10 @@ class ApplicationController < ActionController::API
   before_action :authorize
   
   private 
+
+  def current_user
+    User.find_by_id(session[:id])
+  end
   
   def authorize
     @user = User.find_by(id: session[:user_id])

@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { headers } from '../../Global';
 import { HikeContext } from '../context/HikeContext';
 
@@ -7,10 +7,10 @@ const intialState = {
   review: ""
 }
 
-const AddForm = () => {
+const AddReviewForm = () => {
   const [formData, setFormData] = useState(intialState);
   // const [formData, setFormData] = useState(review[{}]); //need nested state instead of form
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { addReview } = useContext(HikeContext);
   const { id } = useParams();
 
@@ -31,7 +31,7 @@ const AddForm = () => {
     })
       .then((resp) => resp.json())
       .then((data) => addReview(data));
-    // navigate('/locations');
+    navigate('/locations');
   }
 
   return (
@@ -67,4 +67,4 @@ const AddForm = () => {
   )
 }
 
-export default AddForm;
+export default AddReviewForm;

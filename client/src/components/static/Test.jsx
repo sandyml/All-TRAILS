@@ -2,7 +2,8 @@ import React from 'react'
 
 const Test = () => {
  return (
-  <body><section id="testimonials">
+  <div>
+ <section id="testimonials">
 
    <div className="testimonial-heading">
     <span>Testing Component</span>
@@ -110,14 +111,6 @@ const Test = () => {
         <span>@gracey</span>
        </div>
       </div>
-
-      {/* <div className="reviews">
-       <i className="fas fa-star"></i>
-       <i className="fas fa-star"></i>
-       <i className="fas fa-star"></i>
-       <i className="fas fa-star"></i>
-       <i className="far fa-star"></i>
-      </div> */}
      </div>
 
      <div className="client-comment">
@@ -125,7 +118,8 @@ const Test = () => {
      </div>
     </div>
    </div>
-  </section></body>
+  </section>
+  </div>
  )
 }
 
