@@ -42,10 +42,6 @@ const LocationCard = ({ location }) => {
       })
   }
 
-  // EDIT REVIEW 
-  // const editReview = () => {
-  //   fetch()
-  // }
 
 
   return (

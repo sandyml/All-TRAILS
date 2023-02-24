@@ -23,22 +23,12 @@ const HikeProvider = ({ children }) => {
     // fetchHikes();
   }, []);
 
-
-  // useEffect(() => {
-  //   fetch('/hike_trails')
-  //     .then((resp) => resp.json())
-  //     .then((data) => {
-  //       console.log(data, "Hike trails!")
-  //       setReviews(data)
-  //     })
-  // }, [])
-
-  const addReview = review => {
-    setReviews([...reviews, review]);
-  }
+  const handleAddReview = (newRev) => {
+    setReviews([...reviews, newRev])
+   }
 
   return (
-    <HikeContext.Provider value={{ hikes, addReview }} >
+    <HikeContext.Provider value={{ hikes, handleAddReview }} >
       {children}
     </HikeContext.Provider>
   );

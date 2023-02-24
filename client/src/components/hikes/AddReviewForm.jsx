@@ -3,31 +3,33 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { headers } from '../../Global';
 import { HikeContext } from '../context/HikeContext';
 
-const intialState = {
-  review: ""
-}
+// :user_id, :location_id, :account_name, :review, :date
+// const intialState = {
+//   account_name: "",
+//   review: "",
+//   date: ""
+// }
 
 const AddReviewForm = () => {
-  const [formData, setFormData] = useState(intialState);
   // const [formData, setFormData] = useState(review[{}]); //need nested state instead of form
+  // const [formData, setFormData] = useState(intialState);
+  const [account_name, setAccount_Name] = useState("");
+  const [review, setReview] = useState("");
+  const [date, setDate] = useState("");
   const navigate = useNavigate();
   const { addReview } = useContext(HikeContext);
   const { id } = useParams();
-
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    })
-  }
 
   const handleSubmit = e => {
     e.preventDefault();
     fetch(`/hike_trails/${id}`, {
       method: "POST",
       headers,
-      body: JSON.stringify(formData)
+      body: JSON.stringify({
+        account_name,
+        review,
+        date
+      })
     })
       .then((resp) => resp.json())
       .then((data) => addReview(data));
@@ -40,13 +42,33 @@ const AddReviewForm = () => {
 
       <form onSubmit={handleSubmit}>
         <div>
+          <label htmlFor="title">Account Name</label>
+          <input
+            type="text"
+            name="account_name"
+            id="account_name"
+            value={account_name}
+            onChange={(e) => setAccount_Name(e.target.value)}
+          />
+        </div>
+        <div>
           <label htmlFor="title">Review</label>
           <input
             type="text"
-            name="title"
-            id="title"
-            value={formData.review}
-            onChange={handleChange}
+            name="review"
+            id="review"
+            value={review}
+            onChange={(e) => setReview(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="title">Date</label>
+          <input
+            type="text"
+            name="date"
+            id="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
           />
         </div>
         {/* Might use this instead of input form */}

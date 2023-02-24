@@ -1,73 +1,132 @@
-import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { headers } from "../../Global";
+import React, { useContext, useState } from 'react';
+import { headers } from '../../Global';
+// import { LocationContext } from '../context/LocationContext';
+import { useNavigate, useParams } from 'react-router-dom';
+import { HikeContext } from '../context/HikeContext';
 
-const EditForm = () => {
- const [editReview, setEditReview] = useState("");
- const [errors, setErrors] = useState([]);
- const navigate = useNavigate();
- const { id } = useParams
+// function EditForm({ onReviewRequest, hikeReview = {
+//       account_name: "",
+//       review: "",
+//       date: ""
+//     },
+//     edit }) {
 
- const handleSubmit = (e) => {
-  e.preventDefault();
-  console.log("submit clicked");
-  fetch(`/hike_trails/${id}`, {
-   headers,
-   body: JSON.stringify({}),
-  })
-   .then((resp) => {
-    if (resp.ok) {
-     resp.json()
+const EditForm = ({ handleAddReview, edit }) => {
+  // const [formData, setFormData] = useState(hikeReview);
+  const [account_name, setAccount_Name] = useState("");
+  const [review, setReview] = useState("");
+  const [date, setDate] = useState("");
+  // const [errors, setErrors] = useState([]);
+  // const { locations } = useContext(LocationContext);
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const { addReview } = useContext(HikeContext);
 
-     // .then((newReview) => handleAddNewReview(newReview)); // update state
-    //  navigate("/locations");
-    } else {
-     resp.json().then((err) => setErrors(err.errors));
-    }
-   })
-   setEditReview("")
- };
-
- const handleEditReview = (e) => {
-  console.log("edit review has been clicked!")
-  // {value of previous review ...review?}
-  setEditReview(e.target.value)
- }
-
- const handleEdit = () => {
-  console.log("Edit Button Clicked!")
-  fetch(`/hike_trails/${id}/edit`)
-    .then(resp => resp.json())
-    .then(data => {
-      console.log(data, "edit")
+  const handleReview = () => {
+    fetch(`hike_trails/${id}`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        account_name,
+        review,
+        date
+      })
     })
-    navigate('/locations')
+      .then((resp) => resp.json())
+      .then(data => {
+        console.log(data, 'Edit Form')
+        handleAddReview(data)
+      })
+      navigate('/locations')
+  }
+
+  const handleUpdateReview = () => {
+    fetch(`/hike_trails/${id}/edit`, {
+      method: 'PATCH',
+      headers,
+      body: JSON.stringify({
+        account_name,
+        review,
+        date,
+      })
+    })
+      .then((resp) => resp.json())
+      .then(updateData => {
+        console.log(updateData, "Updated Data")
+      })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (edit) {
+      handleUpdateReview()
+    } else {
+      handleReview()
+    }
+  }
+
+  // const handleChange = (e) => {
+  //   const key = e.target.id
+  //   const value = e.target.value
+  //   setFormData({
+  //     ...formData,
+  //     [key]: value
+  //   })
+  // };
+
+  // const errorsArr = errors.map((err) => <p key={err}>{err}</p>) // might not need 
+
+  return (
+    <section>
+      <form onSubmit={handleSubmit}>
+        <h2>{account_name ? "Edit Review" : "Add New Review"}</h2>
+        <div>
+          <label htmlFor="name">Name:</label>
+        </div>
+
+        <div>
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter name"
+            value={account_name}
+            onChange={(e) => setAccount_Name(e.target.value)}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="review">Review:</label>
+        </div>
+
+        <div>
+          <input
+            type="text"
+            id="review"
+            placeholder="Enter review"
+            value={review}
+            onChange={(e) => setReview(e.target.value)}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="date">Date:</label>
+        </div>
+        <div>
+          <input
+            type="text"
+            id="date"
+            placeholder="YYYY-MM-DD"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+        </div>
+
+        {/* {errorsArr} */}
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+  )
 }
 
-
- return (
-  <div>
-   <div className="testimonial-heading">
-   <span>Edit Review</span>
-    <form onSubmit={handleSubmit}>
-     <div>
-      <label htmlFor="review">Review:</label>
-      <input
-       type="text"
-       name="review"
-       id="reviews"
-      //  defaultValue={}
-       value={editReview}
-       placeholder="enter previous review using state"
-       onChange={handleEditReview}
-      />
-     </div>
-     <button type='submit' onClick={handleEdit}>Submit</button>
-    </form>
-   </div>
-   {errors}
-  </div>
- );
-};
 
 export default EditForm;

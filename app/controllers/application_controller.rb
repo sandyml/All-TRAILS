@@ -8,8 +8,13 @@ class ApplicationController < ActionController::API
   
   private 
 
+  # tentative
+  def logged_in?
+    !!session[:user_id]
+  end
+
   def current_user
-    User.find_by_id(session[:id])
+    @current_user = User.find_by_id(session[:id])
   end
   
   def authorize

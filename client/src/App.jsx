@@ -40,17 +40,17 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/test" element={<Test />} />
+            <Route path="/*" element={<NotFound />} />
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/*" element={<NotFound />} />
             <Route path="/locations" element={<LocationList />} />
-            <Route path="/termsandconditions" element={<TermsPolicy />} />
             <Route path="/hike_trails/new" element={<AddForm />} />
-            <Route path="/hike_trails/:id/edit" element={<EditForm />} />
-            <Route path="/test" element={<Test />} />
+            <Route path="/hike_trails/:id" element={<EditForm />} />
             <Route path="/placeholder" element={<AddReviewForm />} />
+            <Route path="/termsandconditions" element={<TermsPolicy />} />
           </Routes>
           <Footer />
         </HikeProvider>
