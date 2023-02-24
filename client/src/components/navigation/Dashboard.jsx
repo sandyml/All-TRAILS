@@ -5,7 +5,7 @@ import { HikeContext } from '../context/HikeContext'
 
 
 const Dashboard = () => {
- const { handleAddReview } = useContext(HikeContext);
+ const { handleAddReview, setReviews } = useContext(HikeContext);
  // const [reviews, setReviews] = useState([])
 
  // useEffect(() => {

@@ -28,7 +28,7 @@ const HikeProvider = ({ children }) => {
    }
 
   return (
-    <HikeContext.Provider value={{ hikes, handleAddReview }} >
+    <HikeContext.Provider value={{ hikes, handleAddReview, setReviews }} >
       {children}
     </HikeContext.Provider>
   );

@@ -10,7 +10,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
-  const { setErrors, errors, signup } = useContext(UserContext);
+  const { setUser, setErrors, errors, signup } = useContext(UserContext);
   const navigate = useNavigate();
   
   const handleSubmit = (e) => {
@@ -18,7 +18,9 @@ const Signup = () => {
     // console.log(password)
     fetch('/signup', {
       method: "POST",
-      headers,
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         account_name,
         email,
@@ -30,6 +32,7 @@ const Signup = () => {
     .then((user) => {
       if (!user.errors) {
         console.log(user)
+        setUser(user)
         signup(user)
         navigate("/home")
       } else {
@@ -39,10 +42,7 @@ const Signup = () => {
       }
     });
     console.log("Registered/Sigup");
-    setAccount_Name("");
-    setEmail("");
-    setPassword("");
-    setPasswordConfirmation("");
+    // setErrors("")
   };
   
   const togglePassword = () => {
@@ -78,7 +78,7 @@ const Signup = () => {
             placeholder="Create Username"
             value={account_name}
             onChange={handleAccountName}
-            required={true}
+            // required={true}
           />
           
         </div>
@@ -90,7 +90,7 @@ const Signup = () => {
             placeholder="Enter Email"
             value={email}
             onChange={handleEmail}
-            required={true}
+            // required={true}
           />
         </div>
         <div className='input-parent'>
@@ -100,8 +100,9 @@ const Signup = () => {
             id='password'
             value={password}
             onChange={handlePassword}
+            autoComplete="current-password"
             type={passwordShown ? "text" : "password"}
-            required={true}
+            // required={true}
           />
         </div>
         <div className='input-parent'>
@@ -111,8 +112,9 @@ const Signup = () => {
             id='password_confirmation'
             value={passwordConfirmation}
             onChange={handleConfirmPassword}
+            autoComplete="current-password"
             type={passwordShown ? "text" : "password"}
-            required={true}
+            // required={true}
           />
         </div>
         <button onClick={togglePassword}>Show Password</button>
@@ -138,3 +140,73 @@ const Signup = () => {
 }
 
 export default Signup;
+
+// function Home({ user }) {
+  // const [account_name, setAccount_Name] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  // const [passwordShown, setPasswordShown] = useState(false);
+  // const { setErrors, errors, signup } = useContext(UserContext);
+  // const navigate = useNavigate();
+  
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // console.log(password)
+  //   fetch('/signup', {
+  //     method: "POST",
+  //     headers,
+  //     body: JSON.stringify({
+  //       account_name,
+  //       email,
+  //       password,
+  //       password_confirmation: passwordConfirmation
+  //     })
+  //   })
+  //   .then((resp) => resp.json())
+  //   .then((user) => {
+  //     if (!user.errors) {
+  //       console.log(user)
+  //       signup(user)
+  //       navigate("/home")
+  //     } else {
+  //       console.log(user, "error thrown in signup")
+  //       const displayErrors = user.errors.map((err) => <div key={err}>{err}</div>);
+  //       setErrors(displayErrors);
+  //     }
+  //   });
+  //   console.log("Registered/Sigup");
+  //   setAccount_Name("");
+  //   setEmail("");
+  //   setPassword("");
+  //   setPasswordConfirmation("");
+  // };
+  
+  // const togglePassword = () => {
+  //   setPasswordShown(!passwordShown)
+  // };
+
+  // const handleAccountName = (e) => {
+  //   setAccount_Name(e.target.value)
+  // }
+
+  // const handleEmail = (e) => {
+  //   setEmail(e.target.value)
+  // }
+
+  // const handlePassword = (e) => {
+  //   setPassword(e.target.value)
+  // }
+
+  // const handleConfirmPassword = (e) => {
+  //   setPasswordConfirmation(e.target.value)
+  // }
+
+//   if (user) {
+//     return <h1>Welcome, {user.username}!</h1>;
+//   } else {
+//     return <h1>Please Login or Sign Up</h1>;
+//   }
+// }
+
+// export default Home;

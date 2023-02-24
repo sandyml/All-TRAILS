@@ -1,10 +1,10 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const HikesReviews = ({ location, handleDelete }) => {
   const { hike_trails } = location;
-  const { id } = useParams
+  // const { id } = useParams
 
   return (
     <div className="box-top">
@@ -18,7 +18,7 @@ const HikesReviews = ({ location, handleDelete }) => {
             <span className="reviews" key={ht.id}></span>
             {ht.review}
             <Link to="/hike_trails/new"><button className='button2' type="add">Add</button></Link>
-            <Link to={`/hike_trails/${id}/edit`}><button className='button2' type="edit">Edit</button></Link>
+            <Link to={`/hike_trails/${ht.id}/edit`}>Edit</Link>
             <button className='button2' onClick={() => handleDelete(ht.id)} type="delete">Remove</button>
             <hr /></div>))}
       </span>

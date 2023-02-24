@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Location from '../../img/locationicon.png'
 import Reviews from './Reviews';
+// import { Link } from 'react-router-dom';
 
 const HikeCard = ({ hike }) => {
   const { id, location } = hike
@@ -32,6 +33,9 @@ const HikeCard = ({ hike }) => {
             <button onClick={reviewOnClick}>Reviews</button>
             {showReview ? <Reviews hike={hike} /> : null}
           </div>
+          {/* <Link to="/hike_trails/new"><button className='button2' type="add">Add</button></Link>
+            <Link to={`/hike_trails/${id}/edit`}><button className='button2' type="edit">Edit</button></Link>
+            <button className='button2' onClick={() => handleDelete(ht.id)} type="delete">Remove</button> */}
     </div>
   )
 }

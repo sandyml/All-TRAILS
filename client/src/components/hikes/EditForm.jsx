@@ -11,16 +11,16 @@ import { HikeContext } from '../context/HikeContext';
 //     },
 //     edit }) {
 
-const EditForm = ({ handleAddReview, edit }) => {
+const EditForm = ({ edit }) => {
   // const [formData, setFormData] = useState(hikeReview);
   const [account_name, setAccount_Name] = useState("");
   const [review, setReview] = useState("");
   const [date, setDate] = useState("");
   // const [errors, setErrors] = useState([]);
-  // const { locations } = useContext(LocationContext);
+
   const navigate = useNavigate();
   const { id } = useParams();
-  const { addReview } = useContext(HikeContext);
+  const { handleAddReview } = useContext(HikeContext)
 
   const handleReview = () => {
     fetch(`hike_trails/${id}`, {
@@ -79,7 +79,8 @@ const EditForm = ({ handleAddReview, edit }) => {
   return (
     <section>
       <form onSubmit={handleSubmit}>
-        <h2>{account_name ? "Edit Review" : "Add New Review"}</h2>
+        <h2> Edit Form</h2>
+        {/* <h2>{account_name ? "Edit Review" : "Add New Review"}</h2> */}
         <div>
           <label htmlFor="name">Name:</label>
         </div>

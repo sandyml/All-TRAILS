@@ -1,4 +1,5 @@
 import './App.css';
+// import React, { useEffect, useState } from 'react';
 import { Route, Routes } from "react-router-dom";
 import Home from './components/static/Home';
 import { UserProvider } from './components/context/UserContext';
@@ -17,21 +18,9 @@ import TermsPolicy from './components/static/TermsPolicy';
 import AddForm from './components/hikes/AddForm';
 import EditForm from './components/hikes/EditForm';
 import AddReviewForm from './components/hikes/AddReviewForm';
-// import { useEffect } from 'react';
+import HikesReviews from './components/hikes/HikesReviews';
 
 const App = () => {
-  // const [loading, setLoading] = useState(true);
-  // const { loggedIn, setLoggedIn } = useContext(UserContext)
-
-  // useEffect(() => {
-  //   fetch('/me')
-  //     .then(resp => resp.json())
-  //     .then(data => {
-  //       console.log(data, "me?")
-  //       // setLoggedIn(data)
-  //     })
-  // }, []);
-
   return (
     <UserProvider>
       <LocationProvider>
@@ -45,10 +34,11 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
-            <Route path="/signup" element={<Signup />} />
+            <Route path="/signup" element={<Signup/>} />
             <Route path="/locations" element={<LocationList />} />
+            <Route path="/hike_trails" element={<HikesReviews />} />
             <Route path="/hike_trails/new" element={<AddForm />} />
-            <Route path="/hike_trails/:id" element={<EditForm />} />
+            <Route path="/hike_trails/:id/edit" element={<EditForm />} />
             <Route path="/placeholder" element={<AddReviewForm />} />
             <Route path="/termsandconditions" element={<TermsPolicy />} />
           </Routes>

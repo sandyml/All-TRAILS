@@ -5,17 +5,28 @@ const UserContext = createContext();
 
 // create the context provider (component)
 const UserProvider = ({ children }) => {
-  const [user, setUser] = useState([]);
+  // const [user, setUser] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [errors, setErrors] = useState([]);
   //  const [favorites, setFavorites] = useState([]);
 
+  // useEffect(() => {
+  //   fetch("/me")
+  //     .then(resp => resp.json())
+  //     .then(data => {
+  //       setUser(data);
+  //     })
+  // }, []);
+
+  const [user, setUser] = useState(null);
+
   useEffect(() => {
-    fetch("/me")
-      .then(resp => resp.json())
-      .then(data => {
-        setUser(data);
-      })
+    // auto-login
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
   }, []);
 
   const login = (user) => {
@@ -47,7 +58,7 @@ const UserProvider = ({ children }) => {
   //  };
 
   return (
-    <UserContext.Provider value={{ user, login, logout, signup, loggedIn, setErrors, errors }}>
+    <UserContext.Provider value={{ user, setUser, login, logout, signup, loggedIn, setErrors, errors }}>
       {children}
     </UserContext.Provider>
   );

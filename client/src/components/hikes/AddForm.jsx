@@ -1,8 +1,8 @@
-import { useContext, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { headers } from '../../Global';
-import { HikeContext } from '../context/HikeContext';
-import { UserContext } from '../context/UserContext';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+// import { headers } from '../../Global';
+// import { HikeContext } from '../context/HikeContext';
+// import { UserContext } from '../context/UserContext';
 
 // const intialState = {
 //   review: ""
@@ -13,12 +13,13 @@ const AddForm = () => {
   // const [formData, setFormData] = useState(review[{}]); //need nested state instead of form
   const navigate = useNavigate();
   const [account_name, setAccount_Name] = useState("");
-  const [reviews, setReviews] = useState({hike_trails: []});
-  const [isLoading, setIsLoading] = useState(false);
+  // const [date, setDate] = useState("")
+  // const [reviews, setReviews] = useState({hike_trails: []});
+  // const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState([]);
   const [locationId, setLocationId] = useState("");
-  const { addReview } = useContext(HikeContext);
-  const { id } = useParams();
+  // const { addReview } = useContext(HikeContext);
+  // const { id } = useParams();
   const [review, setReview] = useState("")
   // const { hike_trails } = UserContext(HikeContext)
 
@@ -46,7 +47,8 @@ const AddForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsLoading(true);
+    console.log("Add Clicked!")
+    // setIsLoading(true);
     fetch(`/hike_trails/`, {
       method: "POST",
       headers: {
@@ -56,15 +58,20 @@ const AddForm = () => {
         account_name,
         review,
         location_id: locationId,
+        // date, 
       }),
-    }).then((r) => {
-      setIsLoading(false);
-      if (r.ok) {
-        navigate("/");
+    }).then((resp) => {
+      // setIsLoading(false);
+      if (resp.ok) {
+        navigate("/locations");
       } else {
-        r.json().then((err) => setErrors(err.errors));
+        resp.json().then((err) => setErrors(err.errors));
       }
     });
+    setAccount_Name("");
+    setReview("");
+    setLocationId("");
+    // setDate("");
   }
 
   return (
@@ -94,7 +101,8 @@ const AddForm = () => {
           />
         </div> */}
         {/* <input type="submit" value="Create Review" /> */}
-        { isLoading ? "Loading..." : "Try Again..." }
+        {/* { isLoading ? "Loading..." : "Try Again..." } */}
+        {errors}
         <button type='submit'>Submit</button>
       </form>
     </div>
