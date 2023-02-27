@@ -13,10 +13,14 @@ const UserProvider = ({ children }) => {
 
   useEffect(() => {
     // auto-login
-    fetch("/me").then((resp) => {
+    fetch("/me")
+    .then((resp) => {
       if (resp.ok) {
         resp.json()
-        .then((user) => setUser(user));
+        .then((user) => {
+          console.log(user, "User Context")
+          setUser(user)
+        });
       }
     });
   }, []);

@@ -8,15 +8,16 @@ import { headers } from '../../Global';
 
 const EditForm = ({ location, ht }) => {
   const { user_id } = useContext(UserContext);
-  const [errors, setErrors] = useState([])
-  const [review, setReview] = useState("");
-  const [date, setDate] = useState("");
+  // const [errors, setErrors] = useState([])
+  const [review, setReview] = useState(ht.review);
+  const [date, setDate] = useState(ht.date);
   const navigate = useNavigate();
   // const { id } = useParams();
   const { editReview } = useContext(HikeContext);
 
   function handleSubmit(e) {
     e.preventDefault();
+    // debugger practice 
     fetch(`/hike_trails/${ht.id}`, {
       method: "PATCH",
       headers,
@@ -29,14 +30,14 @@ const EditForm = ({ location, ht }) => {
     })
       .then((resp) => resp.json())
       .then(data => {
+        console.log(data, "edit review")
         editReview(data)
         navigate('/locations') // can't post it with out refreshing the page..
-        console.log(data, "edit review")
+        // setErrors([]);
       });
-      setReview(""); 
-      setDate("");
-      setErrors([]);
   }
+
+  
 
 return (
   <section>
@@ -74,7 +75,7 @@ return (
         />
       </div>
 
-      <div>{errors}</div>
+      {/* <div>{errors}</div> */}
       <button type="submit">Submit</button>
     </form>
   </section>

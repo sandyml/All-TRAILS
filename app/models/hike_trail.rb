@@ -6,16 +6,14 @@ class HikeTrail < ApplicationRecord
     #  500 character count
   validates :date, presence: true
 
-
   # removed validates format_date
+
     def format_date
-      # self.date.to_s(:stamp)
+      # byebug
       self.date.strftime("%m/%d/%Y")
+      # self.date.to_s(:stamp)
+      # self.date(:strftime,("%m/%d/%Y"))
     end
-    # def format_date
-    #   # self.date.strftime("%Y-%m-%d")
-    #   self.date.to_s(:stamp)
-    # end
 
 end
 

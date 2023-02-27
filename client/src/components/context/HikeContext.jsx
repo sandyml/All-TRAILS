@@ -8,12 +8,14 @@ const HikeContext = createContext();
 const HikeProvider = ({ children }) => {
   const [hikes, setHikes] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const [addReviews, setAddReviews] = useState([]);
 
   useEffect(() => {
     fetch("/hike_trails")
       .then((resp) => resp.json())
       .then((hikeData) => {
         console.log(hikeData, "HikeContext")
+        setAddReviews(hikeData)
         setReviews(hikeData)
         setHikes(hikeData)
       })
@@ -22,7 +24,7 @@ const HikeProvider = ({ children }) => {
   }, []);
 
    const handleAddReview = (newReview) => {
-    setReviews((reviews) => [...reviews, newReview])
+    setAddReviews((addReviews) => [...addReviews, newReview])
   }
 
   

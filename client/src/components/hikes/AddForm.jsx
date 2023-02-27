@@ -1,42 +1,72 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LocationContext } from '../context/LocationContext';
-// import { HikeContext } from '../context/HikeContext';
+import { HikeContext } from '../context/HikeContext';
+import { UserContext } from '../context/UserContext';
 import { headers } from '../../Global';
 
 const AddForm = ({ location, ht }) => {
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
-  const [date, setDate] = useState("");
   const [review, setReview] = useState("");
-  const { user_id } = useContext(LocationContext);
+  const [date, setDate] = useState(ht.date);
+  const { handleAddReview } = useContext(HikeContext);
+  const { user_id } = useContext(UserContext);
   const { format_date } = location
+  // const { handleAddReviews } = useContext(LocationContext);
   // cont [ userId, setUserId] = useState("")
   // const { handleAddReview } = useContext(HikeContext);
-
-  const handleSubmit = (e) => {
+  
+  function handleSubmit(e) {
     e.preventDefault();
-    console.log("Add Clicked!")
-    fetch(`/hike_trails`, {
+    console.log("Add Form Clicked!")
+    // debugger
+    fetch("/hike_trails", {
       method: "POST",
-      headers,
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         review,
         date,
         location_id: location.id,
-        user_id,
+        user_id: ht.id
       }),
-    }).then((resp) => {
-      if (resp.ok) {
-        // handleAddReview([]);
-        navigate("/locations");
-      } else {
-        resp.json().then((err) => setErrors(err.errors));
-      }
-    });
-    // setReview("");
-    // setDate("");
+    })
+      .then((r) => r.json())
+      .then((newReview) => {
+        setReview("")
+        setDate("")
+        // setFormData(initialState);
+        console.log(newReview, "Added New Review")
+        handleAddReview(newReview);
+        navigate('/locations')
+      });
   }
+
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("Add Clicked!")
+  //   fetch(`/hike_trails`, {
+  //     method: "POST",
+  //     headers,
+  //     body: JSON.stringify({
+  //       review,
+  //       date,
+  //       location_id: location.id,
+  //       user_id, //: ht.id
+  //     }),
+  //   }).then((resp) => {
+  //     if (resp.ok) {
+  //       // console.log(resp.json())
+  //       handleAddReview(resp.json());
+  //       navigate("/locations");
+  //     } else {
+  //       resp.json().then((err) => setErrors(err.errors));
+  //     }
+  //   });
+  // }
 
   return (
     <div>
@@ -50,14 +80,14 @@ const AddForm = ({ location, ht }) => {
             type="text"
             id="hikes"
             defaultValue={location.trail_name}
-            // onChange={(e) => setTrail_Name(e.target.value)}
+          // onChange={(e) => setTrail_Name(e.target.value)}
           />
-            {/* <option value="">input trail name...</option>
+          {/* <option value="">input trail name...</option>
             {locations.map((location) => (
               <option key={location.id} defaultValue={location.id}>
                 {location.trail_name}
               </option> */}
-            {/* ))} */}
+          {/* ))} */}
         </div>
 
         <div>
@@ -79,8 +109,8 @@ const AddForm = ({ location, ht }) => {
             type="text"
             name="title"
             id="title"
-            placeholder='MM-DD-YYYY'
-            value={format_date}
+            placeholder='MM/DD/YYYY'
+            defaultValue={format_date}
             onChange={(e) => setDate(e.target.value)}
           />
         </div>

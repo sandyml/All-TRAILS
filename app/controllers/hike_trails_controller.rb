@@ -1,6 +1,5 @@
 class HikeTrailsController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity_not_found_error
-
   skip_before_action :authorized #, only: [:index, :show]
   # before_action :find_hike_trail, only: [:update, :destroy]
 
@@ -12,19 +11,6 @@ class HikeTrailsController < ApplicationController
 
   # MASTER BRANCH!!!
 
-  # def index
-  #   # determine the route led us here, was it /hike_trails or /users/:user_id/hike_trails
-  #  if params[:user_id] # /users/:user_id/blogs
-  #    user = User.find_by_id(params[:user_id])
-  #    # grab the user
-  #    @hikes = user.hike_trails
-  #    # render the json of the hikes && the user that they belong to that belong to that user
-  #  else # /hike_trails
-  #   @hikes = HikeTrail.all
-  #  end
-  #   render json: @hikes, include: [:user], except: [:user_id]
-  #  end
-
   # GET /hike_trails/:id for a hike based on id params
   def show
     hike = find_hike
@@ -33,29 +19,22 @@ class HikeTrailsController < ApplicationController
 
   # POST '/hike_trails' ==> create new review, based on logged in user
   def create
+    # byebug
     hikes = HikeTrail.all
     # hike = @current_user.hikes.create(hike_trail_params)
     hike = hikes.create(hike_trail_params)
-    render json: hike, include: [:user], status: :created
+    render json: hike, status: :created
+    # render json: hike, include: [:user], status: :created
   end
 
 
   # PATCH '/hike_trails/:id'
   def update
+    # byebug
     @hike = find_hike
     @hike.update(hike_trail_params)
     render json: @hike, status: :accepted
   end
-
-  # def update
-  #   hike = find_hike
-  #   if hike
-  #     hike.update(hike_trail_params)
-  #     render json: hike, status: :accepted
-  #   else
-  #     render json: { errors: ["Hike not found"] }, status: :not_found
-  #   end
-  # end
 
   # DELETE '/hike_trails/:id'
   def destroy
@@ -88,8 +67,3 @@ class HikeTrailsController < ApplicationController
   end
 
 end
-
- # [] FULL CRUD FOR JOIN TABLE 
- # [] POST /hikes create
- # [] PATCH /hike_trails/:id update
- # [] DELETE/DESTROY /hiketrails/:id delete

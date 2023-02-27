@@ -27,6 +27,7 @@ const Login = () => {
       .then((resp) => {
         if (resp.ok) {
           resp.json().then((user) => {
+            console.log(user)
             login(user)
             navigate('/home')
           })
@@ -40,9 +41,9 @@ const Login = () => {
         }
       });
       console.log("Login!")
-      setAccount_name("");
-      setEmail("");
-      setPassword("");
+      // setAccount_name("");
+      // setEmail("");
+      // setPassword("");
   }
   // setErrors([]);
 
