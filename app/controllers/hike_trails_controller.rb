@@ -75,7 +75,7 @@ class HikeTrailsController < ApplicationController
   end
 
   def hike_trail_params
-    params.permit(:id, :user_id, :location_id, :account_name, :review, :date)
+    params.permit(:id, :user_id, :location_id, :account_name, :review, :format_date, :date)
   end
   
   # only permit the review and date 

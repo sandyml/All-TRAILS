@@ -34,8 +34,8 @@ const AddForm = ({ location, ht }) => {
         resp.json().then((err) => setErrors(err.errors));
       }
     });
-    setReview("");
-    setDate("");
+    // setReview("");
+    // setDate("");
   }
 
   return (
@@ -79,7 +79,7 @@ const AddForm = ({ location, ht }) => {
             type="text"
             name="title"
             id="title"
-            placeholder='YYYY-MM-DD'
+            placeholder='MM-DD-YYYY'
             value={format_date}
             onChange={(e) => setDate(e.target.value)}
           />

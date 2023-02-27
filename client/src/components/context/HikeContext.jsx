@@ -43,16 +43,16 @@ const HikeProvider = ({ children }) => {
   //   setReviews([...reviews, review]);
   // }
 
-  // const editReview = newReview => {
-  //   const updatedReviews = reviews.map(review => {
-  //     if (newReview.id === review.id) {
-  //       return newReview;
-  //     } else {
-  //       return review;
-  //     }
-  //   })
-  //   setReviews(updatedReviews);
-  // }
+  const editReview = newReview => {
+    const updatedReviews = reviews.map(review => {
+      if (newReview.id === review.id) {
+        return newReview;
+      } else {
+        return review;
+      }
+    })
+    setReviews(updatedReviews);
+  }
 
   // debugger
 
@@ -68,7 +68,7 @@ const HikeProvider = ({ children }) => {
 
 
   return (
-    <HikeContext.Provider value={{ hikes, setHikes, setReviews, reviews, handleAddReview }} >
+    <HikeContext.Provider value={{ hikes, setHikes, setReviews, reviews, handleAddReview, editReview }} >
       {children}
     </HikeContext.Provider>
   );

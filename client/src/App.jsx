@@ -13,7 +13,7 @@ import NotFound from './components/static/NotFound';
 import LocationList from './components/hikes/LocationList';
 import { LocationProvider } from './components/context/LocationContext';
 import { HikeProvider } from './components/context/HikeContext';
-import Test from './components/static/Test';
+// import Test from './components/static/Test';
 import TermsPolicy from './components/static/TermsPolicy';
 import AddForm from './components/hikes/AddForm';
 import EditForm from './components/hikes/EditForm';
@@ -39,7 +39,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/test" element={<Test />} />
+            {/* <Route path="/test" element={<Test />} /> */}
             <Route path="/*" element={<NotFound />} />
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
