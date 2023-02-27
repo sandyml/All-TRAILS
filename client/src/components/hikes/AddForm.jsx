@@ -1,18 +1,16 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LocationContext } from '../context/LocationContext';
 import { HikeContext } from '../context/HikeContext';
-import { UserContext } from '../context/UserContext';
-import { headers } from '../../Global';
+import { header } from '../../Global';
 
 const AddForm = ({ location, ht }) => {
   const navigate = useNavigate();
-  const [errors, setErrors] = useState([]);
+  // const [errors, setErrors] = useState([]);
   const [review, setReview] = useState("");
   const [date, setDate] = useState(ht.date);
   const { handleAddReview } = useContext(HikeContext);
-  const { user_id } = useContext(UserContext);
-  const { format_date } = location
+  // const { format_date } = location
+  const { format_date } = ht
   // const { handleAddReviews } = useContext(LocationContext);
   // cont [ userId, setUserId] = useState("")
   // const { handleAddReview } = useContext(HikeContext);
@@ -35,10 +33,10 @@ const AddForm = ({ location, ht }) => {
     })
       .then((r) => r.json())
       .then((newReview) => {
-        setReview("")
-        setDate("")
-        // setFormData(initialState);
         console.log(newReview, "Added New Review")
+        // setReview("")
+        // setDate("")
+        // setErrors([]);
         handleAddReview(newReview);
         navigate('/locations')
       });
@@ -116,7 +114,7 @@ const AddForm = ({ location, ht }) => {
         </div>
 
 
-        <div>{errors}</div>
+        {/* <div>{errors}</div> */}
         <button type='submit'>Submit</button>
       </form>
     </div>
