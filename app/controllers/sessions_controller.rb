@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-    skip_before_action :authorize, only: [:create, :destroy]
+    skip_before_action :authorized, only: [:create, :destroy]
 
 # Login
  def create
@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
         session[:user_id] = @user.id
         render json: @user, status: :ok
     else 
-        render json: { errors: "Invalid Password or Username" }, status: :unauthorized
+        render json: { errors: ["Invalid Password or Username"] }, status: :unauthorized
     end
  end  
 
@@ -18,7 +18,7 @@ def destroy
     head :no_content
 end
 
-private
+# private
 
 # def unprocessable_entity_error_response
 # return render json: { errors: ["Invalid username or password"] }, status: :unauthorized

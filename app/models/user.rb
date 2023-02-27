@@ -2,7 +2,7 @@ class User < ApplicationRecord
  has_secure_password # which adds multiple methods to the user model for reading, writing, and ecrypting passwords. 
 
  has_many :hike_trails, dependent: :destroy
- has_many :location, through: :hike_trails
+ has_many :locations, through: :hike_trails
 
  validates :account_name, 
             uniqueness: true,

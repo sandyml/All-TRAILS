@@ -3,45 +3,26 @@ class ApplicationController < ActionController::API
 
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-
-  before_action :authorize
   
-  private 
-
-  # tentative
-  def logged_in?
-    !!session[:user_id]
-  end
+  before_action :authorized
+  # removed private 
 
   def current_user
     @current_user = User.find_by_id(session[:id])
   end
   
-  def authorize
-    @user = User.find_by(id: session[:user_id])
-    render json: { error: ["Not Authorized"] }, status: :unauthorized unless @user
+  def authorized
+    @current_user = User.find_by(id: session[:user_id])
+    render json: { error: ["Not Authorized"] }, status: :unauthorized unless @current_user
   end
-
-  # def authorized
-  #   @current_user = User.find_by(id: session[:user_id])
-  #   render json: { error: "Not Authorized" }, status: :unauthorized unless @current_user
-  # end
 
   def record_not_found
     render json: { error: ["Record not found"] }, status: :not_found
   end
 
-  # def record_not_found(invalid)
-  #   render json: { error: "#{invalid.model} not found" }, status: :not_found
-  # end
-
   def render_unprocessable_entity_response(object)
    render json: { errors: object.record.errors.full_messages }, status: :unprocessable_entity
   end
-  
-  # def require_login
-  #   return render json: { errors: ["Please log in to your account!"]}
-  # end 
 
 end
 

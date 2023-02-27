@@ -29,7 +29,7 @@ const Home = () => {
       <div className="container-home-div">
         <img src={Background} className="bg-image-home" alt="background" />
         <div className='content-home'>
-          <h1 li-home-explore>Please Login or Sign Up</h1>
+          <h1>Please Login or Sign Up</h1>
           <ul className="text-home">
             <li className='li-home-hike'>HIKE</li>
             <li className='li-home-explore'>

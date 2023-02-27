@@ -1,28 +1,66 @@
-import React from 'react';
-// import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import AddForm from './AddForm';
+import EditForm from './EditForm';
 
 const HikesReviews = ({ location, handleDelete }) => {
   const { hike_trails } = location;
-  // const { id } = useParams
+  const [showEditForm, setShowEditForm] = useState(false);
+  const [showAddForm, setShowAddForm] = useState(false);
+
+  const toggleSeeEditForm = () => {
+    (showEditForm === false) ? setShowEditForm(true) :
+      setShowEditForm(false);
+  };
+
+  const toggleSeeAddForm = () => {
+    (showAddForm === false) ? setShowAddForm(true) :
+      setShowAddForm(false);
+  };
 
   return (
-    <div className="box-top">
-      <span className='testimonial-box-container'>
-        {hike_trails.map(
-          (ht) => (<div key={ht}>
+    // <div className="box-top">
+    // <div className='testimonial-box-container'>
+    <div>
+      {hike_trails.map(
+        (ht) => (
+          <div key={ht}>
             <ul className="name-user">
               <strong >{ht.user.account_name}</strong>
               <span>{ht.format_date}</span>
             </ul>
-            <span className="reviews" key={ht.id}></span>
+            <div className="reviews"></div>
             {ht.review}
-            <Link to="/hike_trails/new"><button className='button2' type="add">Add</button></Link>
-            <Link to={`/hike_trails/${ht.id}/edit`}>Edit</Link>
+
+            <>
+              <button className='button2' onClick={toggleSeeEditForm}>Add</button>
+              {showEditForm ? <AddForm location={location} ht={ht} /> : null}
+            </>
+
+            <>
+              <button className='button2' onClick={toggleSeeAddForm}>Edit</button>
+              {showAddForm ? <EditForm location={location} ht={ht} /> : null}
+            </>
+
+            {/* <Link to="/hike_trails/new">Add &nbsp;</Link>
+            <Link to={`/hike_trails/${ht.id}/edit`}>Edit</Link> */}
             <button className='button2' onClick={() => handleDelete(ht.id)} type="delete">Remove</button>
-            <hr /></div>))}
-      </span>
+            <hr />
+          </div>
+        ))}
+
+      {/* <>
+          <button className='location-btn' onClick={toggleSeeEditForm}>
+            Add </button>
+          {showEditForm ? <AddForm location={location} /> : null}
+        </>&nbsp; */}
+
+      {/* <>
+          <button className='location-btn' onClick={toggleSeeAddForm}>Edit </button>
+          {showAddForm ? <EditForm location={location} key={location.id} /> : null}
+        </> */}
+
     </div>
+    // </div>
   );
 }
 

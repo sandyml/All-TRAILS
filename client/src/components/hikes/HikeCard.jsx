@@ -13,7 +13,7 @@ const HikeCard = ({ hike }) => {
   };
 
   return (
-    <div className="card-wrapper" key={id}>
+    <div className="card-wrapper">
           <h2 className='hike-cr-title'>{trail_name}</h2>
           <img src={image_url} alt="hike-img" className='hike-item-img' />
           
@@ -33,9 +33,6 @@ const HikeCard = ({ hike }) => {
             <button onClick={reviewOnClick}>Reviews</button>
             {showReview ? <Reviews hike={hike} /> : null}
           </div>
-          {/* <Link to="/hike_trails/new"><button className='button2' type="add">Add</button></Link>
-            <Link to={`/hike_trails/${id}/edit`}><button className='button2' type="edit">Edit</button></Link>
-            <button className='button2' onClick={() => handleDelete(ht.id)} type="delete">Remove</button> */}
     </div>
   )
 }

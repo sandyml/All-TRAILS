@@ -1,77 +1,40 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { headers } from '../../Global';
+import { LocationContext } from '../context/LocationContext';
 // import { HikeContext } from '../context/HikeContext';
-// import { UserContext } from '../context/UserContext';
+import { headers } from '../../Global';
 
-// const intialState = {
-//   review: ""
-// }
-
-const AddForm = () => {
-  // const [formData, setFormData] = useState(intialState);
-  // const [formData, setFormData] = useState(review[{}]); //need nested state instead of form
+const AddForm = ({ location }) => {
   const navigate = useNavigate();
-  const [account_name, setAccount_Name] = useState("");
-  // const [date, setDate] = useState("")
-  // const [reviews, setReviews] = useState({hike_trails: []});
-  // const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState([]);
-  const [locationId, setLocationId] = useState("");
-  // const { addReview } = useContext(HikeContext);
-  // const { id } = useParams();
-  const [review, setReview] = useState("")
-  // const { hike_trails } = UserContext(HikeContext)
-
-  // const handleChange = e => {
-  //   const { name, value } = e.target;
-  //   setFormData({
-  //     ...formData,
-  //     [name]: value
-  //   })
-  // }
-
-  // const handleSubmit = (e, id) => {
-  //   e.preventDefault();
-  //   fetch(`/hike_trails`, {
-  //     method: "POST",
-  //     headers,
-  //     body: JSON.stringify({
-  //       review,
-  //     })
-  //   })
-  //     .then((resp) => resp.json())
-  //     .then((data) => addReview(data));
-  //   // navigate('/locations');
-  // }
+  const [date, setDate] = useState("");
+  const [review, setReview] = useState("");
+  const { user_id } = useContext(LocationContext);
+  // cont [ userId, setUserId] = useState("")
+  // const { handleAddReview } = useContext(HikeContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Add Clicked!")
-    // setIsLoading(true);
-    fetch(`/hike_trails/`, {
+    fetch(`/hike_trails`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers,
       body: JSON.stringify({
-        account_name,
         review,
-        location_id: locationId,
-        // date, 
+        date,
+        location_id: location.id,
+        user_id,
       }),
     }).then((resp) => {
-      // setIsLoading(false);
       if (resp.ok) {
+        // handleAddReview([]);
         navigate("/locations");
       } else {
         resp.json().then((err) => setErrors(err.errors));
       }
     });
-    setAccount_Name("");
     setReview("");
-    setLocationId("");
-    // setDate("");
+    setDate("");
   }
 
   return (
@@ -80,29 +43,48 @@ const AddForm = () => {
 
       <form onSubmit={handleSubmit}>
         <div>
+          {/* <label htmlFor="hikes">Select Trail Name</label> */}
+          {/* <span>Trail Name</span> */}
+          <input
+            type="text"
+            id="hikes"
+            defaultValue={location.trail_name}
+            // onChange={(e) => setTrail_Name(e.target.value)}
+          />
+            {/* <option value="">input trail name...</option>
+            {locations.map((location) => (
+              <option key={location.id} defaultValue={location.id}>
+                {location.trail_name}
+              </option> */}
+            {/* ))} */}
+        </div>
+
+        <div>
           <label htmlFor="title">Review</label>
           <input
             type="text"
             name="title"
             id="title"
+            placeholder='how was the hike?'
             value={review}
             onChange={(e) => setReview(e.target.value)}
           />
         </div>
-        {/* Might use this instead of input form */}
-        {/* <div>
-          <label htmlFor="content">Review</label>
-          <textarea
+
+        <div>
+          <label htmlFor="title">Date</label>
+          <input
             type="text"
-            name="content"
-            id="content"
-            value={formData.review}
-            onChange={handleChange}
+            name="title"
+            id="title"
+            placeholder='YYYY-MM-DD'
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
           />
-        </div> */}
-        {/* <input type="submit" value="Create Review" /> */}
-        {/* { isLoading ? "Loading..." : "Try Again..." } */}
-        {errors}
+        </div>
+
+
+        <div>{errors}</div>
         <button type='submit'>Submit</button>
       </form>
     </div>

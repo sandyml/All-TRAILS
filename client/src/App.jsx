@@ -21,6 +21,16 @@ import AddReviewForm from './components/hikes/AddReviewForm';
 import HikesReviews from './components/hikes/HikesReviews';
 
 const App = () => {
+  // const {locations} = useContext(LocationContext);
+
+  // const locationCards = locations.map(
+  //   location =>
+  //     <LocationCard
+  //       key={location.id}
+  //       location={location}
+  //     />
+  // )
+
   return (
     <UserProvider>
       <LocationProvider>
@@ -38,7 +48,7 @@ const App = () => {
             <Route path="/locations" element={<LocationList />} />
             <Route path="/hike_trails" element={<HikesReviews />} />
             <Route path="/hike_trails/new" element={<AddForm />} />
-            <Route path="/hike_trails/:id/edit" element={<EditForm />} />
+            <Route path="/hike_trails/:id" element={<EditForm />} />
             <Route path="/placeholder" element={<AddReviewForm />} />
             <Route path="/termsandconditions" element={<TermsPolicy />} />
           </Routes>

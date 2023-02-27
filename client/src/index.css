@@ -782,3 +782,7 @@ body.body-logout {
   background-color:#6D7A71;
   margin: none;
 }
+
+b.city-state {
+  margin: 1.9rem;
+}

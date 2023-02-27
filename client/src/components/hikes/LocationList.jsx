@@ -3,7 +3,7 @@ import { LocationContext } from '../context/LocationContext';
 import LocationCard from './LocationCard';
 
 const LocationList = () => {
-  const {locations} = useContext(LocationContext);
+  const { locations } = useContext(LocationContext);
 
   const locationCards = locations.map(
     location =>
@@ -14,10 +14,8 @@ const LocationList = () => {
   )
 
   return (
-    <div>
-      <div className="testimonial-heading">
+    <div className="testimonial-heading">
         <span>Hikes & Reviews</span>
-      </div>
       {locationCards}
     </div>
   )

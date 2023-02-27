@@ -15,7 +15,6 @@ const AddReviewForm = () => {
   // const [formData, setFormData] = useState(intialState);
   const [account_name, setAccount_Name] = useState("");
   const [review, setReview] = useState("");
-  const [date, setDate] = useState("");
   const navigate = useNavigate();
   const { addReview } = useContext(HikeContext);
   const { id } = useParams();
@@ -26,19 +25,20 @@ const AddReviewForm = () => {
       method: "POST",
       headers,
       body: JSON.stringify({
-        account_name,
-        review,
-        date
+       review: "",
       })
     })
       .then((resp) => resp.json())
-      .then((data) => addReview(data));
+      .then((data) => {
+        addReview(data)
+        console.log(data, "Add Review Form")
+      });
     navigate('/locations');
   }
 
   return (
     <div>
-      <h3>Create New Review</h3>
+      <h1>Create New Review</h1><br/>
 
       <form onSubmit={handleSubmit}>
         <div>
@@ -61,7 +61,7 @@ const AddReviewForm = () => {
             onChange={(e) => setReview(e.target.value)}
           />
         </div>
-        <div>
+        {/* <div>
           <label htmlFor="title">Date</label>
           <input
             type="text"
@@ -70,7 +70,7 @@ const AddReviewForm = () => {
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
-        </div>
+        </div> */}
         {/* Might use this instead of input form */}
         {/* <div>
           <label htmlFor="content">Review</label>

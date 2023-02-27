@@ -14,6 +14,7 @@ const LocationCard = ({ location }) => {
   const [showReview, setShowReview] = useState(false);
   const {locations, setLocations} = useContext(LocationContext);
 
+  // Display reviews
   const toggleSeeReviews = () => {
     (showReview === false) ? setShowReview(true) :
       setShowReview(false);
@@ -24,7 +25,7 @@ const LocationCard = ({ location }) => {
     fetch(`/hike_trails/${id}`, {
       method: 'DELETE',
     })
-      .then(resp => resp.json())
+      .then(r => r.json())
       .then(data => {
         console.log(data, "deleted!")
         const updatedState = locations.map(l => {
@@ -42,15 +43,13 @@ const LocationCard = ({ location }) => {
       })
   }
 
-
-
   return (
-    <div>
+    <>
       <hr /><br />
       <h2 className='trail-name'>{trail_name}</h2><br />
       <img src={image_url} alt="hike-img" className='pic' />
       <ul><img src={Location} className="location-image" alt="background" />
-        <b>&nbsp;{city_state}</b>
+        <b className='city-state'>&nbsp;{city_state}</b>
       </ul><br />
       <p>
         difficulty: <b>{difficulty} &nbsp;</b>
@@ -58,14 +57,14 @@ const LocationCard = ({ location }) => {
         elevation_gain: <b>{elevation_gain} &nbsp;</b>
         route_type: <b>{route_type} &nbsp;</b>
       </p><br /><hr />
-      <div className='testimonial-box-container'>
-        <div className='testimonial-box'>
+
+      {/* <div className='testimonial-box-container' key={location.id}> */}
+      <>
           <button className='location-btn' onClick={toggleSeeReviews}>Reviews</button>
           {showReview ? <HikesReviews location={location} handleDelete={handleDelete} /> : null}
           <hr /><br />
-        </div>
-      </div>
-    </div>
+      </>
+    </>
   );
 };
 

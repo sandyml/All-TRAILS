@@ -3,8 +3,6 @@ User.destroy_all
 Location.destroy_all 
 HikeTrail.destroy_all 
 
-
-
 puts "👤 User..." 
 sandra = User.create(
  account_name: "Sandra",

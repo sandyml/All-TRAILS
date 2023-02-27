@@ -27,7 +27,7 @@ const Login = () => {
       .then((resp) => {
         if (resp.ok) {
           resp.json().then((user) => {
-            login(user);
+            login(user)
             navigate('/home')
           })
         } else {
