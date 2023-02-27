@@ -9,6 +9,7 @@ const AddForm = ({ location, ht }) => {
   const [date, setDate] = useState(ht.date);
   const { handleAddReview } = useContext(HikeContext);
   const { format_date } = ht
+  // const [isLoading, setIsLoading] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -36,6 +37,30 @@ const AddForm = ({ location, ht }) => {
         navigate('/locations')
       });
   }
+
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   setIsLoading(true);
+  //   fetch("/hike_trails", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       review,
+  //       date,
+  //       location_id: location.id,
+  //       user_id: ht.id
+  //     }),
+  //   }).then((r) => {
+  //     setIsLoading(false);
+  //     if (r.ok) {
+  //       navigate("/locations");
+  //     } else {
+  //       r.json().then((err) => setErrors(err.errors));
+  //     }
+  //   });
+  // }
 
   return (
     <>
@@ -83,9 +108,16 @@ const AddForm = ({ location, ht }) => {
             onChange={(e) => setDate(e.target.value)}
           />
         </div>
+        {/* <button>
+        {isLoading ? "Loading..." : "Submit Recipe"}
+        </button> */}
+        
 
 
         {/* <div>{errors}</div> */}
+        {/* {errors.map((err) => (
+              <div key={err}>{err}</div>
+            ))} */}
         <button type='submit'>Submit</button>
       </form>
     </>

@@ -1,29 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { UserContext } from '../context/UserContext';
 import Hiking from '../../img/hiking.png'
 
-const Navigation = () => {
-  const { user, setUser } = useContext(UserContext);
-
-  
-  // const { logout, loggedIn, user, setUser } = useContext(UserContext);
-  //  const handleLogout = () => {
-  //   console.log("Logout clicked!")
-  //    fetch('/logout', {
-  //      method: "DELETE"
-  //    })
-  //      .then(() => {
-  //        logout()
-  //      })
-  //  }
+const Navigation = ({ setCurrentUser, currentUser }) => {
+  // const { user, setUser } = useContext(UserContext);
 
   const handleLogout = () => {
     fetch("/logout", {
       method: "DELETE"
     }).then((r) => {
       if (r.ok) {
-        setUser(null);
+        setCurrentUser(null)
+        // setUser(null);
       }
     });
   }
@@ -36,15 +24,12 @@ const Navigation = () => {
         <Link to="/" className='topnav-nav'>Home</Link>
         <Link to="/locations" className='topnav-nav'>Reviews</Link>
         <Link to="/about" className='topnav-nav'>About</Link>
-        <Link to="/hike_trails/new" className='topnav-nav'>AddForm</Link>
-        <Link to="/hike_trails/:id/edit" className='topnav-nav'>EditForm</Link>
         <div>
-          {user ? (
+          {currentUser ? (
             <Link to="/logout" className='topnav-nav-sign' onClick={handleLogout}>Logout</Link>
             // <button onClick={handleLogout}>Logout</button>
           ) : (
             <div>
-              {/* <nav className='topnav'> */}
               <Link to="/" className='topnav-nav'>Home</Link>
               <Link to="/signup" className='topnav-nav-sign'>Signup</Link>
               <Link to="/login" className='topnav-nav-sign'>Login</Link>

@@ -1,16 +1,17 @@
-import React, { useState, useContext } from 'react'
-import { UserContext } from '../context/UserContext';
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { headers } from '../../Global';
 import View from '../../img/green.png'
 
-const Login = () => {
+const Login = ({ setCurrentUser }) => {
   const navigate = useNavigate();
   const [account_name, setAccount_name] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState([""]);
   const [passwordShown, setPasswordShown] = useState(false);
-  const { login, setErrors, errors } = useContext(UserContext);
+  // const { setErrors, errors } = useContext(UserContext);
+  // const { login, setErrors, errors } = useContext(UserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,7 +29,8 @@ const Login = () => {
         if (resp.ok) {
           resp.json().then((user) => {
             console.log(user)
-            login(user)
+            // login(user)
+            setCurrentUser(user)
             navigate('/home')
           })
         } else {

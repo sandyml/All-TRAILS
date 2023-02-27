@@ -1,17 +1,18 @@
-import React, { useContext } from 'react'
+import React from 'react'
+// import React, { useContext } from 'react'
 import Background from '../../img/winter_hike.jpg'
-import { UserContext } from '../context/UserContext'
+// import { UserContext } from '../context/UserContext'
 
 
-const Home = () => {
-  const { user } = useContext(UserContext);
+const Home = ({ setCurrentUser, currentUser}) => {
+  // const { user } = useContext(UserContext);
 
-  if (user) {
+  if (currentUser) {
     return (
       <div className="container-home-div">
         <img src={Background} className="bg-image-home" alt="background" />
         <div className='content-home'>
-          <h1 className="li-home-explore">Welcome, {user.account_name}!</h1>
+          <h1 className="li-home-explore">Welcome, {currentUser.account_name}!</h1>
           <ul className="text-home">
             <li className='li-home-hike'>HIKE</li>
             <li className='li-home-explore'>

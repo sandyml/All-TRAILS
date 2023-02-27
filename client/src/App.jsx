@@ -17,21 +17,40 @@ import AddForm from './components/hikes/AddForm';
 import EditForm from './components/hikes/EditForm';
 import AddReviewForm from './components/hikes/AddReviewForm';
 import HikesReviews from './components/hikes/HikesReviews';
+import { useState, useEffect } from 'react';
 
 const App = () => {
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    // auto-login
+    fetch("/me")
+    .then((resp) => {
+      if (resp.ok) {
+        resp.json()
+        .then((user) => {
+          console.log(user, "User Context")
+          setCurrentUser(user)
+        });
+      }
+    });
+  }, []);
+
+  if(!currentUser) return (
+  <Login setCurrentUser={setCurrentUser} />
+  )
 
   return (
         <UserProvider>
           <LocationProvider>
             <HikeProvider>
-              <Navigation />
+              <Navigation setCurrentUser={setCurrentUser} currentUser={currentUser} />
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/home" element={<Home />} />
-                {/* <Route path="/test" element={<Test />} /> */}
+                <Route path="/home" element={<Home setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
                 <Route path="/*" element={<NotFound />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/login" element={<Login />} />
+                {/* <Route path="/login" element={<Login />} /> */}
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/locations" element={<LocationList />} />
