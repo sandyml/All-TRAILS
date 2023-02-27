@@ -10,9 +10,9 @@ class HikeTrail < ApplicationRecord
 
 
   # removed validatesformat_date
-    def format_date
-      self.date.strftime("%Y-%m-%d")
-    end
+    # def format_date
+    #   self.date.strftime("%Y-%m-%d")
+    # end
 
 end
 

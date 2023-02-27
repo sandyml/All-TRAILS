@@ -1,5 +1,7 @@
 class HikeTrailsController < ApplicationController
-  skip_before_action :authorized, only: [:index, :show]
+  rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity_not_found_error
+
+  skip_before_action :authorized #, only: [:index, :show]
   # before_action :find_hike_trail, only: [:update, :destroy]
 
   # GET '/hike_trails' all hike_trails
@@ -44,6 +46,16 @@ class HikeTrailsController < ApplicationController
     render json: @hike, status: :accepted
   end
 
+  # def update
+  #   hike = find_hike
+  #   if hike
+  #     hike.update(hike_trail_params)
+  #     render json: hike, status: :accepted
+  #   else
+  #     render json: { errors: ["Hike not found"] }, status: :not_found
+  #   end
+  # end
+
   # DELETE '/hike_trails/:id'
   def destroy
     @hike_trail = HikeTrail.find(params[:id])
@@ -62,7 +74,7 @@ class HikeTrailsController < ApplicationController
   end
 
   def hike_trail_params
-    params.permit(:user_id, :location_id, :account_name, :review, :date)
+    params.permit(:id, :user_id, :location_id, :account_name, :review, :date)
   end
   
   # only permit the review and date 
@@ -71,7 +83,7 @@ class HikeTrailsController < ApplicationController
   end
 
   def unprocessable_entity_not_found_error
-    render json: { message: "Review not found" }, status: :unprocessable_entity unless @hike
+    render json: { message: ["Review not found"] }, status: :unprocessable_entity unless @hike
   end
 
 end

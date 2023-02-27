@@ -12,12 +12,12 @@ const EditForm = ({ location, ht }) => {
   const [review, setReview] = useState("");
   const [date, setDate] = useState("");
   const navigate = useNavigate();
-  const { id } = useParams();
-  const { editReview } = useContext(HikeContext);
+  // const { id } = useParams();
+  const { editReview, id } = useContext(HikeContext);
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch(`/hike_trails/${id}`, {
+    fetch(`/hike_trails/${ht.id}`, {
       method: "PATCH",
       headers,
       body: JSON.stringify({ 
@@ -33,9 +33,9 @@ const EditForm = ({ location, ht }) => {
         navigate('/locations') // can't post it with out refreshing the page..
         console.log(data, "edit review")
       });
-      setReview("") 
-      setDate("")
-      // setErrors([])
+      setReview(""); 
+      setDate("");
+      setErrors([]);
   }
 
 return (

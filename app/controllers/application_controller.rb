@@ -5,11 +5,10 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
   
   before_action :authorized
-  # removed private 
 
-  def current_user
-    @current_user = User.find_by_id(session[:id])
-  end
+  # def current_user
+  #   @current_user = User.find_by_id(session[:id])
+  # end
   
   def authorized
     @current_user = User.find_by(id: session[:user_id])
@@ -21,7 +20,7 @@ class ApplicationController < ActionController::API
   end
 
   def render_unprocessable_entity_response(object)
-   render json: { errors: object.record.errors.full_messages }, status: :unprocessable_entity
+    render json: { errors: object.record.errors.full_messages }, status: :unprocessable_entity
   end
 
 end

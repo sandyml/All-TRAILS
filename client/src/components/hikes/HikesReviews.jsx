@@ -38,7 +38,7 @@ const HikesReviews = ({ location, handleDelete }) => {
 
             <>
               <button className='button2' onClick={toggleSeeAddForm}>Edit</button>
-              {showAddForm ? <EditForm location={location} ht={ht} /> : null}
+              {showAddForm ? <EditForm location={location} ht={ht} key={ht.id} /> : null}
             </>
 
             {/* <Link to="/hike_trails/new">Add &nbsp;</Link>
