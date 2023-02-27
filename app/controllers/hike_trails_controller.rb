@@ -33,8 +33,9 @@ class HikeTrailsController < ApplicationController
 
   # POST '/hike_trails' ==> create new review, based on logged in user
   def create
-    hike = @current_user.hike_trails.create(hike_trail_params)
-    # render json: hike, status: :created
+    hikes = HikeTrail.all
+    # hike = @current_user.hikes.create(hike_trail_params)
+    hike = hikes.create(hike_trail_params)
     render json: hike, include: [:user], status: :created
   end
 

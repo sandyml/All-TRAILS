@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { HikeContext } from '../context/HikeContext';
 import { UserContext } from '../context/UserContext';
 import { headers } from '../../Global';
@@ -13,7 +13,7 @@ const EditForm = ({ location, ht }) => {
   const [date, setDate] = useState("");
   const navigate = useNavigate();
   // const { id } = useParams();
-  const { editReview, id } = useContext(HikeContext);
+  const { editReview } = useContext(HikeContext);
 
   function handleSubmit(e) {
     e.preventDefault();

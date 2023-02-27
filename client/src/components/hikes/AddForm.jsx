@@ -4,12 +4,13 @@ import { LocationContext } from '../context/LocationContext';
 // import { HikeContext } from '../context/HikeContext';
 import { headers } from '../../Global';
 
-const AddForm = ({ location }) => {
+const AddForm = ({ location, ht }) => {
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
   const [date, setDate] = useState("");
   const [review, setReview] = useState("");
   const { user_id } = useContext(LocationContext);
+  const { format_date } = location
   // cont [ userId, setUserId] = useState("")
   // const { handleAddReview } = useContext(HikeContext);
 
@@ -67,6 +68,7 @@ const AddForm = ({ location }) => {
             id="title"
             placeholder='how was the hike?'
             value={review}
+            // defaultValue={location.review}
             onChange={(e) => setReview(e.target.value)}
           />
         </div>
@@ -78,7 +80,7 @@ const AddForm = ({ location }) => {
             name="title"
             id="title"
             placeholder='YYYY-MM-DD'
-            value={date}
+            value={format_date}
             onChange={(e) => setDate(e.target.value)}
           />
         </div>

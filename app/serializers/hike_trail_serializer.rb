@@ -5,8 +5,8 @@ class HikeTrailSerializer < ActiveModel::Serializer
   belongs_to :location, serializer: LocationSerializer
   belongs_to :user
 
-  def format_date
-    self.date.strftime("%Y-%m-%d")
-  end
+  # def format_date
+  #   self.date.strftime("%Y-%m-%d")
+  # end
 
 end
