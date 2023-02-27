@@ -9,7 +9,7 @@ const UserProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [errors, setErrors] = useState([]);
   // const [user, setUser] = useState(null);
-  // const [user, setUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     // auto-login
@@ -19,6 +19,7 @@ const UserProvider = ({ children }) => {
         resp.json()
         .then((user) => {
           console.log(user, "User Context")
+          setCurrentUser(user)
           setUser(user)
         });
       }
@@ -41,7 +42,7 @@ const UserProvider = ({ children }) => {
   }
 
   return (
-    <UserContext.Provider value={{ user, setUser, login, logout, signup, loggedIn, setErrors, errors }}>
+    <UserContext.Provider value={{ currentUser, setCurrentUser, user, setUser, login, logout, signup, loggedIn, setErrors, errors }}>
       {children}
     </UserContext.Provider>
   );

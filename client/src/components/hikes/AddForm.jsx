@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HikeContext } from '../context/HikeContext';
-import { header } from '../../Global';
 
 const AddForm = ({ location, ht }) => {
   const navigate = useNavigate();
@@ -9,12 +8,8 @@ const AddForm = ({ location, ht }) => {
   const [review, setReview] = useState("");
   const [date, setDate] = useState(ht.date);
   const { handleAddReview } = useContext(HikeContext);
-  // const { format_date } = location
   const { format_date } = ht
-  // const { handleAddReviews } = useContext(LocationContext);
-  // cont [ userId, setUserId] = useState("")
-  // const { handleAddReview } = useContext(HikeContext);
-  
+
   function handleSubmit(e) {
     e.preventDefault();
     console.log("Add Form Clicked!")
@@ -42,33 +37,9 @@ const AddForm = ({ location, ht }) => {
       });
   }
 
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log("Add Clicked!")
-  //   fetch(`/hike_trails`, {
-  //     method: "POST",
-  //     headers,
-  //     body: JSON.stringify({
-  //       review,
-  //       date,
-  //       location_id: location.id,
-  //       user_id, //: ht.id
-  //     }),
-  //   }).then((resp) => {
-  //     if (resp.ok) {
-  //       // console.log(resp.json())
-  //       handleAddReview(resp.json());
-  //       navigate("/locations");
-  //     } else {
-  //       resp.json().then((err) => setErrors(err.errors));
-  //     }
-  //   });
-  // }
-
   return (
-    <div>
-      <h3>Create New Review</h3>
+    <>
+      <span>Create New Review</span>
 
       <form onSubmit={handleSubmit}>
         <div>
@@ -117,7 +88,7 @@ const AddForm = ({ location, ht }) => {
         {/* <div>{errors}</div> */}
         <button type='submit'>Submit</button>
       </form>
-    </div>
+    </>
   )
 }
 

@@ -4,8 +4,8 @@ import { LocationContext } from '../context/LocationContext';
 import HikesReviews from './HikesReviews';
 
 // [x] delete review
-// [] patch review
-// [] edit review
+// [x] patch review
+// [x] edit review
 // [] authentication review only user is able to edit
 // [] add review if (logged in) 
 
@@ -45,7 +45,6 @@ const LocationCard = ({ location }) => {
 
   return (
     <>
-      <hr /><br />
       <h2 className='trail-name'>{trail_name}</h2><br />
       <img src={image_url} alt="hike-img" className='pic' />
       <ul><img src={Location} className="location-image" alt="background" />
@@ -57,8 +56,6 @@ const LocationCard = ({ location }) => {
         elevation_gain: <b>{elevation_gain} &nbsp;</b>
         route_type: <b>{route_type} &nbsp;</b>
       </p><br /><hr />
-
-      {/* <div className='testimonial-box-container' key={location.id}> */}
       <>
           <button className='location-btn' onClick={toggleSeeReviews}>Reviews</button>
           {showReview ? <HikesReviews location={location} handleDelete={handleDelete} /> : null}

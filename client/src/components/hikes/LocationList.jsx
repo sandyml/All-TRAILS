@@ -29,8 +29,6 @@ const LocationList = () => {
       />
   )
 
-  // debugger
-
   return (
     <div className="testimonial-heading">
         <span>Hikes & Reviews</span>

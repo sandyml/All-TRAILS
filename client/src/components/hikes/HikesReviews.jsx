@@ -20,7 +20,7 @@ const HikesReviews = ({ location, handleDelete }) => {
   return (
     // <div className="box-top">
     // <div className='testimonial-box-container'>
-    <div>
+    <>
       {hike_trails.map(
         (ht) => (
           <div key={ht}>
@@ -59,8 +59,7 @@ const HikesReviews = ({ location, handleDelete }) => {
           {showAddForm ? <EditForm location={location} key={location.id} /> : null}
         </> */}
 
-    </div>
-    // </div>
+    </>
   );
 }
 
