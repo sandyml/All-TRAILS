@@ -24,11 +24,9 @@ const App = () => {
 
   useEffect(() => {
     // auto-login
-    fetch("/me")
-    .then((resp) => {
+    fetch("/me").then((resp) => {
       if (resp.ok) {
-        resp.json()
-        .then((user) => {
+        resp.json().then((user) => {
           console.log(user, "User Context")
           setCurrentUser(user)
         });
@@ -36,34 +34,46 @@ const App = () => {
     });
   }, []);
 
-  if(!currentUser) return (
-  <Login setCurrentUser={setCurrentUser} />
-  )
+  if (!currentUser)
+    return (
+      <UserProvider>
+        <LocationProvider>
+          <HikeProvider>
+            <Routes>
+              <Route path="/login" element={<Login setCurrentUser={setCurrentUser} />} />
+              <Route path="/signup" element={<Signup setCurrentUser={setCurrentUser} />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/logout" element={<Logout />} />
+            </Routes>
+          </HikeProvider>
+        </LocationProvider>
+      </UserProvider>
+    );
 
   return (
-        <UserProvider>
-          <LocationProvider>
-            <HikeProvider>
-              <Navigation setCurrentUser={setCurrentUser} currentUser={currentUser} />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/home" element={<Home setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
-                <Route path="/*" element={<NotFound />} />
-                <Route path="/about" element={<About />} />
-                {/* <Route path="/login" element={<Login />} /> */}
-                <Route path="/logout" element={<Logout />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/locations" element={<LocationList />} />
-                <Route path="/hike_trails" element={<HikesReviews />} />
-                <Route path="/hike_trails/new" element={<AddForm />} />
-                <Route path="/hike_trails/:id" element={<EditForm />} />
-                <Route path="/placeholder" element={<AddReviewForm />} />
-                <Route path="/termsandconditions" element={<TermsPolicy />} />
-              </Routes>
-              <Footer />
-            </HikeProvider>
-          </LocationProvider>
-        </UserProvider>
+    <UserProvider>
+      <LocationProvider>
+        <HikeProvider>
+          <Navigation setCurrentUser={setCurrentUser} currentUser={currentUser} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
+            <Route path="/*" element={<NotFound />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/locations" element={<LocationList />} />
+            <Route path="/hike_trails" element={<HikesReviews currentUser={currentUser} />} />
+            <Route path="/hike_trails/new" element={<AddForm />} />
+            <Route path="/hike_trails/:id" element={<EditForm />} />
+            <Route path="/placeholder" element={<AddReviewForm />} />
+            <Route path="/termsandconditions" element={<TermsPolicy />} />
+          </Routes>
+          <Footer />
+        </HikeProvider>
+      </LocationProvider>
+    </UserProvider>
   );
 }
 

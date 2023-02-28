@@ -1,21 +1,23 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { headers } from '../../Global';
 import { Link, useNavigate } from 'react-router-dom';
-import Mountain from '../../img/mountains.png';
-import { UserContext } from '../context/UserContext';
+import Background from '../../img/winter_hike.jpg'
+// import Mountain from '../../img/mountains.png';
+// import View from '../../img/green.png'
 
-const Signup = () => {
+
+const Signup = ({ setCurrentUser }) => {
   const [account_name, setAccount_Name] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
-  const { setErrors, errors, signup, setUser } = useContext(UserContext);
+  const [errors, setErrors] = useState([]);
+  // const { signup, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(password)
     fetch('/signup', {
       method: "POST",
       headers,
@@ -30,8 +32,9 @@ const Signup = () => {
       .then((user) => {
         if (!user.errors) {
           console.log(user)
-          setUser(user)
-          signup(user)
+          setCurrentUser(user)
+          // setUser(user)
+          // signup(user)
           navigate("/home")
         } else {
           console.log(user, "error thrown in signup")
@@ -40,10 +43,6 @@ const Signup = () => {
         }
       });
     // console.log("Registered/Sigup");
-    // setAccount_Name("");
-    // setEmail("");
-    // setPassword("");
-    // setPasswordConfirmation("");
   };
 
   const togglePassword = () => {
@@ -68,20 +67,21 @@ const Signup = () => {
 
   return (
     <div className='container-home-div'>
-      <img src={Mountain} className="bg-image" alt="background" />
+      <img src={Background} className="bg-image" alt="background" />
       <form onSubmit={handleSubmit} className='main-form-log' action='#!' id='main-form'>
+
         <h2 className='log-h2'>Please Create An Account</h2>
         <div className='input-parent'>
           <span className='lbl-cn'>Username</span>
           <input
             type='text'
             id='account_name'
+            autoComplete="off"
             placeholder="Create Username"
             value={account_name}
             onChange={handleAccountName}
             // required={ true}
           />
-
         </div>
         <div className='input-parent'>
           <span>Email</span>
@@ -99,6 +99,7 @@ const Signup = () => {
           <input
             placeholder="Create Password"
             id='password'
+            autoComplete="current-password"
             value={password}
             onChange={handlePassword}
             type={passwordShown ? "text" : "password"}
@@ -110,17 +111,25 @@ const Signup = () => {
           <input
             placeholder="Confirm Password"
             id='password_confirmation'
+            autoComplete="current-password"
             value={passwordConfirmation}
             onChange={handleConfirmPassword}
             type={passwordShown ? "text" : "password"}
             // required={true}
           />
         </div>
-        <button onClick={togglePassword}>Show Password</button>
+
+        <input className='checkbox' onClick={togglePassword} type="checkbox" id="showPassword" />
+        <label className='checkbox' htmlFor="showPassword">&nbsp;Show password</label>
+        <br/><br/>
+        {/* <button onClick={togglePassword}>Show Password</button> */}
         <p>By creating an account you agree to our
           <Link to="/termsandconditions">&nbsp;Terms & Privacy</Link>
         </p><br />
-        <button type="submit" value="Submit" className="form-button">Register</button>
+
+        <button type="submit" value="Submit" className="form-button">
+          Register
+        </button>
 
         <p>
           Already have an account? &nbsp;
@@ -128,6 +137,7 @@ const Signup = () => {
             Login
           </Link>
         </p>
+
         <br />
         <div>{errors}</div>
 

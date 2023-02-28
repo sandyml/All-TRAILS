@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { headers } from '../../Global';
-import View from '../../img/green.png'
+// import View from '../../img/green.png'
+import Background from '../../img/winter_hike.jpg'
 
 const Login = ({ setCurrentUser }) => {
   const navigate = useNavigate();
   const [account_name, setAccount_name] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([""]);
+  const [errors, setErrors] = useState([]);
   const [passwordShown, setPasswordShown] = useState(false);
   // const { setErrors, errors } = useContext(UserContext);
   // const { login, setErrors, errors } = useContext(UserContext);
@@ -23,7 +24,7 @@ const Login = ({ setCurrentUser }) => {
     fetch('/login', {
       method: "POST",
       headers,
-      body: JSON.stringify(user) 
+      body: JSON.stringify(user)
     })
       .then((resp) => {
         if (resp.ok) {
@@ -42,12 +43,11 @@ const Login = ({ setCurrentUser }) => {
           );
         }
       });
-      console.log("Login!")
-      // setAccount_name("");
-      // setEmail("");
-      // setPassword("");
+    console.log("Login!")
+    // setAccount_name("");
+    // setEmail("");
+    // setPassword("");
   }
-  // setErrors([]);
 
   const togglePassword = () => {
     setPasswordShown(!passwordShown)
@@ -67,8 +67,7 @@ const Login = ({ setCurrentUser }) => {
 
   return (
     <div className='container-home-div' >
-      <img src={View} className="bg-image" alt="background" />
-
+      <img src={Background} className="bg-image" alt="background" />
       <form onSubmit={handleSubmit} className='main-form-log' action='#!' id='main-form'>
         <h2 className='log-h2'>Login to your account</h2>
 
@@ -107,7 +106,11 @@ const Login = ({ setCurrentUser }) => {
           />
         </div>
 
-        <button onClick={togglePassword}>Show Password</button>
+        <input className='checkbox' onClick={togglePassword} type="checkbox" id="showPassword" />
+        <label className='checkbox' htmlFor="showPassword">&nbsp;Show password</label>
+        <br /><br />
+
+        {/* <button onClick={togglePassword}>Show Password</button> */}
         <button type='submit'>Login</button>
 
         <p>
@@ -116,10 +119,10 @@ const Login = ({ setCurrentUser }) => {
             Signup
           </Link>
         </p><br />
+
         <div>{errors}</div>
 
       </form>
-
     </div>
   )
 }

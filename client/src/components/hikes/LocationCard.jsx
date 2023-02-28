@@ -46,7 +46,7 @@ const LocationCard = ({ location }) => {
   return (
     <>
       <h2 className='trail-name'>{trail_name}</h2><br />
-      <img src={image_url} alt="hike-img" className='pic' />
+      <img src={image_url} alt="hike-img" className='pic' /><br/><br/>
       <ul><img src={Location} className="location-image" alt="background" />
         <b className='city-state'>&nbsp;{city_state}</b>
       </ul><br />
