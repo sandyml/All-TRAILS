@@ -1,6 +1,6 @@
 class HikeTrailsController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity_not_found_error
-  skip_before_action :authorized, only: [:index, :show]
+  skip_before_action :authorized #, only: [:index, :show]
   # MASTER BRANCH!!!
 
   # GET '/hike_trails' all hike_trails
@@ -12,8 +12,7 @@ class HikeTrailsController < ApplicationController
   # GET /hike_trails/:id for a hike based on id params
   def show
     hike = find_hike
-    render json: hike, include: [:user], status: :ok
-    # render json: hike, include: [:users], status: :ok
+    render json: hike, include: [:users], status: :ok
   end
 
   # POST '/hike_trails' ==> create new review, based on logged in user
@@ -22,8 +21,8 @@ class HikeTrailsController < ApplicationController
     hikes = HikeTrail.all
     # hike = @current_user.hikes.create(hike_trail_params)
     hike = hikes.create(hike_trail_params)
-    # render json: hike, status: :created
-    render json: hike, include: [:user], status: :created
+    render json: hike, status: :created
+    # render json: hike, include: [:user], status: :created
   end
 
   # PATCH '/hike_trails/:id'

@@ -1,68 +1,59 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { headers } from '../../Global';
-// import View from '../../img/green.png'
 import Background from '../../img/winter_hike.jpg'
+// import { UserContext } from '../context/UserContext';
 
-const Login = ({ setCurrentUser }) => {
+const Login = ({ setCurrentUser, loggedIn, loading, }) => {
   const navigate = useNavigate();
   const [account_name, setAccount_name] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const [passwordShown, setPasswordShown] = useState(false);
-  // const { setErrors, errors } = useContext(UserContext);
-  // const { login, setErrors, errors } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(false);
+  // const { setUser } = useContext(UserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const user = {
       account_name,
       email,
       password,
     }
     fetch('/login', {
-      method: "POST",
+      method: 'POST',
       headers,
       body: JSON.stringify(user)
-    })
-      .then((resp) => {
-        if (resp.ok) {
-          resp.json().then((user) => {
-            console.log(user)
-            // login(user)
-            setCurrentUser(user)
-            navigate('/home')
-          })
-        } else {
-          resp.json().then(
-            (err) => {
-              console.log(err, "Login error message")
-              setErrors(err.errors)
-            }
-          );
-        }
-      });
+    }).then((resp) => {
+      setIsLoading(false);
+      if (resp.ok) {
+        resp.json().then((user) => {
+          console.log(user, "Login")
+          // setUser(user)
+          setCurrentUser(user)
+          navigate('/home')
+        })
+      } else {
+        resp.json().then((err) => {
+          console.log(err, "Login error message")
+          setErrors(err.errors)
+        });
+      }
+    });
     console.log("Login!")
-    // setAccount_name("");
-    // setEmail("");
-    // setPassword("");
   }
+
+  useEffect(() => {
+    if (!loading && loggedIn) {
+      navigate('/')
+    }
+    return () => { setErrors([]) }
+  }, [loading, loggedIn, navigate])
 
   const togglePassword = () => {
     setPasswordShown(!passwordShown)
-  }
-
-  const handleUsername = (e) => {
-    setAccount_name(e.target.value)
-  }
-
-  const handleEmail = (e) => {
-    setEmail(e.target.value)
-  }
-
-  const handlePassword = (e) => {
-    setPassword(e.target.value)
   }
 
   return (
@@ -79,7 +70,7 @@ const Login = ({ setCurrentUser }) => {
             placeholder="Enter Username"
             autoComplete="off"
             value={account_name}
-            onChange={handleUsername}
+            onChange={(e) => setAccount_name(e.target.value)}
           />
         </div>
 
@@ -91,17 +82,17 @@ const Login = ({ setCurrentUser }) => {
             placeholder="Enter Email"
             autoComplete="current-password"
             value={email}
-            onChange={handleEmail}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
         <div className='input-parent'>
           <label htmlFor='password'>Password</label>
           <input
-            placeholder="Enter Password"
             id='password'
             value={password}
-            onChange={handlePassword}
+            placeholder="Enter Password"
+            onChange={(e) => setPassword(e.target.value)}
             type={passwordShown ? "text" : "password"}
           />
         </div>
@@ -110,8 +101,9 @@ const Login = ({ setCurrentUser }) => {
         <label className='checkbox' htmlFor="showPassword">&nbsp;Show password</label>
         <br /><br />
 
-        {/* <button onClick={togglePassword}>Show Password</button> */}
-        <button type='submit'>Login</button>
+        <button type='submit'>
+          {isLoading ? "Loading..." : "Login"}
+        </button>
 
         <p>
           Don't have an account?  &nbsp;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// import { useParams } from 'react-router-dom';
 import AddForm from './AddForm';
 import EditForm from './EditForm';
 
@@ -6,6 +7,8 @@ const HikesReviews = ({ location, handleDelete, currentUser }) => {
   const { hike_trails } = location;
   const [showEditForm, setShowEditForm] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
+  
+  // const { id } = useParams();
 
   const toggleSeeEditForm = () => {
     (showEditForm === false) ? setShowEditForm(true) :
@@ -17,59 +20,58 @@ const HikesReviews = ({ location, handleDelete, currentUser }) => {
       setShowAddForm(false);
   };
 
-  if (currentUser) {
-    return (
-      <>
-      {hike_trails.map(
-        (ht) => (
-          <div key={ht}>
-            <ul className="name-user">
-              <strong >{ht.user.account_name}</strong>
-              <span>{ht.format_date}</span>
-            </ul>
-            <div className="reviews"></div>
-            {ht.review}
-            <>
-              <button className='button2' onClick={toggleSeeEditForm}>Add</button>
-              {showEditForm ? <AddForm location={location} ht={ht} /> : null}
-            </>
-            <>
-              <button className='button2' onClick={toggleSeeAddForm}>Edit</button>
-              {showAddForm ? <EditForm location={location} ht={ht} key={ht.id} /> : null}
-            </>
-            <button className='button2' onClick={() => handleDelete(ht.id)} type="delete">Remove</button>
-            <hr />
-          </div>
-        ))}
-    </>
-    );
-  } else if (!currentUser) {
+  // console.log(hike_trails.user.id, "User")
+  console.log(currentUser.id, currentUser, 'currentUser in HikesReviews')
+
   return (
     <>
       {hike_trails.map(
         (ht) => (
-          <div key={ht}>
+          <div key={ht.id}>
+            {/* {console.log(ht.user.id, "inside map")} */}
             <ul className="name-user">
-              <strong >{ht.user.account_name}</strong>
+              <strong>{ht.user.account_name}</strong>
+              {/* <strong>current user: {currentUser}</strong> */}
+              {/* <strong>{currentUser.id}</strong> */}
+              {/* <strong>id: {ht.user.id}</strong> */}
               <span>{ht.format_date}</span>
             </ul>
-            <div className="reviews"></div>
             {ht.review}
-            <>
+            <hr />
+            
+            {currentUser && currentUser.id === ht.user.id ?
+              <>
+                <>
+                  <button className='button2' onClick={toggleSeeEditForm}>Add</button>
+                  {showEditForm ? <AddForm location={location} ht={ht} /> : null}
+                </>
+                <>
+                  <button className='button2' onClick={toggleSeeAddForm}>Edit</button>
+                  {showAddForm ? <EditForm location={location} ht={ht} key={ht.id} /> : null}
+                </>
+                <button className='button2' onClick={() => handleDelete(ht.id)} type="delete">Remove</button>
+                <hr />
+              </> : null}
+
+            {/* <>
               <button className='button2' onClick={toggleSeeEditForm}>Add</button>
               {showEditForm ? <AddForm location={location} ht={ht} /> : null}
-            </>
+            </> */}
             {/* <>
               <button className='button2' onClick={toggleSeeAddForm}>Edit</button>
               {showAddForm ? <EditForm location={location} ht={ht} key={ht.id} /> : null}
             </>
-            <button className='button2' onClick={() => handleDelete(ht.id)} type="delete">Remove</button> */}
-            <hr />
+            <button className='button2' onClick={() => handleDelete(ht.id)} type="delete">Remove</button>
+            <hr /> */}
+
+
           </div>
-        ))}
+        ))
+
+      }
     </>
   )
 }
-}
+
 
 export default HikesReviews;

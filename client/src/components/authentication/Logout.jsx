@@ -9,10 +9,7 @@ const Logout = () => {
     <div className="container-signout-div">
       <img src={Background} className="bg-image" alt="background" />
       <h1 className='text-home-h1'>YOU ARE NOW SIGNED OUT!</h1><br />
-      <ul className="text-signout">
-        <li>HAPPY HIKING!</li>
-        <Link to="/login" className='text-logout'>Return to login!</Link>
-      </ul>
+        <Link to="/login" className='text-home-link'>Return to login!</Link>
       <LogoFooter />
       <Footer className="Footer-Logout" />
     </div>

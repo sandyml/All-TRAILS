@@ -4,15 +4,13 @@ const LocationContext = createContext();
 
 const LocationProvider = ({ children }) => {
   const [locations, setLocations] = useState([]);
-  // const [reviews, setReviews] = useState([])
 
   useEffect(() => {
     fetch("/locations")
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data, "Location")
+        // console.log(data, "Location")
         setLocations(data)
-        // setReviews(data)
       })
       .catch((error) => console.log(error, "An error occurred.")
       );

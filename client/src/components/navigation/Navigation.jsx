@@ -4,7 +4,7 @@ import Hiking from '../../img/hiking.png'
 // import { UserContext } from '../context/UserContext';
 // import React, { useContext } from 'react';
 
-const Navigation = ({ setCurrentUser, currentUser }) => {
+const Navigation = ({ setCurrentUser, currentUser, onLogout }) => {
   // const { user, setUser } = useContext(UserContext);
 
   const handleLogout = () => {
@@ -12,7 +12,8 @@ const Navigation = ({ setCurrentUser, currentUser }) => {
       method: "DELETE"
     }).then((r) => {
       if (r.ok) {
-        setCurrentUser(null)
+        onLogout()
+        // setCurrentUser(null)
         // setUser(null);
       }
     });

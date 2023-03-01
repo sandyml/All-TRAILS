@@ -11,13 +11,13 @@ const Home = ({ currentUser }) => {
         <div className='content-home'>
           <h1 className="li-home-explore">Hello {currentUser.account_name}! Ready to write a review?! </h1>
           <ul className="text-home">
-            <li className='li-home-hike'>HIKE</li>
-            <li className='li-home-explore'>
+            <ul className='ul-home-hike'>HIKE</ul>
+            <ul className='ul-home-explore'>
               <a href="http://localhost:4000/locations">
                 EXPLORE
               </a>
-            </li>
-            <li className='li-home-views'>VIEWS</li>
+            </ul>
+            <ul className='li-home-views'>VIEWS</ul>
           </ul>
         </div>
       </div>
@@ -29,16 +29,16 @@ const Home = ({ currentUser }) => {
         <div className='content-home'>
           <h1>Please <Link to="/login">Login</Link> or <Link to="/signup">Signup</Link></h1>
           <ul className="text-home">
-            <li className='li-home-hike'>HIKE</li>
-            <li className='li-home-explore'>
+            <ul className='li-home-hike'>HIKE</ul>
+            <ul className='li-home-explore'>
 
               {currentUser ? (
                 <a href="http://localhost:4000/locations">
                   EXPLORE
-                </a>) : (<li className='li-home-hike'>EXPLORE</li>)}
+                </a>) : (<ul className='li-home-hike'>EXPLORE</ul>)}
 
-            </li>
-            <li className='li-home-views'>VIEWS</li>
+            </ul>
+            <ul className='li-home-views'>VIEWS</ul>
           </ul>
         </div>
       </div>

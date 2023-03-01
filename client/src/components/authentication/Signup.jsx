@@ -1,25 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { headers } from '../../Global';
 import { Link, useNavigate } from 'react-router-dom';
 import Background from '../../img/winter_hike.jpg'
-// import Mountain from '../../img/mountains.png';
-// import View from '../../img/green.png'
 
-
-const Signup = ({ setCurrentUser }) => {
+const Signup = ({ setCurrentUser, handleLogin, loggedIn, loading }) => {
   const [account_name, setAccount_Name] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState([]);
-  // const { signup, setUser } = useContext(UserContext);
   const navigate = useNavigate();
+
+  const togglePassword = () => {
+    setPasswordShown(!passwordShown)
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true);
     fetch('/signup', {
-      method: "POST",
+      method: 'POST',
       headers,
       body: JSON.stringify({
         account_name,
@@ -30,11 +32,11 @@ const Signup = ({ setCurrentUser }) => {
     })
       .then((resp) => resp.json())
       .then((user) => {
+        setIsLoading(false);
         if (!user.errors) {
           console.log(user)
           setCurrentUser(user)
-          // setUser(user)
-          // signup(user)
+          handleLogin(user)
           navigate("/home")
         } else {
           console.log(user, "error thrown in signup")
@@ -42,28 +44,15 @@ const Signup = ({ setCurrentUser }) => {
           setErrors(displayErrors);
         }
       });
-    // console.log("Registered/Sigup");
+    console.log("Registered/Sigup");
   };
 
-  const togglePassword = () => {
-    setPasswordShown(!passwordShown)
-  };
-
-  const handleAccountName = (e) => {
-    setAccount_Name(e.target.value)
-  }
-
-  const handleEmail = (e) => {
-    setEmail(e.target.value)
-  }
-
-  const handlePassword = (e) => {
-    setPassword(e.target.value)
-  }
-
-  const handleConfirmPassword = (e) => {
-    setPasswordConfirmation(e.target.value)
-  }
+  useEffect(() => {
+    if (!loading && loggedIn) {
+      navigate("/")
+    }
+    return () => { setErrors([]) }
+  }, [loading, loggedIn, navigate])
 
   return (
     <div className='container-home-div'>
@@ -79,8 +68,8 @@ const Signup = ({ setCurrentUser }) => {
             autoComplete="off"
             placeholder="Create Username"
             value={account_name}
-            onChange={handleAccountName}
-            // required={ true}
+            onChange={(e) => setAccount_Name(e.target.value)}
+          // required={ true}
           />
         </div>
         <div className='input-parent'>
@@ -90,8 +79,8 @@ const Signup = ({ setCurrentUser }) => {
             id='email'
             placeholder="Enter Email"
             value={email}
-            onChange={handleEmail}
-            // required={true}
+            onChange={(e) => setEmail(e.target.value)}
+          // required={true}
           />
         </div>
         <div className='input-parent'>
@@ -99,11 +88,11 @@ const Signup = ({ setCurrentUser }) => {
           <input
             placeholder="Create Password"
             id='password'
-            autoComplete="current-password"
             value={password}
-            onChange={handlePassword}
+            autoComplete="current-password"
+            onChange={(e) => setPassword(e.target.value)}
             type={passwordShown ? "text" : "password"}
-            // required={true}
+          // required={true}
           />
         </div>
         <div className='input-parent'>
@@ -113,22 +102,23 @@ const Signup = ({ setCurrentUser }) => {
             id='password_confirmation'
             autoComplete="current-password"
             value={passwordConfirmation}
-            onChange={handleConfirmPassword}
+            onChange={(e) => setPasswordConfirmation(e.target.value)}
             type={passwordShown ? "text" : "password"}
-            // required={true}
+          // required={true}
           />
         </div>
 
         <input className='checkbox' onClick={togglePassword} type="checkbox" id="showPassword" />
         <label className='checkbox' htmlFor="showPassword">&nbsp;Show password</label>
-        <br/><br/>
+        <br /><br />
         {/* <button onClick={togglePassword}>Show Password</button> */}
         <p>By creating an account you agree to our
           <Link to="/termsandconditions">&nbsp;Terms & Privacy</Link>
         </p><br />
 
         <button type="submit" value="Submit" className="form-button">
-          Register
+          {isLoading ? "Loading..." : "Register"}
+
         </button>
 
         <p>

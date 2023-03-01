@@ -14,7 +14,7 @@ const HikeProvider = ({ children }) => {
     fetch("/hike_trails")
       .then((resp) => resp.json())
       .then((hikeData) => {
-        console.log(hikeData, "HikeContext")
+        // console.log(hikeData, "HikeContext")
         setAddReviews(hikeData)
         setReviews(hikeData)
         setHikes(hikeData)
@@ -26,20 +26,6 @@ const HikeProvider = ({ children }) => {
    const handleAddReview = (newReview) => {
     setAddReviews((addReviews) => [...addReviews, newReview])
   }
-
-  
-  // ==== FETCH BOTH hike_trails && users routes ==== \\
-  // const [errors, setErrors] = useState([]);
-  // useEffect(() => {
-  //   fetch('/hike_trails')
-  //     .then(resp => resp.json())
-  //     .then(data => {
-  //       setReviews(data)
-  //       fetch("/users")
-  //         .then(resp => resp.json())
-  //         .then(data => setUsers(data))
-  //     })
-  // }, [])
 
   // const addReview = review => {
   //   setReviews([...reviews, review]);

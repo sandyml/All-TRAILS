@@ -11,6 +11,14 @@ class UsersController < ApplicationController
  def show
   render json: @current_user
  end
+ 
+ # def show
+ #  if logged_in?
+ #   render json: @current_user
+ #  else
+ #   render json: { message: "Not Logged In" }, status: :unauthorized 
+ #  end
+ # end
 
  # Signup
  def create

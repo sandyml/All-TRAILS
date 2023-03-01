@@ -6,17 +6,22 @@ import { headers } from '../../Global';
 
 // SET ERRORS HERE TOO? 
 
-const EditForm = ({ location, ht }) => {
-  const { user_id } = useContext(UserContext);
-  // const [errors, setErrors] = useState([])
+const EditForm = ({ location, ht, loading, loggedIn, currentUser }) => {
   const [review, setReview] = useState(ht.review);
   const [date, setDate] = useState(ht.date);
+  const [isLoading, setIsLoading] = useState(false);
+  // const [errors, setErrors] = useState([])
+  
+  const { user_id } = useContext(UserContext);
+  const { hike_trails } = useContext(HikeContext);
+  const { editReview } = useContext(HikeContext);
+
   const navigate = useNavigate();
   // const { id } = useParams();
-  const { editReview } = useContext(HikeContext);
 
   function handleSubmit(e) {
     e.preventDefault();
+    setIsLoading(true);
     // debugger practice 
     fetch(`/hike_trails/${ht.id}`, {
       method: "PATCH",
@@ -25,19 +30,33 @@ const EditForm = ({ location, ht }) => {
         review,
         date,
         location_id: location.id,
-        user_id, // ht.id // map through? 
+        user_id,
       }),
     })
       .then((resp) => resp.json())
       .then(data => {
-        console.log(data, "edit review")
+        setIsLoading(false);
+        console.log(data, "review has been updated(edited)!")
         editReview(data)
         navigate('/locations') // can't post it with out refreshing the page..
         // setErrors([]);
       });
   }
 
-  
+  console.log(hike_trails, "EditForm")
+
+  // useEffect(() => {
+  //   if(!loading && !loggedIn) {
+  //     navigate('/login')
+  //   }
+  //     const hike = hike_trails.find(hike => hike.id === parseInt(id, 10))
+  //     if(!loading && currentUser.id !== hike.user.id) {
+  //       navigate('/')
+  //     }
+  //     console.log('hike', hike)
+  // }, [hike_trails, loading, loggedIn, currentUser, navigate, id])
+
+  console.log(currentUser, 'currentUser in EditForm')
 
 return (
   <section>
@@ -45,16 +64,12 @@ return (
 
     <form onSubmit={handleSubmit}>
       <div>
-        {/* <label htmlFor="hikes">Select Trail Name</label> */}
-        {/* <span>Trail Name</span> */}
         <input
           type="text"
           id="hikes"
           defaultValue={location.trail_name}
         />
       </div>
-
-      {/* <label htmlFor="review">Review:</label> */}
       <div>
         <input
           type="text"
@@ -63,8 +78,6 @@ return (
           onChange={(e) => setReview(e.target.value)}
         />
       </div>
-
-      {/* <label htmlFor="date">Date:</label> */}
       <div>
         <input
           type="text"
@@ -76,7 +89,7 @@ return (
       </div>
 
       {/* <div>{errors}</div> */}
-      <button type="submit">Submit</button>
+      <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
     </form>
   </section>
 )

@@ -9,7 +9,7 @@ import HikesReviews from './HikesReviews';
 // [] authentication review only user is able to edit
 // [] add review if (logged in) 
 
-const LocationCard = ({ location }) => {
+const ReviewCard = ({ location, currentUser }) => {
   const { trail_name, city_state, image_url, difficulty, length, elevation_gain, route_type } = location;
   const [showReview, setShowReview] = useState(false);
   const {locations, setLocations} = useContext(LocationContext);
@@ -42,9 +42,13 @@ const LocationCard = ({ location }) => {
         setLocations(updatedState);
       })
   }
+  // console.log(currentUser.id, currentUser, 'currentUser in ReviewCard')
 
+  
   return (
     <>
+    {/* <p>currentuser: {currentUser}</p> */}
+    {/* currentuser: <b>{currentUser} &nbsp;</b> */}
       <h2 className='trail-name'>{trail_name}</h2><br />
       <img src={image_url} alt="hike-img" className='pic' /><br/><br/>
       <ul><img src={Location} className="location-image" alt="background" />
@@ -58,11 +62,11 @@ const LocationCard = ({ location }) => {
       </p><br /><hr />
       <>
           <button className='location-btn' onClick={toggleSeeReviews}>Reviews</button>
-          {showReview ? <HikesReviews location={location} handleDelete={handleDelete} /> : null}
+          {showReview ? <HikesReviews location={location} handleDelete={handleDelete} currentUser={currentUser} /> : null}
           <hr /><br />
       </>
     </>
   );
 };
 
-export default LocationCard;
+export default ReviewCard;
