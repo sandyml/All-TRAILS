@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { headers } from '../../Global';
 import Background from '../../img/winter_hike.jpg'
 // import { UserContext } from '../context/UserContext';
 
-const Login = ({ setCurrentUser, loggedIn, loading, }) => {
+const Login = ({ setCurrentUser, loggedIn, loading, handleLogin}) => {
   const navigate = useNavigate();
   const [account_name, setAccount_name] = useState("");
   const [email, setEmail] = useState("");
@@ -12,45 +12,40 @@ const Login = ({ setCurrentUser, loggedIn, loading, }) => {
   const [errors, setErrors] = useState([]);
   const [passwordShown, setPasswordShown] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  // const { setUser } = useContext(UserContext);
+
+
+  // useEffect(() => {
+  //   console.log(!loading, "!loading", !loggedIn, "!loggedIn")
+  //   console.log(loading, "loading", loggedIn, "loggedIn")
+  //   if(!loading && !loggedIn) {
+  //     navigate('/')
+  //   }
+  // }, [loading, loggedIn])
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
     const user = {
-      account_name,
-      email,
-      password,
-    }
-    fetch('/login', {
-      method: 'POST',
+          account_name,
+          email,
+          password,
+        }
+    fetch("/login", {
+      method: "POST",
       headers,
       body: JSON.stringify(user)
-    }).then((resp) => {
-      setIsLoading(false);
-      if (resp.ok) {
-        resp.json().then((user) => {
-          console.log(user, "Login")
-          // setUser(user)
-          setCurrentUser(user)
-          navigate('/home')
-        })
-      } else {
-        resp.json().then((err) => {
-          console.log(err, "Login error message")
-          setErrors(err.errors)
-        });
-      }
-    });
-    console.log("Login!")
+    })
+      .then(resp => resp.json())
+      .then(data => {
+        if(data.errors) {
+          setErrors(data.errors);
+        } else {
+          handleLogin(data)
+          setErrors([])
+          navigate("/locations")
+        }
+      })
   }
-
-  useEffect(() => {
-    if (!loading && loggedIn) {
-      navigate('/')
-    }
-    return () => { setErrors([]) }
-  }, [loading, loggedIn, navigate])
 
   const togglePassword = () => {
     setPasswordShown(!passwordShown)
@@ -59,7 +54,7 @@ const Login = ({ setCurrentUser, loggedIn, loading, }) => {
   return (
     <div className='container-home-div' >
       <img src={Background} className="bg-image" alt="background" />
-      <form onSubmit={handleSubmit} className='main-form-log' action='#!' id='main-form'>
+      <form onSubmit={handleSubmit} className='main-form-log' id='main-form'>
         <h2 className='log-h2'>Login to your account</h2>
 
         <div className='input-parent'>
@@ -71,6 +66,7 @@ const Login = ({ setCurrentUser, loggedIn, loading, }) => {
             autoComplete="off"
             value={account_name}
             onChange={(e) => setAccount_name(e.target.value)}
+            required={true}
           />
         </div>
 
@@ -83,6 +79,7 @@ const Login = ({ setCurrentUser, loggedIn, loading, }) => {
             autoComplete="current-password"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required={true}
           />
         </div>
 

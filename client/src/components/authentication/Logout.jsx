@@ -1,17 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Background from '../../img/icelake.jpg'
+import LogoutNav from '../navigation/LogoutNav';
 import Footer from '../static/Footer';
 import LogoFooter from '../static/LogoFooter';
 
 const Logout = () => {
   return (
     <div className="container-signout-div">
+      <LogoutNav />
       <img src={Background} className="bg-image" alt="background" />
-      <h1 className='text-home-h1'>YOU ARE NOW SIGNED OUT!</h1><br />
-        <Link to="/login" className='text-home-link'>Return to login!</Link>
+      <Link to="/login" className='text-home-link'> Return to login!</Link>
       <LogoFooter />
-      <Footer className="Footer-Logout" />
+      <Footer/>
     </div>
   )
 }

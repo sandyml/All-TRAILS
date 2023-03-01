@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { headers } from '../../Global';
 import { Link, useNavigate } from 'react-router-dom';
 import Background from '../../img/winter_hike.jpg'
@@ -47,12 +47,12 @@ const Signup = ({ setCurrentUser, handleLogin, loggedIn, loading }) => {
     console.log("Registered/Sigup");
   };
 
-  useEffect(() => {
-    if (!loading && loggedIn) {
-      navigate("/")
-    }
-    return () => { setErrors([]) }
-  }, [loading, loggedIn, navigate])
+  // useEffect(() => {
+  //   if (!loading && loggedIn) {
+  //     navigate("/")
+  //   }
+  //   return () => { setErrors([]) }
+  // }, [loading, loggedIn])
 
   return (
     <div className='container-home-div'>

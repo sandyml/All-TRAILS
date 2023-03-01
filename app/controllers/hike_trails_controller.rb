@@ -12,28 +12,29 @@ class HikeTrailsController < ApplicationController
   # GET /hike_trails/:id for a hike based on id params
   def show
     hike = find_hike
-    render json: hike, include: [:users], status: :ok
+    render json: hike, include: [:user], status: :ok
   end
 
   # POST '/hike_trails' ==> create new review, based on logged in user
   def create
     # byebug
     hikes = HikeTrail.all
-    # hike = @current_user.hikes.create(hike_trail_params)
+    # hike = @current_user.hikes.create(hikes_params) // associated build
     create_hike = hikes.create(hike_trail_params)
-    render json: create_hike, include: [:user], status: :created
+    render json: create_hike, include: [:user_id], status: :created
+    # render json: create_hike, include: [:user], status: :created // replaced with user_id for 202 success and no trigger with strftime
   end
 
   # shorten method if possible only works because strftime will not return nil 
-  def create
-    hikes = HikeTrail.all
-    hk = hikes.create(hike_trail_params)
-    if hk.valid?
-      render json: hk, include: [:user], status: :created
-    else
-      render json: { errors: hk.errors.full_messages }, status: :unprocessable_entity
-    end
-  end
+  # def create
+  #   hikes = HikeTrail.all
+  #   hk = hikes.create(hike_trail_params)
+  #   if hk.valid?
+  #     render json: hk, include: [:user], status: :created
+  #   else
+  #     render json: { errors: hk.errors.full_messages }, status: :unprocessable_entity
+  #   end
+  # end
 
   # PATCH '/hike_trails/:id'
   def update
@@ -58,6 +59,11 @@ class HikeTrailsController < ApplicationController
 
   def find_hike
     HikeTrail.find(params[:id])
+  end
+
+  # will not beed user_id / ids no longer need via body of request, params given to us by the request whether routes/body of fetch req because is is coming from out create 
+  def hikes_params
+    params.permit(:location_id, :account_name, :review, :format_date, :date)
   end
 
   def hike_trail_params

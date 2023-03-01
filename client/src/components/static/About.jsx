@@ -1,8 +1,16 @@
 import React from 'react';
-import HikeViews from '../../img/hikeviews.jpg'
+// import React, { useEffect } from 'react';
+import HikeViews from '../../img/hikeviews.jpg';
+// import { useNavigate } from 'react-router-dom';
 // import backgroundVideo from '../../video/SandraYunsVideo.mp4'
 
 const About = () => {
+  // const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   navigate('/')
+  // }, [navigate])
+
   return (
     <div className="about-div" >
       <div className='overlay'></div>

@@ -10,11 +10,9 @@ class ApplicationController < ActionController::API
     !!session[:user_id] # boolean value true
   end
 
-  # def current_user
-  #   User.find_by(id: session[:user_id])
-  # end
-
-
+  def current_user
+    User.find_by(id: session[:user_id])
+  end
   
   def authorized
     @current_user = User.find_by(id: session[:user_id])
@@ -30,11 +28,3 @@ class ApplicationController < ActionController::API
   end
 
 end
-
-
-# [x] create signin? (user_signed_in method name)
-  # user ? to make it a question 
-  #https://stackoverflow.com/questions/38856994/undefined-method-logged-in-ruby-on-rails
-
-# [x] create current_user
-  # https://stackoverflow.com/questions/12719958/rails-where-does-the-infamous-current-user-come-from

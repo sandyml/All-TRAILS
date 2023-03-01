@@ -2,17 +2,25 @@ import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HikeContext } from '../context/HikeContext';
 
-const AddForm = ({ location, ht }) => {
+const AddForm = ({ location, ht, loading, loggedIn }) => {
   const navigate = useNavigate();
   // const [errors, setErrors] = useState([]);
   const [review, setReview] = useState("");
   const [date, setDate] = useState(ht.date);
   const { handleAddReview } = useContext(HikeContext);
-  const { user_id } = useContext(HikeContext)
+  // const { user_id } = useContext(HikeContext)
   const { format_date } = ht
   const [isLoading, setIsLoading] = useState(false);
 
   console.log(format_date, "FORMAT", date, "DATE", ht.date, "HT.DATE")
+
+  // useEffect(() => {
+  //   console.log(!loading, "!loading", !loggedIn, "!loggedIn")
+  //   console.log(loading, "loading", loggedIn, "loggedIn")
+  //   if(!loading && !loggedIn) {
+  //     navigate('/')
+  //   }
+  // }, [loading, loggedIn])
 
   function handleSubmit(e) {
     e.preventDefault();

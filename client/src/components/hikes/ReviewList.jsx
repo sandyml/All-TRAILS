@@ -17,12 +17,24 @@ const ReviewList = ({ currentUser, loading, loggedIn }) => {
       />
   )
 
-
+  // automatically happen when load 
+  // loggedIn false as default 
+  // if loading is false !loading and login in false !logged in reroute to /login (extra condition)
+  console.log(!loading, "!loading", !loggedIn, "!loggedIn")
+  console.log(loading, "loading", loggedIn, "loggedIn")
   useEffect(() => {
-    if(!loading && !loggedIn) {
-      navigate('/locations')
+    if(!loggedIn) {
+      navigate('/')
     }
-  }, [loading, loggedIn, navigate])
+  }, [loggedIn])
+
+  // useEffect(() => {
+  //   console.log(!loading, "!loading", !loggedIn, "!loggedIn")
+  //   console.log(loading, "loading", loggedIn, "loggedIn")
+  //   if(!loading && !loggedIn) {
+  //     navigate('/')
+  //   }
+  // }, [loading, loggedIn, navigate])
 
   return (
     <div className="testimonial-heading">

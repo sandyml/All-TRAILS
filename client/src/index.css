@@ -65,9 +65,9 @@ topnav-nav.about-p {
   font-size: 17px;
 }
 
-.topnav:hover {
+/* .topnav:hover {
   opacity: 0.9;
-}
+} */
 
 .topnav-nav:hover {
   transform: scale(1.3);
@@ -295,7 +295,8 @@ img.bg-image-home {
 
 .container-signout-div {
   position: relative;
-  background-color:#2b381f;
+  margin-top: 0;
+  background-color: #6D7A71;
 }
 
 .text-signout {

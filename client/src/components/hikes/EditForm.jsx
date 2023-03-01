@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { HikeContext } from '../context/HikeContext';
 import { UserContext } from '../context/UserContext';
 import { headers } from '../../Global';
+// import { useParams } from 'react-router-dom';
 
 // SET ERRORS HERE TOO? 
 
@@ -12,12 +13,20 @@ const EditForm = ({ location, ht, loading, loggedIn, currentUser }) => {
   const [isLoading, setIsLoading] = useState(false);
   // const [errors, setErrors] = useState([])
   
+  // useContext
   const { user_id } = useContext(UserContext);
-  const { hike_trails } = useContext(HikeContext);
   const { editReview } = useContext(HikeContext);
 
   const navigate = useNavigate();
   // const { id } = useParams();
+
+  // useEffect(() => {
+  //   console.log(!loading, "!loading", !loggedIn, "!loggedIn")
+  //   console.log(loading, "loading", loggedIn, "loggedIn")
+  //   if(!loading && !loggedIn) {
+  //     navigate('/')
+  //   }
+  // }, [loading, loggedIn])
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -36,27 +45,25 @@ const EditForm = ({ location, ht, loading, loggedIn, currentUser }) => {
       .then((resp) => resp.json())
       .then(data => {
         setIsLoading(false);
-        console.log(data, "review has been updated(edited)!")
         editReview(data)
         navigate('/locations') // can't post it with out refreshing the page..
+        console.log(data, "review has been updated(edited)!")
         // setErrors([]);
       });
   }
-
-  console.log(hike_trails, "EditForm")
+  // debugger
 
   // useEffect(() => {
   //   if(!loading && !loggedIn) {
   //     navigate('/login')
   //   }
-  //     const hike = hike_trails.find(hike => hike.id === parseInt(id, 10))
-  //     if(!loading && currentUser.id !== hike.user.id) {
+  //     if(!loading && currentUser.id !== hike_trails.user.id) {
   //       navigate('/')
   //     }
-  //     console.log('hike', hike)
+  //     console.log('hike', hike_trails)
   // }, [hike_trails, loading, loggedIn, currentUser, navigate, id])
 
-  console.log(currentUser, 'currentUser in EditForm')
+  console.log(currentUser, 'currentUser in EditForm!')
 
 return (
   <section>

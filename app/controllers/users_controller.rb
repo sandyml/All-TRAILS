@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
- include ActionController::Cookies
  skip_before_action :authorized #, only: [:show]
  # rescue_from ActiveRecord::RecordNotFound, with: :record_not_found #will raise errors along side find instead of find_by
 
@@ -8,18 +7,23 @@ class UsersController < ApplicationController
   # render json: User.all, adapter: nil, // turn off serializer gem and gives us access to the built in serializers again except: [:created_at, :updated_at], status: :ok
  end
 
- # def show
- #  render json: @current_user
- # end
- 
+#  current_user coming from application current_user method
  def show
-  # render json of the currently logged in user
-  if logged_in?
-    render json: @current_user
+  if current_user
+    render json: current_user
   else
-    render json: { message: "Not Logged In"}, status: :unauthorized 
+    render json: { errors: "Not logged in" }, status: :unauthorized 
   end
  end
+ 
+#  def show
+#   # render json of the currently logged in user
+#   if logged_in?
+#     render json: @current_user
+#   else
+#     render json: { error: "Not logged in"}, status: :unauthorized 
+#   end
+#  end
 
  # Signup
  def create

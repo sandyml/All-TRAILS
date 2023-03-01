@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
-// import { useParams } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import AddForm from './AddForm';
 import EditForm from './EditForm';
 
-const HikesReviews = ({ location, handleDelete, currentUser }) => {
+const HikesReviews = ({ location, handleDelete, currentUser, loading, loggedIn }) => {
   const { hike_trails } = location;
   const [showEditForm, setShowEditForm] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
-  
   // const { id } = useParams();
+  // const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   console.log(!loading, "!loading", !loggedIn, "!loggedIn")
+  //   console.log(loading, "loading", loggedIn, "loggedIn")
+  //   if(!loading && !loggedIn) {
+  //     navigate('/')
+  //   }
+  // }, [loading, loggedIn])
 
   const toggleSeeEditForm = () => {
     (showEditForm === false) ? setShowEditForm(true) :

@@ -1,11 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Hiking from '../../img/hiking.png'
-// import { UserContext } from '../context/UserContext';
-// import React, { useContext } from 'react';
 
 const Navigation = ({ setCurrentUser, currentUser, onLogout }) => {
-  // const { user, setUser } = useContext(UserContext);
 
   const handleLogout = () => {
     fetch("/logout", {
@@ -13,26 +10,23 @@ const Navigation = ({ setCurrentUser, currentUser, onLogout }) => {
     }).then((r) => {
       if (r.ok) {
         onLogout()
-        // setCurrentUser(null)
-        // setUser(null);
       }
     });
   }
 
   return (
-    <nav className='topnav'>
-      <div>
+    // <nav className='topnav'>
+      <div className='topnav'>
         <Link to="/locations"><img src={Hiking} className="hike-image-nav" alt="background" /></Link>
         <Link to="/locations" className='topnav-nav'><h1 className='h1-nav'>AlltRAILS</h1></Link>
-        <Link to="/" className='topnav-nav'>Home</Link>
         <Link to="/locations" className='topnav-nav'>Reviews</Link>
         <Link to="/about" className='topnav-nav'>About</Link>
         <div>
-          {currentUser ? (
+          {currentUser && currentUser.id ? (
             <div>
               <Link to="/logout" className='topnav-nav-sign' onClick={handleLogout}>Logout</Link>
               <span className='welcome-h1'>Welcome, {currentUser.account_name}!</span>
-              </div>
+            </div>
           ) : (
             <div>
               <Link to="/" className='topnav-nav'>Home</Link>
@@ -42,7 +36,7 @@ const Navigation = ({ setCurrentUser, currentUser, onLogout }) => {
           )}
         </div>
       </div>
-    </nav>
+    // </nav>
   );
 }
 
