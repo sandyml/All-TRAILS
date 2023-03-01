@@ -20,9 +20,19 @@ class HikeTrailsController < ApplicationController
     # byebug
     hikes = HikeTrail.all
     # hike = @current_user.hikes.create(hike_trail_params)
-    hike = hikes.create(hike_trail_params)
-    render json: hike, status: :created
-    # render json: hike, include: [:user], status: :created
+    create_hike = hikes.create(hike_trail_params)
+    render json: create_hike, include: [:user], status: :created
+  end
+
+  # shorten method if possible only works because strftime will not return nil 
+  def create
+    hikes = HikeTrail.all
+    hk = hikes.create(hike_trail_params)
+    if hk.valid?
+      render json: hk, include: [:user], status: :created
+    else
+      render json: { errors: hk.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   # PATCH '/hike_trails/:id'

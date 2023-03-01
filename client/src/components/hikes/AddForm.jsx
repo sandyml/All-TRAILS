@@ -8,8 +8,11 @@ const AddForm = ({ location, ht }) => {
   const [review, setReview] = useState("");
   const [date, setDate] = useState(ht.date);
   const { handleAddReview } = useContext(HikeContext);
+  const { user_id } = useContext(HikeContext)
   const { format_date } = ht
   const [isLoading, setIsLoading] = useState(false);
+
+  console.log(format_date, "FORMAT", date, "DATE", ht.date, "HT.DATE")
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -24,7 +27,8 @@ const AddForm = ({ location, ht }) => {
         review,
         date,
         location_id: location.id,
-        user_id: ht.id
+        user_id: ht.user_id
+        // user_id: ht.id
       }),
     })
       .then((r) => r.json())
@@ -35,7 +39,9 @@ const AddForm = ({ location, ht }) => {
         navigate('/locations')
       });
   }
-// initially had current user conitional rendering for user to enable add and edit 
+
+  // how to organize date! 
+  
   return (
     <>
       <span>Create New Review</span>
@@ -66,7 +72,7 @@ const AddForm = ({ location, ht }) => {
             name="title"
             id="title"
             placeholder='MM/DD/YYYY'
-            defaultValue={format_date}
+            defaultValue={ht.format_date}
             onChange={(e) => setDate(e.target.value)}
           />
         </div>

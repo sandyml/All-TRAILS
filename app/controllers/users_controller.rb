@@ -8,17 +8,18 @@ class UsersController < ApplicationController
   # render json: User.all, adapter: nil, // turn off serializer gem and gives us access to the built in serializers again except: [:created_at, :updated_at], status: :ok
  end
 
- def show
-  render json: @current_user
- end
- 
  # def show
- #  if logged_in?
- #   render json: @current_user
- #  else
- #   render json: { message: "Not Logged In" }, status: :unauthorized 
- #  end
+ #  render json: @current_user
  # end
+ 
+ def show
+  # render json of the currently logged in user
+  if logged_in?
+    render json: @current_user
+  else
+    render json: { message: "Not Logged In"}, status: :unauthorized 
+  end
+ end
 
  # Signup
  def create

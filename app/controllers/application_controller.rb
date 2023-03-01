@@ -6,9 +6,15 @@ class ApplicationController < ActionController::API
   
   before_action :authorized
 
+  def logged_in?
+    !!session[:user_id] # boolean value true
+  end
+
   # def current_user
-  #   @current_user = User.find_by_id(session[:id])
+  #   User.find_by(id: session[:user_id])
   # end
+
+
   
   def authorized
     @current_user = User.find_by(id: session[:user_id])
