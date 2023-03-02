@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HikeContext } from '../context/HikeContext';
+import { UserContext } from '../context/UserContext';
 
-const AddForm = ({ location, ht, loading, loggedIn }) => {
+const AddForm = ({ location, ht }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [review, setReview] = useState("");
   const [errors, setErrors] = useState([])
@@ -13,6 +14,7 @@ const AddForm = ({ location, ht, loading, loggedIn }) => {
 
   // context
   const { handleAddReview } = useContext(HikeContext);
+  const { loading, loggedIn } = useContext(UserContext);
 
   // console.log(format_date, "FORMAT", date, "DATE", ht.date, "HT.DATE")
 

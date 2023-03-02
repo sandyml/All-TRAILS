@@ -1,21 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Hiking from '../../img/hiking.png'
+import { UserContext } from '../context/UserContext';
 
-const Navigation = ({ setCurrentUser, currentUser, onLogout }) => {
+const Navigation = () => {
+// const Navigation = ({ setCurrentUser, currentUser, onLogout }) => {
+  const { setCurrentUser, currentUser, handleOnLogout } = useContext(UserContext);
+
+  console.log(currentUser, "Nav")
+  
 
   const handleLogout = () => {
     fetch("/logout", {
       method: "DELETE"
     }).then((r) => {
       if (r.ok) {
-        onLogout()
+        handleOnLogout()
       }
     });
   }
 
   return (
-    // <nav className='topnav'>
       <div className='topnav'>
         <Link to="/locations"><img src={Hiking} className="hike-image-nav" alt="background" /></Link>
         <Link to="/locations" className='topnav-nav-p'><h1 className='h1-nav'>AlltRAILS</h1></Link>
@@ -36,7 +41,6 @@ const Navigation = ({ setCurrentUser, currentUser, onLogout }) => {
           )}
         </div>
       </div>
-    // </nav>
   );
 }
 

@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { headers } from '../../Global';
 import Background from '../../img/winter_hike.jpg'
 // import { UserContext } from '../context/UserContext';
 import hikeVideo from '../../video/Hike-Slide.mp4'
+import { UserContext } from '../context/UserContext';
 
-const Login = ({ setCurrentUser, loggedIn, loading, handleLogin }) => {
+const Login = () => {
   const navigate = useNavigate();
   const [account_name, setAccount_name] = useState("");
   const [email, setEmail] = useState("");
@@ -13,6 +14,7 @@ const Login = ({ setCurrentUser, loggedIn, loading, handleLogin }) => {
   const [errors, setErrors] = useState([]);
   const [passwordShown, setPasswordShown] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const { setCurrentUser, handleLogin, loggedIn, loading } = useContext(UserContext);
 
 
   // useEffect(() => {

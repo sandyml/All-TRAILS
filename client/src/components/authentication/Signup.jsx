@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { headers } from '../../Global';
 import { Link, useNavigate } from 'react-router-dom';
 import Background from '../../img/winter_hike.jpg'
+import { UserContext } from '../context/UserContext';
 
-const Signup = ({ setCurrentUser, handleLogin, loggedIn, loading }) => {
+const Signup = () => {
   const [account_name, setAccount_Name] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,6 +13,7 @@ const Signup = ({ setCurrentUser, handleLogin, loggedIn, loading }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
+  const { setCurrentUser, handleLogin, loggedIn, loading } = useContext(UserContext);
 
   const togglePassword = () => {
     setPasswordShown(!passwordShown)
@@ -46,13 +48,6 @@ const Signup = ({ setCurrentUser, handleLogin, loggedIn, loading }) => {
       });
     console.log("Registered/Sigup");
   };
-
-  // useEffect(() => {
-  //   if (!loading && loggedIn) {
-  //     navigate("/")
-  //   }
-  //   return () => { setErrors([]) }
-  // }, [loading, loggedIn])
 
   return (
     <div className='container-home-div'>

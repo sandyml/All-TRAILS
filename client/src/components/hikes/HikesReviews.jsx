@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { UserContext } from '../context/UserContext';
 // import { useNavigate } from 'react-router-dom';
 import AddForm from './AddForm';
 import EditForm from './EditForm';
 
-const HikesReviews = ({ location, handleDelete, currentUser, loading, loggedIn }) => {
+const HikesReviews = ({ location, handleDelete}) => {
   const { hike_trails } = location;
   const [showEditForm, setShowEditForm] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
+  const { currentUser, loggedIn, loading } = useContext(UserContext);
   // const { id } = useParams();
   // const navigate = useNavigate();
 

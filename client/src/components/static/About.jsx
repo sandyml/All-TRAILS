@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import HikeViews from '../../img/hikeviews.jpg';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
-const About = ({ loading, loggedIn }) => {
+const About = () => {
   const navigate = useNavigate();
+  const { loading, loggedIn } = useContext(UserContext);
 
   useEffect(() => {
     if(!loading && !loggedIn) {

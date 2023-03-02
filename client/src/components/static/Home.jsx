@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import Background from '../../img/winter_hike.jpg'
+import { UserContext } from '../context/UserContext';
 
-const Home = ({ currentUser }) => {
+const Home = () => {
+// const Home = ({ currentUser }) => {
+  // setCurrentUser={setCurrentUser} currentUser={currentUser}
+  const { currentUser } = useContext(UserContext);
+
+  console.log(currentUser, "Home")
 
   if (currentUser) {
     return (

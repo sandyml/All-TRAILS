@@ -6,14 +6,14 @@ import { headers } from '../../Global';
 
 // SET ERRORS HERE TOO? 
 
-const EditForm = ({ location, ht, loading, loggedIn, currentUser }) => {
+const EditForm = ({ location, ht }) => {
   const [review, setReview] = useState(ht.review);
   const [date, setDate] = useState(ht.date);
   const [isLoading, setIsLoading] = useState(false);
   // const [errors, setErrors] = useState([])
   
   // useContext
-  // const { user_id } = useContext(UserContext);
+  const { loading, loggedIn, currentUser } = useContext(UserContext);
   const { editReview, user_id } = useContext(HikeContext);
 
   const navigate = useNavigate();
