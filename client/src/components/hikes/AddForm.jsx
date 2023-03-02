@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HikeContext } from '../context/HikeContext';
 import { UserContext } from '../context/UserContext';
+import { headers } from '../../Global';
 
 const AddForm = ({ location, ht }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -49,15 +50,13 @@ const AddForm = ({ location, ht }) => {
   //     });
   // }
 
+  // shortened headers 
   const handleSubmit = e => {
     e.preventDefault();
     setIsLoading(true);
     fetch('/hike_trails', {
       method: 'POST',
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
+      headers,
       body: JSON.stringify({
         review,
         date,
@@ -67,7 +66,7 @@ const AddForm = ({ location, ht }) => {
     })
       .then((r) => r.json())
       .then(newReview => {
-        if(newReview.errors) {
+        if (newReview.errors) {
           setErrors(newReview.errors)
         } else {
           setIsLoading(false);
@@ -77,7 +76,7 @@ const AddForm = ({ location, ht }) => {
         }
       });
   }
-  
+
   return (
     <>
       <span>Create New Review</span>
@@ -87,7 +86,7 @@ const AddForm = ({ location, ht }) => {
             type="text"
             id="hikes"
             defaultValue={location.trail_name}
-            // onChange={(e) => setTrail_Name(e.target.value)}
+          // onChange={(e) => setTrail_Name(e.target.value)}
           />
         </div>
         <div>
@@ -113,10 +112,9 @@ const AddForm = ({ location, ht }) => {
             onChange={(e) => setDate(e.target.value)}
           />
         </div>
-         {errors.map((err) => (
-              <div key={err}>{err}</div>
-            ))}
-        {/* <div> {errors}<br/> </div> */}
+        {errors.map((err) => (
+          <div key={err}>{err}</div>
+        ))}
         <button type='submit'>{isLoading ? "Loading..." : "Submit"}</button>
       </form>
     </>

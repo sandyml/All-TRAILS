@@ -9,28 +9,27 @@ const ReviewList = () => {
   const { currentUser, loading, loggedIn } = useContext(UserContext);
   const navigate = useNavigate();
 
-  
   const reviewCards = locations.map(
     location =>
-    <ReviewCard
-    key={location.id}
-    location={location}
-    currentUser={currentUser}
-    />
-    )
-    
+      <ReviewCard
+        key={location.id}
+        location={location}
+        currentUser={currentUser}
+      />
+  )
+
   console.log(currentUser, "currentUser in ReviewList")
   console.log(!loading, "!loading", !loggedIn, "!loggedIn")
   console.log(loading, "loading", loggedIn, "loggedIn")
   useEffect(() => {
-    if(!loading && !loggedIn) {
+    if (!loading && !loggedIn) {
       navigate('/')
     }
   }, [loading, loggedIn])
 
   return (
     <div className="testimonial-heading">
-        <span>Hikes | Reviews <hr/></span>
+      <span>Hikes | Reviews <hr /></span>
       {reviewCards}
     </div>
   )

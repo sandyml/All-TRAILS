@@ -14,7 +14,6 @@ import TermsPolicy from './components/static/TermsPolicy';
 import AddForm from './components/hikes/AddForm';
 import EditForm from './components/hikes/EditForm';
 import HikesReviews from './components/hikes/HikesReviews';
-import { useState, useEffect } from 'react';
 import ReviewList from './components/hikes/ReviewList';
 import { UserProvider } from './components/context/UserContext';
 
@@ -24,7 +23,7 @@ const App = () => {
     <UserProvider>
       <LocationProvider>
         <HikeProvider>
-          <Navigation/>
+          <Navigation />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
@@ -32,7 +31,7 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
-            <Route path="/signup" element={<Signup/>} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/locations" element={<ReviewList />} />
             <Route path="/hike_trails" element={<HikesReviews />} />
             <Route path="/hike_trails/new" element={<AddForm />} />
