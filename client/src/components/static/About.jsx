@@ -1,27 +1,25 @@
-import React from 'react';
-// import React, { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import HikeViews from '../../img/hikeviews.jpg';
-// import { useNavigate } from 'react-router-dom';
-// import backgroundVideo from '../../video/SandraYunsVideo.mp4'
+import { useNavigate } from 'react-router-dom';
 
-const About = () => {
-  // const navigate = useNavigate();
+const About = ({ loading, loggedIn }) => {
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   navigate('/')
-  // }, [navigate])
+  useEffect(() => {
+    if(!loading && !loggedIn) {
+      navigate('/')
+    }
+  },[loading, loggedIn])
 
   return (
     <div className="about-div" >
       <div className='overlay'></div>
       <img src={HikeViews} alt='background' className='bg-image-about' />
-      {/* <video autoPlay loop muted id='video'>
-        <source src={backgroundVideo} type='video/mp4' />
-      </video> */}
       <div className='content'>
-        <p className='about-p'>
-          All tRAILS was inspired by AllTrails Website. Completely fictional with real and fake reviews from friends
-        </p>
+          <div className="testimonial-heading-a">
+            <span className='about-text'>This Hike T<b>RAILS</b> Application is completely fictional with fictional reviews. <hr /></span>
+            <p className='about-text'>Review page with Hike Trails. Inside the Review page, you'll have access to add, edit, or delete your review.</p>
+          </div>
       </div>
     </div>
   )

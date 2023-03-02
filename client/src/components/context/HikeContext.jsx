@@ -27,10 +27,6 @@ const HikeProvider = ({ children }) => {
     setAddReviews((addReviews) => [...addReviews, newReview])
   }
 
-  // const addReview = review => {
-  //   setReviews([...reviews, review]);
-  // }
-
   const editReview = newReview => {
     const updatedReviews = reviews.map(review => {
       if (newReview.id === review.id) {
@@ -41,19 +37,6 @@ const HikeProvider = ({ children }) => {
     })
     setReviews(updatedReviews);
   }
-
-  // debugger
-
-  // const deleteReview = deletedReview => {
-  //   const updatedReviews = reviews.filter(review => review.id !== deletedReview.id)
-  //   setReviews(updatedReviews)
-  // }
-
-  // const [ users, setUsers ] = useState([])
-  // const addUser = user => {
-  //   setUsers([...users, user])
-  // }
-
 
   return (
     <HikeContext.Provider value={{ hikes, setHikes, setReviews, reviews, handleAddReview, addReviews, editReview }} >

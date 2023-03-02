@@ -3,8 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { headers } from '../../Global';
 import Background from '../../img/winter_hike.jpg'
 // import { UserContext } from '../context/UserContext';
+import hikeVideo from '../../video/Hike-Slide.mp4'
 
-const Login = ({ setCurrentUser, loggedIn, loading, handleLogin}) => {
+const Login = ({ setCurrentUser, loggedIn, loading, handleLogin }) => {
   const navigate = useNavigate();
   const [account_name, setAccount_name] = useState("");
   const [email, setEmail] = useState("");
@@ -26,10 +27,10 @@ const Login = ({ setCurrentUser, loggedIn, loading, handleLogin}) => {
     e.preventDefault();
     setIsLoading(true);
     const user = {
-          account_name,
-          email,
-          password,
-        }
+      account_name,
+      email,
+      password,
+    }
     fetch("/login", {
       method: "POST",
       headers,
@@ -37,7 +38,7 @@ const Login = ({ setCurrentUser, loggedIn, loading, handleLogin}) => {
     })
       .then(resp => resp.json())
       .then(data => {
-        if(data.errors) {
+        if (data.errors) {
           setErrors(data.errors);
         } else {
           handleLogin(data)
@@ -53,6 +54,13 @@ const Login = ({ setCurrentUser, loggedIn, loading, handleLogin}) => {
 
   return (
     <div className='container-home-div' >
+
+      {/* <div className='content-login'>
+          <video autoPlay loop muted id='video'>
+            <source src={hikeVideo} type='video/mp4' />
+          </video>
+      </div> */}
+
       <img src={Background} className="bg-image" alt="background" />
       <form onSubmit={handleSubmit} className='main-form-log' id='main-form'>
         <h2 className='log-h2'>Login to your account</h2>
@@ -113,6 +121,7 @@ const Login = ({ setCurrentUser, loggedIn, loading, handleLogin}) => {
 
       </form>
     </div>
+    // </div>
   )
 }
 

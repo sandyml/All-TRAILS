@@ -5,9 +5,10 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
   
   before_action :authorized
+  # before_action :logged_in
 
   def logged_in?
-    !!session[:user_id] # boolean value true
+    !!session[:user_id]
   end
 
   def current_user

@@ -1,9 +1,8 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { HikeContext } from '../context/HikeContext';
 import { UserContext } from '../context/UserContext';
 import { headers } from '../../Global';
-// import { useParams } from 'react-router-dom';
 
 // SET ERRORS HERE TOO? 
 
@@ -14,19 +13,12 @@ const EditForm = ({ location, ht, loading, loggedIn, currentUser }) => {
   // const [errors, setErrors] = useState([])
   
   // useContext
-  const { user_id } = useContext(UserContext);
-  const { editReview } = useContext(HikeContext);
+  // const { user_id } = useContext(UserContext);
+  const { editReview, user_id } = useContext(HikeContext);
 
   const navigate = useNavigate();
-  // const { id } = useParams();
+  const { id } = useParams();
 
-  // useEffect(() => {
-  //   console.log(!loading, "!loading", !loggedIn, "!loggedIn")
-  //   console.log(loading, "loading", loggedIn, "loggedIn")
-  //   if(!loading && !loggedIn) {
-  //     navigate('/')
-  //   }
-  // }, [loading, loggedIn])
 
   function handleSubmit(e) {
     e.preventDefault();

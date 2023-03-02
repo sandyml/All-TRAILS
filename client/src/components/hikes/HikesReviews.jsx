@@ -39,9 +39,6 @@ const HikesReviews = ({ location, handleDelete, currentUser, loading, loggedIn }
             {/* {console.log(ht.user.id, "inside map")} */}
             <ul className="name-user">
               <strong>{ht.user.account_name}</strong>
-              {/* <strong>current user: {currentUser}</strong> */}
-              {/* <strong>{currentUser.id}</strong> */}
-              {/* <strong>id: {ht.user.id}</strong> */}
               <span>{ht.format_date}</span>
             </ul>
             {ht.review}
@@ -60,22 +57,8 @@ const HikesReviews = ({ location, handleDelete, currentUser, loading, loggedIn }
                 <button className='button2' onClick={() => handleDelete(ht.id)} type="delete">Remove</button>
                 <hr />
               </> : null}
-
-            {/* <>
-              <button className='button2' onClick={toggleSeeEditForm}>Add</button>
-              {showEditForm ? <AddForm location={location} ht={ht} /> : null}
-            </> */}
-            {/* <>
-              <button className='button2' onClick={toggleSeeAddForm}>Edit</button>
-              {showAddForm ? <EditForm location={location} ht={ht} key={ht.id} /> : null}
-            </>
-            <button className='button2' onClick={() => handleDelete(ht.id)} type="delete">Remove</button>
-            <hr /> */}
-
-
           </div>
         ))
-
       }
     </>
   )

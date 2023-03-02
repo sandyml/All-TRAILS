@@ -16,13 +16,21 @@ class HikeTrailsController < ApplicationController
   end
 
   # POST '/hike_trails' ==> create new review, based on logged in user
+  # def create
+  #   hikes = HikeTrail.all
+  #   # hike = @current_user.hikes.create(hikes_params) // associated build
+  #   create_hike = hikes.create(hike_trail_params)
+  #   render json: create_hike, include: [:user_id], status: :created
+  # end
+
   def create
-    # byebug
     hikes = HikeTrail.all
-    # hike = @current_user.hikes.create(hikes_params) // associated build
-    create_hike = hikes.create(hike_trail_params)
-    render json: create_hike, include: [:user_id], status: :created
-    # render json: create_hike, include: [:user], status: :created // replaced with user_id for 202 success and no trigger with strftime
+    hike = hikes.create(hike_trail_params)
+    if hike.valid?
+      render json: hike, include: [:user], status: :created
+    else
+      render json: { errors: hike.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   # shorten method if possible only works because strftime will not return nil 

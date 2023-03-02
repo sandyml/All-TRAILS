@@ -1,54 +1,80 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HikeContext } from '../context/HikeContext';
 
 const AddForm = ({ location, ht, loading, loggedIn }) => {
-  const navigate = useNavigate();
-  // const [errors, setErrors] = useState([]);
-  const [review, setReview] = useState("");
-  const [date, setDate] = useState(ht.date);
-  const { handleAddReview } = useContext(HikeContext);
-  // const { user_id } = useContext(HikeContext)
-  const { format_date } = ht
   const [isLoading, setIsLoading] = useState(false);
+  const [review, setReview] = useState("");
+  const [errors, setErrors] = useState([])
+  const [date, setDate] = useState("DD/MM/YYYY");
+  // const [date, setDate] = useState(ht.date); 
+  const navigate = useNavigate();
+  const { format_date } = ht
 
-  console.log(format_date, "FORMAT", date, "DATE", ht.date, "HT.DATE")
+  // context
+  const { handleAddReview } = useContext(HikeContext);
+
+  // console.log(format_date, "FORMAT", date, "DATE", ht.date, "HT.DATE")
 
   // useEffect(() => {
-  //   console.log(!loading, "!loading", !loggedIn, "!loggedIn")
-  //   console.log(loading, "loading", loggedIn, "loggedIn")
   //   if(!loading && !loggedIn) {
-  //     navigate('/')
+  //     navigate('/login')
   //   }
   // }, [loading, loggedIn])
 
-  function handleSubmit(e) {
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   setIsLoading(true);
+  //   console.log("Add Form Clicked!")
+  //   fetch("/hike_trails", {
+  //     method: 'POST',
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       review,
+  //       date,
+  //       location_id: location.id,
+  //       user_id: ht.user_id
+  //     }),
+  //   })
+  //     .then((r) => r.json())
+  //     .then((newReview) => {
+  //       setIsLoading(false);
+  //       console.log(newReview, "Added New Review")
+  //       handleAddReview(newReview);
+  //       navigate('/locations')
+  //     });
+  // }
+
+  const handleSubmit = e => {
     e.preventDefault();
     setIsLoading(true);
-    console.log("Add Form Clicked!")
-    fetch("/hike_trails", {
+    fetch('/hike_trails', {
       method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         review,
         date,
         location_id: location.id,
         user_id: ht.user_id
-        // user_id: ht.id
-      }),
+      })
     })
       .then((r) => r.json())
-      .then((newReview) => {
-        setIsLoading(false);
-        console.log(newReview, "Added New Review")
-        handleAddReview(newReview);
-        navigate('/locations')
+      .then(newReview => {
+        if(newReview.errors) {
+          setErrors(newReview.errors)
+        } else {
+          setIsLoading(false);
+          console.log(newReview, "Added New Review")
+          handleAddReview(newReview)
+          navigate('/locations');
+        }
       });
   }
-
-  // how to organize date! 
   
   return (
     <>
@@ -79,17 +105,16 @@ const AddForm = ({ location, ht, loading, loggedIn }) => {
             type="text"
             name="title"
             id="title"
-            placeholder='MM/DD/YYYY'
-            defaultValue={ht.format_date}
+            placeholder='DD/MM/YYYY'
+            value={date}
+            // defaultValue={ht.format_date}
             onChange={(e) => setDate(e.target.value)}
           />
         </div>
-        {/* <div>{errors}</div> */}
-        {/* {errors.map((err) => (
+         {errors.map((err) => (
               <div key={err}>{err}</div>
-            ))} */}
-        {/* {isLoading ? "Loading..." : "Submit"} */}
-        {/* <button type='submit'>Submit</button> */}
+            ))}
+        {/* <div> {errors}<br/> </div> */}
         <button type='submit'>{isLoading ? "Loading..." : "Submit"}</button>
       </form>
     </>
