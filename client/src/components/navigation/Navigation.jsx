@@ -1,56 +1,43 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { UserContext } from '../context/UserContext';
 import Hiking from '../../img/hiking.png'
+import { UserContext } from '../context/UserContext';
 
 const Navigation = () => {
-  const { logout, user, setUser } = useContext(UserContext);
-
-  //  const handleLogout = () => {
-  //   console.log("Logout clicked!")
-  //    fetch('/logout', {
-  //      method: "DELETE"
-  //    })
-  //      .then(() => {
-  //        logout()
-  //      })
-  //  }
+  const { currentUser, handleOnLogout } = useContext(UserContext);
+  console.log(currentUser, "Nav")
 
   const handleLogout = () => {
     fetch("/logout", {
       method: "DELETE"
     }).then((r) => {
       if (r.ok) {
-        setUser(null);
+        handleOnLogout()
       }
     });
   }
 
-
   return (
-    <nav className='topnav'>
+    <div className='topnav'>
+      <Link to="/locations"><img src={Hiking} className="hike-image-nav" alt="background" /></Link>
+      <Link to="/locations" className='topnav-nav-p'><h1 className='h1-nav'>AlltRAILS</h1></Link>
+      <Link to="/locations" className='topnav-nav'>Reviews</Link>
+      <Link to="/about" className='topnav-nav'>About</Link>
       <div>
-        <Link to="/locations"><img src={Hiking} className="hike-image-nav" alt="background" /></Link>
-        <Link to="/locations" className='topnav-nav'><h1 className='h1-nav'>AlltRAILS</h1></Link>
-        <Link to="/" className='topnav-nav'>Home</Link>
-        <Link to="/locations" className='topnav-nav'>Reviews</Link>
-        <Link to="/about" className='topnav-nav'>About</Link>
-        <Link to="/hike_trails/new" className='topnav-nav'>AddForm</Link>
-        <Link to="/hike_trails/:id/edit" className='topnav-nav'>EditForm</Link>
-        <div>
-          {user ? (
+        {currentUser && currentUser.id ? (
+          <div>
             <Link to="/logout" className='topnav-nav-sign' onClick={handleLogout}>Logout</Link>
-          ) : (
-            <div>
-              {/* <nav className='topnav'> */}
-              <Link to="/" className='topnav-nav'>Home</Link>
-              <Link to="/signup" className='topnav-nav-sign'>Signup</Link>
-              <Link to="/login" className='topnav-nav-sign'>Login</Link>
-            </div>
-          )}
-        </div>
+            <span className='welcome-h1'>Welcome, {currentUser.account_name}!</span>
+          </div>
+        ) : (
+          <div>
+            <Link to="/" className='topnav-nav'>Home</Link>
+            <Link to="/signup" className='topnav-nav-sign'>Signup</Link>
+            <Link to="/login" className='topnav-nav-sign'>Login</Link>
+          </div>
+        )}
       </div>
-    </nav>
+    </div>
   );
 }
 
