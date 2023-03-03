@@ -9,41 +9,11 @@ import { useNavigate } from 'react-router-dom';
 // }
 
 const AddForm = () => {
-  // const [formData, setFormData] = useState(intialState);
-  // const [formData, setFormData] = useState(review[{}]); //need nested state instead of form
   const navigate = useNavigate();
   const [account_name, setAccount_Name] = useState("");
-  // const [date, setDate] = useState("")
-  // const [reviews, setReviews] = useState({hike_trails: []});
-  // const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState([]);
   const [locationId, setLocationId] = useState("");
-  // const { addReview } = useContext(HikeContext);
-  // const { id } = useParams();
   const [review, setReview] = useState("")
-  // const { hike_trails } = UserContext(HikeContext)
-
-  // const handleChange = e => {
-  //   const { name, value } = e.target;
-  //   setFormData({
-  //     ...formData,
-  //     [name]: value
-  //   })
-  // }
-
-  // const handleSubmit = (e, id) => {
-  //   e.preventDefault();
-  //   fetch(`/hike_trails`, {
-  //     method: "POST",
-  //     headers,
-  //     body: JSON.stringify({
-  //       review,
-  //     })
-  //   })
-  //     .then((resp) => resp.json())
-  //     .then((data) => addReview(data));
-  //   // navigate('/locations');
-  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,10 +38,6 @@ const AddForm = () => {
         resp.json().then((err) => setErrors(err.errors));
       }
     });
-    setAccount_Name("");
-    setReview("");
-    setLocationId("");
-    // setDate("");
   }
 
   return (
@@ -89,19 +55,6 @@ const AddForm = () => {
             onChange={(e) => setReview(e.target.value)}
           />
         </div>
-        {/* Might use this instead of input form */}
-        {/* <div>
-          <label htmlFor="content">Review</label>
-          <textarea
-            type="text"
-            name="content"
-            id="content"
-            value={formData.review}
-            onChange={handleChange}
-          />
-        </div> */}
-        {/* <input type="submit" value="Create Review" /> */}
-        {/* { isLoading ? "Loading..." : "Try Again..." } */}
         {errors}
         <button type='submit'>Submit</button>
       </form>
