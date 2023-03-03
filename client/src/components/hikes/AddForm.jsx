@@ -11,7 +11,7 @@ const AddForm = ({ location, ht }) => {
   const [date, setDate] = useState("DD/MM/YYYY");
   // const [date, setDate] = useState(ht.date); 
   const navigate = useNavigate();
-  // const { format_date } = ht
+  const { trail_name } = location
 
   // context
   const { handleAddReview } = useContext(HikeContext);
@@ -59,7 +59,8 @@ const AddForm = ({ location, ht }) => {
           <input
             type="text"
             id="hikes"
-            defaultValue={location.trail_name}
+            defaultValue={trail_name}
+            // defaultValue={location.trail_name}
           />
         </div>
         <div>
