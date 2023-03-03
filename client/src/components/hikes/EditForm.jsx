@@ -1,39 +1,28 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { HikeContext } from '../context/HikeContext';
-import { UserContext } from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 import { headers } from '../../Global';
+import { HikeContext } from '../context/HikeContext';
+// import { UserContext } from '../context/UserContext';
+import { LocationContext } from '../context/LocationContext';
 
-// SET ERRORS HERE TOO? 
 
 const EditForm = ({ location, ht }) => {
+
   const [review, setReview] = useState(ht.review);
   const [date, setDate] = useState(ht.date);
   const [isLoading, setIsLoading] = useState(false);
-  const [errors, setErrors] = useState([])
 
-  // useContext
-  const { loading, loggedIn, currentUser } = useContext(UserContext);
-  const { editReview, user_id } = useContext(HikeContext);
+  const { user_id } = useContext(HikeContext);
+  const { editLReview } = useContext(LocationContext);
+  // const { editReview, user_id } = useContext(HikeContext);
 
   const navigate = useNavigate();
-  const { id } = useParams();
-
-  // useEffect(() => {
-  //   if(!loading && !loggedIn) {
-  //     navigate('/login')
-  //   }
-  //     if(!loading && currentUser.id !== hike_trails.user.id) {
-  //       navigate('/')
-  //     }
-  //     console.log('hike', hike_trails)
-  // }, [hike_trails, loading, loggedIn, currentUser, navigate, id])
 
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true); 
     fetch(`/hike_trails/${ht.id}`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers,
       body: JSON.stringify({
         review,
@@ -42,17 +31,21 @@ const EditForm = ({ location, ht }) => {
         user_id,
       }),
     })
-      .then((resp) => resp.json())
-      .then(data => {
+      .then((r) => r.json())
+      .then(editReview => {
         setIsLoading(false);
-        editReview(data)
-        navigate('/locations') // can't post it with out refreshing the page..
-        console.log(data, "review has been updated(edited)!")
-        // setErrors([]);
+        // editReview(editReview)
+        editLReview(editReview)
+        console.log(editReview, "review has been updated(edited)!")
       });
+      navigate(`/home`)
   }
 
-  console.log(currentUser, 'currentUser in EditForm!')
+  // useEffect(() => {
+  //   if(handleSubmit) {
+  //     navigate('/locations')
+  //   }
+  // }, [])
 
   return (
     <section>
@@ -83,9 +76,7 @@ const EditForm = ({ location, ht }) => {
             onChange={(e) => setDate(e.target.value)}
           />
         </div>
-
-        {/* <div>{errors}</div> */}
-        <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
+        <button type="submit" value="Update Review">{isLoading ? "Loading..." : "Submit"}</button>
       </form>
     </section>
   )

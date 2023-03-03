@@ -9,8 +9,13 @@ import HikesReviews from './HikesReviews';
 // [] authentication review only user is able to edit
 // [] add review if (logged in) 
 
-const ReviewCard = ({ location, currentUser }) => {
+const ReviewCard = ({ location, currentUser, hks }) => {
   const { trail_name, city_state, image_url, difficulty, length, elevation_gain, route_type } = location;
+  // const { location } = hks;
+
+  // console.log(hks.location, "hks In REVIEWCARD")
+  // debugger
+
   const [showReview, setShowReview] = useState(false);
   const {locations, setLocations} = useContext(LocationContext);
 
@@ -25,7 +30,7 @@ const ReviewCard = ({ location, currentUser }) => {
     fetch(`/hike_trails/${id}`, {
       method: 'DELETE',
     })
-      .then(r => r.json())
+      .then((r) => r.json())
       .then(data => {
         console.log(data, "deleted!")
         const updatedState = locations.map(l => {
@@ -42,13 +47,9 @@ const ReviewCard = ({ location, currentUser }) => {
         setLocations(updatedState);
       })
   }
-  // console.log(currentUser.id, currentUser, 'currentUser in ReviewCard')
-
   
   return (
     <>
-    {/* <p>currentuser: {currentUser}</p> */}
-    {/* currentuser: <b>{currentUser} &nbsp;</b> */}
       <h2 className='trail-name'>{trail_name}</h2><br />
       <img src={image_url} alt="hike-img" className='pic' /><br/><br/>
       <ul><img src={Location} className="location-image" alt="background" />

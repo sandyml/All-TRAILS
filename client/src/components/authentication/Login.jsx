@@ -2,28 +2,19 @@ import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { headers } from '../../Global';
 import Background from '../../img/winter_hike.jpg'
-// import { UserContext } from '../context/UserContext';
-import hikeVideo from '../../video/Hike-Slide.mp4'
 import { UserContext } from '../context/UserContext';
 
 const Login = () => {
-  const navigate = useNavigate();
   const [account_name, setAccount_name] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const [passwordShown, setPasswordShown] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { setCurrentUser, handleLogin, loggedIn, loading } = useContext(UserContext);
 
+  const { handleLogin } = useContext(UserContext);
 
-  // useEffect(() => {
-  //   console.log(!loading, "!loading", !loggedIn, "!loggedIn")
-  //   console.log(loading, "loading", loggedIn, "loggedIn")
-  //   if(!loading && !loggedIn) {
-  //     navigate('/')
-  //   }
-  // }, [loading, loggedIn])
+  const navigate = useNavigate();;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -56,13 +47,6 @@ const Login = () => {
 
   return (
     <div className='container-home-div' >
-
-      {/* <div className='content-login'>
-          <video autoPlay loop muted id='video'>
-            <source src={hikeVideo} type='video/mp4' />
-          </video>
-      </div> */}
-
       <img src={Background} className="bg-image" alt="background" />
       <form onSubmit={handleSubmit} className='main-form-log' id='main-form'>
         <h2 className='log-h2'>Login to your account</h2>
@@ -123,7 +107,6 @@ const Login = () => {
 
       </form>
     </div>
-    // </div>
   )
 }
 

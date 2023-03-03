@@ -1,24 +1,16 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../context/UserContext';
-// import { useNavigate } from 'react-router-dom';
 import AddForm from './AddForm';
 import EditForm from './EditForm';
 
-const HikesReviews = ({ location, handleDelete}) => {
+const HikesReviews = ({ location, handleDelete }) => {
+
   const { hike_trails } = location;
+
   const [showEditForm, setShowEditForm] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
-  const { currentUser, loggedIn, loading } = useContext(UserContext);
-  // const { id } = useParams();
-  // const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   console.log(!loading, "!loading", !loggedIn, "!loggedIn")
-  //   console.log(loading, "loading", loggedIn, "loggedIn")
-  //   if(!loading && !loggedIn) {
-  //     navigate('/')
-  //   }
-  // }, [loading, loggedIn])
+  const { currentUser } = useContext(UserContext);
 
   const toggleSeeEditForm = () => {
     (showEditForm === false) ? setShowEditForm(true) :
@@ -30,35 +22,33 @@ const HikesReviews = ({ location, handleDelete}) => {
       setShowAddForm(false);
   };
 
-  // console.log(hike_trails.user.id, "User")
-  console.log(currentUser.id, currentUser, 'currentUser in HikesReviews')
-
   return (
     <>
       {hike_trails.map(
         (ht) => (
           <div key={ht.id}>
-            {/* {console.log(ht.user.id, "inside map")} */}
             <ul className="name-user">
               <strong>{ht.user.account_name}</strong>
               <span>{ht.format_date}</span>
             </ul>
             {ht.review}
             <hr />
-            
-            {currentUser && currentUser.id === ht.user.id ?
-              <>
+
+            <div>
+              {currentUser && currentUser.id === ht.user.id ?
                 <>
-                  <button className='button2' onClick={toggleSeeEditForm}>Add</button>
-                  {showEditForm ? <AddForm location={location} ht={ht} /> : null}
-                </>
-                <>
-                  <button className='button2' onClick={toggleSeeAddForm}>Edit</button>
-                  {showAddForm ? <EditForm location={location} ht={ht} key={ht.id} /> : null}
-                </>
-                <button className='button2' onClick={() => handleDelete(ht.id)} type="delete">Remove</button>
-                <hr />
-              </> : null}
+                  <>
+                    <button className='button2' onClick={toggleSeeEditForm}>Add</button>
+                    {showEditForm ? <AddForm location={location} ht={ht} /> : null}
+                  </>
+                  <>
+                    <button className='button2' onClick={toggleSeeAddForm}>Edit</button>
+                    {showAddForm ? <EditForm location={location} ht={ht} key={ht.id} /> : null}
+                  </>
+                  <button className='button2' onClick={() => handleDelete(ht.id)} type="delete">Remove</button>
+                  <hr />
+                </> : null}
+            </div>
           </div>
         ))
       }

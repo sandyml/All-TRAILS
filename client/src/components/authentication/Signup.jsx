@@ -12,8 +12,10 @@ const Signup = () => {
   const [passwordShown, setPasswordShown] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState([]);
+
   const navigate = useNavigate();
-  const { setCurrentUser, handleLogin, loggedIn, loading } = useContext(UserContext);
+
+  const { setCurrentUser, handleLogin } = useContext(UserContext);
 
   const togglePassword = () => {
     setPasswordShown(!passwordShown)
@@ -64,7 +66,7 @@ const Signup = () => {
             placeholder="Create Username"
             value={account_name}
             onChange={(e) => setAccount_Name(e.target.value)}
-          // required={ true}
+          // required={true}
           />
         </div>
         <div className='input-parent'>
@@ -106,16 +108,14 @@ const Signup = () => {
         <input className='checkbox' onClick={togglePassword} type="checkbox" id="showPassword" />
         <label className='checkbox' htmlFor="showPassword">&nbsp;Show password</label>
         <br /><br />
-        {/* <button onClick={togglePassword}>Show Password</button> */}
         <p>By creating an account you agree to our
           <Link to="/termsandconditions">&nbsp;Terms & Privacy</Link>
         </p><br />
 
         <button type="submit" value="Submit" className="form-button">
           {isLoading ? "Loading..." : "Register"}
-
         </button>
-
+        
         <p>
           Already have an account? &nbsp;
           <Link to="/login" className='signup'>

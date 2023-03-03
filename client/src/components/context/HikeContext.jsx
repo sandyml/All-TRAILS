@@ -1,6 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-// const [users, setUsers] = useState([]);
 // create the context object (default value)
 const HikeContext = createContext();
 
@@ -13,11 +12,11 @@ const HikeProvider = ({ children }) => {
   useEffect(() => {
     fetch("/hike_trails")
       .then((resp) => resp.json())
-      .then((hikeData) => {
-        // console.log(hikeData, "HikeContext")
-        setAddReviews(hikeData)
-        setReviews(hikeData)
-        setHikes(hikeData)
+      .then((data) => {
+        console.log(data, "HikeContext")
+        setAddReviews(data)
+        // setReviews(data)
+        setHikes(data)
       })
       .catch((error) => console.log(error, "An error occurred.")
       );
@@ -27,6 +26,7 @@ const HikeProvider = ({ children }) => {
     setAddReviews((addReviews) => [...addReviews, newReview])
   }
 
+  // debugger
   const editReview = newReview => {
     const updatedReviews = reviews.map(review => {
       if (newReview.id === review.id) {
@@ -40,6 +40,7 @@ const HikeProvider = ({ children }) => {
 
   return (
     <HikeContext.Provider value={{ hikes, setHikes, setReviews, reviews, handleAddReview, addReviews, editReview }} >
+    {/* <HikeContext.Provider value={{ hikes, setHikes, setReviews, reviews, handleAddReview, addReviews, editReview }} > */}
       {children}
     </HikeContext.Provider>
   );

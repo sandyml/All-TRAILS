@@ -935,13 +935,15 @@ b.city-state {
   position: absolute;
   width: 14px;
 }
+
 .topnav-nav:before {
-  border-top: 2px solid #c47135;
+  border-top: 2px solid #C3CEBD;
   left: 0px;
   top: -5px;
 }
+
 .topnav-nav:after {
-  border-bottom: 2px solid #c47135;
+  border-bottom: 2px solid #C3CEBD;
   bottom: -5px;
   right: 0px;
 }
