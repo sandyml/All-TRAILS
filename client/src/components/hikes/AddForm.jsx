@@ -1,8 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { HikeContext } from '../context/HikeContext';
-import { UserContext } from '../context/UserContext';
+// import { UserContext } from '../context/UserContext';
 import { headers } from '../../Global';
+import { LocationContext } from '../context/LocationContext';
 
 const AddForm = ({ location, ht }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,46 +12,15 @@ const AddForm = ({ location, ht }) => {
   const [date, setDate] = useState("DD/MM/YYYY");
   // const [date, setDate] = useState(ht.date); 
   const navigate = useNavigate();
-  const { format_date } = ht
+  // const { format_date } = ht
 
   // context
   const { handleAddReview } = useContext(HikeContext);
-  const { loading, loggedIn } = useContext(UserContext);
-
+  // const { handleAddReview } = useContext(LocationContext);
+  // const { loading, loggedIn } = useContext(UserContext);
   // console.log(format_date, "FORMAT", date, "DATE", ht.date, "HT.DATE")
 
-  // useEffect(() => {
-  //   if(!loading && !loggedIn) {
-  //     navigate('/login')
-  //   }
-  // }, [loading, loggedIn])
-
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   setIsLoading(true);
-  //   console.log("Add Form Clicked!")
-  //   fetch("/hike_trails", {
-  //     method: 'POST',
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       review,
-  //       date,
-  //       location_id: location.id,
-  //       user_id: ht.user_id
-  //     }),
-  //   })
-  //     .then((r) => r.json())
-  //     .then((newReview) => {
-  //       setIsLoading(false);
-  //       console.log(newReview, "Added New Review")
-  //       handleAddReview(newReview);
-  //       navigate('/locations')
-  //     });
-  // }
-
-  // shortened headers 
+  // const { id } = useParams();
   const handleSubmit = e => {
     e.preventDefault();
     setIsLoading(true);

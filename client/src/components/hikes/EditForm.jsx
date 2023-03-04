@@ -18,6 +18,13 @@ const EditForm = ({ location, ht }) => {
 
   const navigate = useNavigate();
 
+//   useEffect(() => {
+//     effect
+//     return () => {
+//         cleanup
+//     }
+// }, [input])
+
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true); 
@@ -38,14 +45,8 @@ const EditForm = ({ location, ht }) => {
         editLReview(editReview)
         console.log(editReview, "review has been updated(edited)!")
       });
-      navigate(`/home`)
+      navigate(`/locations`)
   }
-
-  // useEffect(() => {
-  //   if(handleSubmit) {
-  //     navigate('/locations')
-  //   }
-  // }, [])
 
   return (
     <section>
@@ -57,6 +58,7 @@ const EditForm = ({ location, ht }) => {
             type="text"
             id="hikes"
             defaultValue={location.trail_name}
+            // onChange={(e) => setReview(e.target.value)}
           />
         </div>
         <div>

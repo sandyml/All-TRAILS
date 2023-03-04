@@ -9,7 +9,7 @@ import HikesReviews from './HikesReviews';
 // [] authentication review only user is able to edit
 // [] add review if (logged in) 
 
-const ReviewCard = ({ location, currentUser, hks }) => {
+const ReviewCard = ({ location, currentUser }) => {
   const { trail_name, city_state, image_url, difficulty, length, elevation_gain, route_type } = location;
   // const { location } = hks;
 

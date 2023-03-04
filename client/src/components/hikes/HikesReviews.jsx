@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import AddForm from './AddForm';
 import EditForm from './EditForm';
@@ -42,11 +41,6 @@ const HikesReviews = ({ location, handleDelete }) => {
                     <button className='button2' onClick={toggleSeeEditForm}>Add</button>
                     {showEditForm ? <AddForm location={location} ht={ht} /> : null}
                   </>
-                  {/* <Link to="/hike_trails/new"><button className='button2' type="add">
-                    Add</button>
-                    </Link> */}
-                    
-                  {/* <Link to={`/hike_trails/${ht.id}`}>Edit</Link> */}
                   <>
                     <button className='button2' onClick={toggleSeeAddForm}>Edit</button>
                     {showAddForm ? <EditForm location={location} ht={ht} key={ht.id} /> : null}

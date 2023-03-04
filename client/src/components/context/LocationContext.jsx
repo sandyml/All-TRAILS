@@ -4,7 +4,8 @@ const LocationContext = createContext();
 
 const LocationProvider = ({ children }) => {
   const [locations, setLocations] = useState([]);
-  // const [reviews, setReviews] = useState([]);
+  const [addReviews, setAddReviews] = useState([]);
+  const [editReview, setEditReview] = useState([]);
 
   useEffect(() => {
     fetch('/locations')
@@ -12,40 +13,65 @@ const LocationProvider = ({ children }) => {
       .then((data) => {
         console.log(data, "LocationContext")
         setLocations(data)
-        // setReviews(data)
+        setAddReviews(data)
+        setEditReview(data)
       })
       .catch((error) => console.log(error, "An error occurred.")
       );
   }, []);
   
-  // debugger
-  const editLReview = newReview => {
-    const updatedReviews = locations.map(lReview => {
-      if (newReview.id === lReview.id) {
-        return newReview;
+  // grab location id that matches another location id 
+  // return new edited review once both location id matches
+
+  // DONT TOUCH!!!
+  // const editLReview = ht => {
+  //   const updatedReviews = locations.map(location => {
+  //     // check locaction id === ht id {}
+  //     console.log(ht, "LocationContext")
+  //     if(ht.location_id === location.id) {
+  //       // construct new clone
+  //       return {
+  //          ...location, 
+  //          // what location do we need to update
+  //          hike_trails: [...location.hike_trails, ht] // map over location .hiketrails 
+  //       }
+  //     } else {
+  //       return location;
+  //     }
+  //   })
+  //   setLocations(updatedReviews);
+  // }
+
+  const editLReview = ht => {
+    const updatedReviews = locations.map(location => {
+      // check location id === ht id {} <- obj
+      console.log(ht, "LocationContext")
+      if(ht.location_id === location.id) {
+        // construct new clone
+        return {
+           ...location, 
+           // what location do we need to update
+           hike_trails: location.hike_trails.map(t => {
+            if(ht.id === t.id) {
+              return ht;
+            } else {
+              return t;
+            }
+          })
+        }
       } else {
-        return lReview;
+        return location;
       }
     })
     setLocations(updatedReviews);
   }
-  // const editLReview = newReview => {
-  //   const updatedReviews = reviews.map(review => {
-  //     if (newReview.id === review.id) {
-  //       return newReview;
-  //     } else {
-  //       return review;
-  //     }
-  //   })
-  //   setReviews(updatedReviews);
-  // }
-  
-   // function handleAddReviews(newRev){
-  //   setReviews([...reviews, newRev])
-  // }
 
+  // DESTROY REVIEW
+  const handleAddReview = (newReview) => {
+    setAddReviews((addReviews) => [...addReviews, newReview])
+  }
   return (
-    <LocationContext.Provider value={{ locations, setLocations, editLReview }}>
+    <LocationContext.Provider value={{ locations, setLocations, editLReview, handleAddReview }}>
       {children}
     </LocationContext.Provider>
   )
