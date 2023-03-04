@@ -5,7 +5,6 @@ const LocationContext = createContext();
 const LocationProvider = ({ children }) => {
   const [locations, setLocations] = useState([]);
   const [addReviews, setAddReviews] = useState([]);
-  const [editReview, setEditReview] = useState([]);
 
   useEffect(() => {
     fetch('/locations')
@@ -14,7 +13,7 @@ const LocationProvider = ({ children }) => {
         console.log(data, "LocationContext")
         setLocations(data)
         setAddReviews(data)
-        setEditReview(data)
+        // setEditReview(data)
       })
       .catch((error) => console.log(error, "An error occurred.")
       );
@@ -24,7 +23,7 @@ const LocationProvider = ({ children }) => {
   // return new edited review once both location id matches
 
   // DONT TOUCH!!!
-  // const editLReview = ht => {
+  // const editReview = ht => {
   //   const updatedReviews = locations.map(location => {
   //     // check locaction id === ht id {}
   //     console.log(ht, "LocationContext")
@@ -42,7 +41,10 @@ const LocationProvider = ({ children }) => {
   //   setLocations(updatedReviews);
   // }
 
-  const editLReview = ht => {
+  // WORKING FUNCTION!
+  // edit reviews
+  const editReview = ht => {
+    console.log("edit Review!")
     const updatedReviews = locations.map(location => {
       // check location id === ht id {} <- obj
       console.log(ht, "LocationContext")
@@ -66,12 +68,26 @@ const LocationProvider = ({ children }) => {
     setLocations(updatedReviews);
   }
 
-  // DESTROY REVIEW
-  const handleAddReview = (newReview) => {
-    setAddReviews((addReviews) => [...addReviews, newReview])
+  // added review
+  const handleAddReview = ht => {
+    const updatedAddedReviews = locations.map(location => {
+      console.log(ht, "LocationContext")
+      if(ht.location_id === location.id) {
+        // construct new clone
+        return {
+           ...location, 
+           // what location do we need to update
+           hike_trails: [...location.hike_trails, ht] // map over location .hiketrails 
+        }
+      } else {
+        return location;
+      }
+    })
+    setLocations(updatedAddedReviews);
   }
+
   return (
-    <LocationContext.Provider value={{ locations, setLocations, editLReview, handleAddReview }}>
+    <LocationContext.Provider value={{ locations, setLocations, editReview, handleAddReview }}>
       {children}
     </LocationContext.Provider>
   )

@@ -2,9 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { headers } from '../../Global';
 import { HikeContext } from '../context/HikeContext';
-// import { UserContext } from '../context/UserContext';
 import { LocationContext } from '../context/LocationContext';
-
 
 const EditForm = ({ location, ht }) => {
 
@@ -13,17 +11,9 @@ const EditForm = ({ location, ht }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { user_id } = useContext(HikeContext);
-  const { editLReview } = useContext(LocationContext);
-  // const { editReview, user_id } = useContext(HikeContext);
+  const { editReview } = useContext(LocationContext);
 
   const navigate = useNavigate();
-
-//   useEffect(() => {
-//     effect
-//     return () => {
-//         cleanup
-//     }
-// }, [input])
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -39,11 +29,10 @@ const EditForm = ({ location, ht }) => {
       }),
     })
       .then((r) => r.json())
-      .then(editReview => {
+      .then(data => {
         setIsLoading(false);
-        // editReview(editReview)
-        editLReview(editReview)
-        console.log(editReview, "review has been updated(edited)!")
+        editReview(data)
+        console.log(data, "review has been updated(edited)!")
       });
       navigate(`/locations`)
   }

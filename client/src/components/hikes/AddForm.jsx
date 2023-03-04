@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { HikeContext } from '../context/HikeContext';
-// import { UserContext } from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';
+// import { HikeContext } from '../context/HikeContext';
 import { headers } from '../../Global';
 import { LocationContext } from '../context/LocationContext';
 
@@ -12,15 +11,12 @@ const AddForm = ({ location, ht }) => {
   const [date, setDate] = useState("DD/MM/YYYY");
   // const [date, setDate] = useState(ht.date); 
   const navigate = useNavigate();
-  // const { format_date } = ht
 
   // context
-  const { handleAddReview } = useContext(HikeContext);
-  // const { handleAddReview } = useContext(LocationContext);
-  // const { loading, loggedIn } = useContext(UserContext);
+  // const { handleAddReview } = useContext(HikeContext);
+  const { handleAddReview } = useContext(LocationContext);
   // console.log(format_date, "FORMAT", date, "DATE", ht.date, "HT.DATE")
 
-  // const { id } = useParams();
   const handleSubmit = e => {
     e.preventDefault();
     setIsLoading(true);
@@ -35,15 +31,15 @@ const AddForm = ({ location, ht }) => {
       })
     })
       .then((r) => r.json())
-      .then(newReview => {
-        if (newReview.errors) {
-          setErrors(newReview.errors)
+      .then(data => {
+        if (data.errors) {
+          setErrors(data.errors)
         } else {
           setIsLoading(false);
-          console.log(newReview, "Added New Review")
-          handleAddReview(newReview)
-          navigate('/locations');
+          console.log(data, "Added New Review")
+          handleAddReview(data)
         }
+        navigate('/locations');
       });
   }
 
