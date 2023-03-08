@@ -4,12 +4,8 @@ import Background from '../../img/winter_hike.jpg'
 import { UserContext } from '../context/UserContext';
 
 const Home = () => {
-// const Home = ({ currentUser }) => {
-  // setCurrentUser={setCurrentUser} currentUser={currentUser}
   const { currentUser } = useContext(UserContext);
-
-  console.log(currentUser, "Home")
-
+  
   if (currentUser) {
     return (
       <div className="container-home-div">

@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
     skip_before_action :authorized, only: [:create, :destroy]
 
     # Login
-    # did not authenticate email should i? 
     def create
         @user = User.find_by(account_name: params[:account_name])
         if @user&.authenticate(params[:password])

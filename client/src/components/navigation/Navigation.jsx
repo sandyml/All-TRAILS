@@ -21,8 +21,11 @@ const Navigation = () => {
     <div className='topnav'>
       <Link to="/locations"><img src={Hiking} className="hike-image-nav" alt="background" /></Link>
       <Link to="/locations" className='topnav-nav-p'><h1 className='h1-nav'>AlltRAILS</h1></Link>
-      <Link to="/locations" className='topnav-nav'>Reviews</Link>
-      <Link to="/about" className='topnav-nav'>About</Link>
+      {/* <Link to="/locations" className='topnav-nav'>Reviews</Link> */}
+      <Link to="/locations" className='mouse-cursor-gradient-tracking'><span>Reviews</span></Link>
+      <Link to="/about" className='mouse-cursor-gradient-tracking'><span>About</span></Link>
+      {/* <Link to="/locations" className='topnav-nav'>Reviews</Link> */}
+      {/* <Link to="/about" className='topnav-nav'>About</Link> */}
       <div>
         {currentUser && currentUser.id ? (
           <div>

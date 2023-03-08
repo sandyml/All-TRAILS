@@ -871,7 +871,7 @@ a {
 }
 
 body.body-logout {
-  background-color:#6D7A71;
+  background-color: #6D7A71;
   margin: none;
 }
 
@@ -912,21 +912,6 @@ b.city-state {
   font-size: 20px;
 }
 
-/* .content-login { 
-  margin: 5rem;
-  border: grey;
-  margin-top: 10rem;
-  position: fixed;
-  width: 1px;
-  height: 1px;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* color: black; */
-/* }  */ 
-
 .topnav-nav:before,
 .topnav-nav:after {
   border: 0 solid transparent;
@@ -952,4 +937,48 @@ b.city-state {
 .topnav-nav:hover:after {
   height: 100%;
   width: 100%;
+}
+
+
+.mouse-cursor-gradient-tracking {
+  position: relative;
+  background: #6D7A71;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  border: none;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+}
+
+.mouse-cursor-gradient-tracking span {
+  position: relative;
+}
+
+.mouse-cursor-gradient-tracking::before {
+  --size: 0;
+  content: '';
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  background: radial-gradient(circle closest-side, #C3CEBD, transparent);
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease;
+}
+
+.mouse-cursor-gradient-tracking:hover::before {
+  --size: 200px;
+}
+
+.mouse-cursor-gradient-tracking {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
 }
