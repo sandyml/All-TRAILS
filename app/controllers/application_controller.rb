@@ -5,7 +5,6 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
   
   before_action :authorized
-  # before_action :logged_in
 
   def logged_in?
     !!session[:user_id]
@@ -14,10 +13,6 @@ class ApplicationController < ActionController::API
   def current_user
     User.find_by(id: session[:user_id])
   end
-
-  # def authorize
-    
-  # end
   
   def authorized 
     @current_user = User.find_by(id: session[:user_id])

@@ -22,25 +22,6 @@ const LocationProvider = ({ children }) => {
   // grab location id that matches another location id 
   // return new edited review once both location id matches
 
-  // DONT TOUCH!!!
-  // const editReview = ht => {
-  //   const updatedReviews = locations.map(location => {
-  //     // check locaction id === ht id {}
-  //     console.log(ht, "LocationContext")
-  //     if(ht.location_id === location.id) {
-  //       // construct new clone
-  //       return {
-  //          ...location, 
-  //          // what location do we need to update
-  //          hike_trails: [...location.hike_trails, ht] // map over location .hiketrails 
-  //       }
-  //     } else {
-  //       return location;
-  //     }
-  //   })
-  //   setLocations(updatedReviews);
-  // }
-
   // WORKING FUNCTION!
   // edit reviews
   const editReview = ht => {
@@ -87,7 +68,7 @@ const LocationProvider = ({ children }) => {
   }
 
   return (
-    <LocationContext.Provider value={{ locations, setLocations, editReview, handleAddReview }}>
+    <LocationContext.Provider value={{ addReviews, locations, setLocations, editReview, handleAddReview }}>
       {children}
     </LocationContext.Provider>
   )

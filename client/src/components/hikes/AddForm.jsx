@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { headers } from '../../Global';
 import { LocationContext } from '../context/LocationContext';
 
-const AddForm = ({ location, ht }) => {
+const AddForm = ({ location }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [review, setReview] = useState("");
   const [errors, setErrors] = useState([])
@@ -12,9 +12,7 @@ const AddForm = ({ location, ht }) => {
   
   const navigate = useNavigate();
 
-  // context
   const { handleAddReview } = useContext(LocationContext);
-  // console.log(format_date, "FORMAT", date, "DATE", ht.date, "HT.DATE")
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -25,8 +23,7 @@ const AddForm = ({ location, ht }) => {
       body: JSON.stringify({
         review,
         date,
-        location_id: location.id,
-        user_id: ht.user_id
+        location_id: location.id
       })
     })
       .then((r) => r.json())
