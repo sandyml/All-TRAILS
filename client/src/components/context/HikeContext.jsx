@@ -15,7 +15,6 @@ const HikeProvider = ({ children }) => {
       .then((data) => {
         console.log(data, "HikeContext")
         setAddReviews(data)
-        // setReviews(data)
         setHikes(data)
       })
       .catch((error) => console.log(error, "An error occurred.")

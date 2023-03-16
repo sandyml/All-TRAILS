@@ -24,8 +24,8 @@ const HikesReviews = ({ location, handleDelete }) => {
 
   return (
     <>
-        <button className='button2' onClick={toggleSeeEditForm}>Add</button>
-        {showEditForm ? <AddForm location={location} /> : null}
+      <button className='button2' onClick={toggleSeeEditForm}>Add</button>
+      {showEditForm ? <AddForm location={location} /> : null}
       {hike_trails.map(
         (ht) => (
           <div key={ht.id}>

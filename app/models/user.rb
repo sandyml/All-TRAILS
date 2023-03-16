@@ -11,10 +11,3 @@ class User < ApplicationRecord
  validates :password, length: { in: 6..10 }
  
 end
-
-# https://guides.rubyonrails.org/active_record_validations.html#confirmation
-
-# NOTES TO SELF: 
- # two arguments: first one is symbol of :account_name and the 2nd argument is the hash with one key value pair a symbol of presence pointing to true but we do not need the () and {}
- # validates (:account_name, {:presence => true})
-

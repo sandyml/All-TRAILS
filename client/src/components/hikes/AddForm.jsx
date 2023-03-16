@@ -8,7 +8,6 @@ const AddForm = ({ location }) => {
   const [review, setReview] = useState("");
   const [errors, setErrors] = useState([])
   const [date, setDate] = useState("DD/MM/YYYY");
-  // const [date, setDate] = useState(ht.date); 
   
   const navigate = useNavigate();
 
@@ -48,7 +47,6 @@ const AddForm = ({ location }) => {
             type="text"
             id="hikes"
             defaultValue={location.trail_name}
-          // onChange={(e) => setTrail_Name(e.target.value)}
           />
         </div>
         <div>
@@ -70,7 +68,6 @@ const AddForm = ({ location }) => {
             id="title"
             placeholder='DD/MM/YYYY'
             value={date}
-            // defaultValue={ht.format_date}
             onChange={(e) => setDate(e.target.value)}
           />
         </div>
