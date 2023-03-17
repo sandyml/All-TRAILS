@@ -1,6 +1,6 @@
 class HikeTrailsController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity_not_found_error
-  skip_before_action :authorized
+  skip_before_action :authorized, only: [:index, :show]
   # MASTER BRANCH!!!
 
   # GET '/hike_trails' all hike_trails
@@ -28,10 +28,13 @@ class HikeTrailsController < ApplicationController
   def update
     @hike = find_hike
       if @hike.user_id == current_user.id
-        @hike.update(hike_trail_params)
-        render json: @hike, status: :accepted
+        if @hike.update(hike_trail_params)
+          render json: @hike, status: :accepted
+        else
+          render json: { errors: @hike.errors.full_messages }, status: :unprocessable_entity
+        end
       else 
-        render json: { errors: @hike.errors.full_messages }, status: :unprocessable_entity
+        render json: { errors: ["Not an Authorized User"] }, status: :unprocessable_entity
       end
   end
 

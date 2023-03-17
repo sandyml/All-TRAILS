@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   if current_user
     render json: current_user
   else
-    render json: { errors: "Not logged in" }, status: :unauthorized 
+    render json: { errors: ["Not logged in"] }, status: :unauthorized 
   end
 end
 
@@ -23,7 +23,7 @@ end
   render json: user, status: :created
  end
 
- # Logout
+ # Logout //might move to sessions 
  def destroy
   session.delete :user_id
   head :no_content
