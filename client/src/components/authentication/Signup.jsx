@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { headers } from '../../Global';
 import { Link, useNavigate } from 'react-router-dom';
-import Background from '../../img/winter_hike.jpg'
 import { UserContext } from '../context/UserContext';
+import Background from '../../img/winter_hike.jpg'
+import { headers } from '../../Global';
 
 const Signup = () => {
   const [account_name, setAccount_Name] = useState("");

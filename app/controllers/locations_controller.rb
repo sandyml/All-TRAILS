@@ -1,6 +1,5 @@
 class LocationsController < ApplicationController
   skip_before_action :authorized, only: [:index]
-  # skip_before_action :authorized, only: [:create]
 
   def index
     render json: Location.all
@@ -27,13 +26,4 @@ class LocationsController < ApplicationController
     )
   end
 
- # def unprocessable_entity_errors_response(location)
- #  return render json: { errors: location.errors.full_messages }, status: :unprocessable_entity
- # end
-
 end
-
-
-# [] CREATE / READ ACTION 
- # - CREATE - one GET REQUEST to retrieve location & hikes / one state useState 
-# [] create 

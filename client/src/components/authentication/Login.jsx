@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { headers } from '../../Global';
-import Background from '../../img/winter_hike.jpg'
 import { UserContext } from '../context/UserContext';
+import Background from '../../img/winter_hike.jpg';
+import { headers } from '../../Global';
 
 const Login = () => {
   const [account_name, setAccount_name] = useState("");
@@ -111,4 +111,3 @@ const Login = () => {
 }
 
 export default Login;
-

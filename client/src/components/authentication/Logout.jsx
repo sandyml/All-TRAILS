@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Background from '../../img/icelake.jpg'
 import LogoutNav from '../navigation/LogoutNav';
-import Footer from '../static/Footer';
 import LogoFooter from '../static/LogoFooter';
+import { Link } from 'react-router-dom';
+import Footer from '../static/Footer';
 
 const Logout = () => {
   return (
