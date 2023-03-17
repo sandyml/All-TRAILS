@@ -6,6 +6,8 @@ Ruby on Rails - AllTrails inspired the name of Ruby on tRails / AllTRAILS.
 
 Utilizing two of the things I enjoy - Ruby on Rails and hiking! 
 
+AllTRAILS is a full-stack application allowing users to log in or sign up for access. Once accessed by logging in or signing up, users can see the hike trails, location, and reviews that the user and others have written. If the user reviews a hike, all hike trail cards will be displayed with the title and description. Users can update, delete or add a review(s). This app is a simplified version or All Trails. 
+
 ## Resources
 
 - [Getting Started with Ruby on Rails on Render](https://render.com/docs/deploy-rails)
