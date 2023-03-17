@@ -6,15 +6,11 @@ import HikesReviews from './HikesReviews';
 // [x] delete review
 // [x] patch review
 // [x] edit review
-// [] authentication review only user is able to edit
-// [] add review if (logged in) 
+// [x] authentication review only user is able to edit
+// [x] add review if (logged in) 
 
 const ReviewCard = ({ location, currentUser }) => {
   const { trail_name, city_state, image_url, difficulty, length, elevation_gain, route_type } = location;
-  // const { location } = hks;
-
-  // console.log(hks.location, "hks In REVIEWCARD")
-  // debugger
 
   const [showReview, setShowReview] = useState(false);
   const {locations, setLocations} = useContext(LocationContext);

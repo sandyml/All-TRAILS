@@ -1,6 +1,6 @@
 class HikeTrailsController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity_not_found_error
-  skip_before_action :authorized #, only: [:index, :show]
+  skip_before_action :authorized
   # MASTER BRANCH!!!
 
   # GET '/hike_trails' all hike_trails

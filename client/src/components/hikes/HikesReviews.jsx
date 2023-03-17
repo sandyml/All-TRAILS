@@ -23,7 +23,7 @@ const HikesReviews = ({ location, handleDelete }) => {
   };
 
   return (
-    <>
+    <div className='custom-scrollbar'>
       <button className='button2' onClick={toggleSeeEditForm}>Add</button>
       {showEditForm ? <AddForm location={location} /> : null}
       {hike_trails.map(
@@ -50,7 +50,7 @@ const HikesReviews = ({ location, handleDelete }) => {
           </div>
         ))
       }
-    </>
+    </div>
   )
 }
 
