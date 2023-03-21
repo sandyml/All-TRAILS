@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   resources :users, only: [:index, :create, :show]
-  resources :hike_trails #, only: [:index, :create, :show, :update, :destroy]
-  resources :locations #, only: [:index, :create] 
-  # resources :hike_trails, :locations // allows to define multiple resources in one line 
+  resources :hike_trails
+  resources :locations
 
   post "/signup", to: "users#create"
   get "/me", to: "users#show"

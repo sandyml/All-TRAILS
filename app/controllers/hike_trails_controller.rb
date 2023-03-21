@@ -1,7 +1,7 @@
 class HikeTrailsController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity_not_found_error
+
   skip_before_action :authorized, only: [:index, :show]
-  # MASTER BRANCH!!!
 
   # GET '/hike_trails' all hike_trails
   def index
@@ -58,14 +58,11 @@ class HikeTrailsController < ApplicationController
   def find_hike
     HikeTrail.find(params[:id])
   end
-
+  
   # will not need user_id / ids no longer need via body of request, params given to us by the request whether routes/body of fetch req because is is coming from out create 
-  def hikes_params
-    params.permit(:location_id, :account_name, :review, :format_date, :date)
-  end
-
+  # removed :id 
   def hike_trail_params
-    params.permit(:id, :location_id, :account_name, :review, :format_date, :date)
+    params.permit(:location_id, :account_name, :review, :format_date, :date)
   end
 
   def unprocessable_entity_not_found_error

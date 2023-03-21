@@ -77,7 +77,7 @@ const Signup = () => {
             placeholder="Enter Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-          // required={true}
+            required={true}
           />
         </div>
         <div className='input-parent'>
@@ -89,7 +89,7 @@ const Signup = () => {
             autoComplete="current-password"
             onChange={(e) => setPassword(e.target.value)}
             type={passwordShown ? "text" : "password"}
-          // required={true}
+            required={true}
           />
         </div>
         <div className='input-parent'>
@@ -101,7 +101,7 @@ const Signup = () => {
             value={passwordConfirmation}
             onChange={(e) => setPasswordConfirmation(e.target.value)}
             type={passwordShown ? "text" : "password"}
-          // required={true}
+            required={true}
           />
         </div>
 
@@ -115,7 +115,7 @@ const Signup = () => {
         <button type="submit" value="Submit" className="form-button">
           {isLoading ? "Loading..." : "Register"}
         </button>
-        
+
         <p>
           Already have an account? &nbsp;
           <Link to="/login" className='signup'>

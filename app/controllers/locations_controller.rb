@@ -1,10 +1,12 @@
 class LocationsController < ApplicationController
   skip_before_action :authorized, only: [:index]
 
+  # DISPLAYS ALL ITEMS / LOCATIONS 
   def index
     render json: Location.all
   end
 
+  # I DON'T THINK I NEED THIS NOT CREATING A NEW LOCATION / TENTATIVE
   def create
     @location = Location.new(location_params)
       if @location.save
@@ -14,6 +16,7 @@ class LocationsController < ApplicationController
       end
   end
 
+  # STRONG PARAMS
   def location_params 
     params.require(:location).permit(
       :trail_name, 

@@ -4,7 +4,6 @@ import LinkedinLogo from '../../img/linkedinlogo.png'
 
 const LogoFooter = () => {
  return (
-  // <div className='logo-footer'>
   <div>
    <a href="https://www.linkedin.com/in/sandra-y-2b672119b/">
     <img src={LinkedinLogo} alt='footer-logo' className='footer-logo' /> &nbsp;
