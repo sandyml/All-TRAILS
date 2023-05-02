@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react'
 
-const LocationContext = createContext();
+const LocationContext = createContext([]);
 
 const LocationProvider = ({ children }) => {
   const [locations, setLocations] = useState([]);

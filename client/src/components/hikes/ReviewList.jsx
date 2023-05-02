@@ -10,8 +10,9 @@ const ReviewList = () => {
   const { currentUser, loading, loggedIn } = useContext(UserContext);
 
   const navigate = useNavigate();
-
   console.log(locations, "locations attri in review list")
+
+  // debugger
   const reviewCards = locations.map(
     location =>
       <ReviewCard
